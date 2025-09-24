@@ -70,7 +70,7 @@ if use_postgres:
 data = session.sql("SELECT * FROM BUILD25_POSTGRES_CORTEX.PUBLIC.BUDGET_ANALYSIS")
 df = data.to_pandas()
 
-## Search Snowflake with Cortex
+st.header("Search Snowflake with Cortex")
 
 # Prompting
 user_queries = ["Provide a summary of my spending for Bills & Utilities.", "What's my biggest spending category in the last year, and how has it changed over time?"]
@@ -143,8 +143,33 @@ if st.button("Submit"):
                 except Exception as e:
                     st.error(f"Failed to save to PostgreSQL: {e}")
 
-with st.expander(":material/database: See Data", expanded=True):
+with st.expander(":material/database: See Data", expanded=False):
     df
+
+# Create visualizations
+st.subheader("Budget Analysis Charts")
+
+if not df.empty:
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Chart 1: Spending by Category
+        if 'CATEGORY' in df.columns and 'TOTAL_SPEND' in df.columns:
+            category_spend = df.groupby('CATEGORY')['TOTAL_SPEND'].sum().sort_values(ascending=False)
+            st.bar_chart(category_spend, use_container_width=True)
+            st.caption("Total Spending by Category")
+    
+    with col2:
+        # Chart 2: Budget vs Actual Spending
+        if 'CATEGORY' in df.columns and 'BUDGET_ALLOCATION' in df.columns and 'TOTAL_SPEND' in df.columns:
+            budget_comparison = df.groupby('CATEGORY').agg({
+                'BUDGET_ALLOCATION': 'sum',
+                'TOTAL_SPEND': 'sum'
+            }).sort_values('TOTAL_SPEND', ascending=False)
+            st.bar_chart(budget_comparison, use_container_width=True)
+            st.caption("Budget vs Actual Spending by Category")
+else:
+    st.info("No data available for visualization.")
 
 # --- Real Time Financial Data Search
 st.markdown("---")
