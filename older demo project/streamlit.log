@@ -1,0 +1,148 @@
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.1.94:8501
+
+  For better performance, install the Watchdog module:
+
+  $ xcode-select --install
+  $ pip install watchdog
+            
+2025-09-24 09:23:31.836 Connect to Snowflake using the Streamlit secret defined under [connections.snowflake].
+2025-09-24 09:23:37.062 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:23:53.024 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:23:56.275 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:23:59.584 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:24:06.827 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:26:45.155 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:26:57.109 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:27:16.041 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+2025-09-24 09:34:09.011 Uncaught app execution
+Traceback (most recent call last):
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/e.christensen/Documents/GitHubhttps:/github.com/sfc-gh-cnantasenamat/avalanche/blob/main/streamlit_app.py/cortex-demo/streamlit_app.py", line 626, in <module>
+    xyz = session.sql("SHOW CORTEX SEARCH SERVICES;")
+          ^^^^^^^^^^^
+  File "/Users/e.christensen/.venvs/cortex-demo/lib/python3.11/site-packages/streamlit/connections/base_connection.py", line 80, in __getattribute__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SnowflakeConnection' object has no attribute 'sql'
+  Stopping...

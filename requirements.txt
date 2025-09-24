@@ -2,3 +2,5 @@ streamlit
 snowflake-ml-python
 snowflake-snowpark-python
 tabulate
+sqlalchemy
+psycopg2-binary
