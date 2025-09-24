@@ -2,9 +2,10 @@ import streamlit as st
 import pandas as pd
 import json
 import re
-from snowflake.snowpark.functions import ai_complete
-from snowflake.snowpark.context import get_active_session
-session = get_active_session()
+
+# Initialize connection to Snowflake using the connection from secrets
+conn = st.connection("snowflake")
+session = conn.session()
 
 st.title(":material/network_intel_node: Cortex Data Analysis")
 
@@ -21,7 +22,7 @@ questions_list = st.selectbox("What would you like to know?", user_queries)
 # Create a text area for the user to enter or edit a prompt
 question = st.text_area("Enter a question:", value=questions_list)
 
-prompt = [
+messages = [
     {
         'role': 'system',
         'content': 'You are a helpful assistant that uses provided data to answer natural language questions.'
@@ -32,18 +33,27 @@ prompt = [
             f'The user has asked a question: {question}. '
             f'Please use this data to answer the question: {df.to_markdown(index=False)}'
         )
-    },
-    {
-        'temperature': 0.7,
-        # 'max_tokens': 1000,
-        'guardrails': True
     }
 ]
 
+# Cortex parameters
+cortex_params = {
+    'temperature': 0.7,
+    # 'max_tokens': 1000,
+    'guardrails': True
+}
+
 # Response generation
-def generate_response(prompt, **params):
-    cortex_prompt = f"'[INST] {prompt} [/INST]'"
-    prompt_data = [{'role': 'user', 'content': cortex_prompt}], params
+def generate_response(messages, params=None):
+    if params is None:
+        params = {}
+    
+    # Prepare the prompt data for Cortex
+    prompt_data = {
+        'messages': messages,
+        **params
+    }
+    
     prompt_json = escape_sql_string(json.dumps(prompt_data))
     response = session.sql(
         "select snowflake.cortex.complete(?, ?)", 
@@ -60,7 +70,7 @@ def escape_sql_string(s):
 if st.button("Submit"):
     with st.spinner("Generating response ...", show_time=True):
         with st.expander(":material/output: Generated Output", expanded=True):
-            response = generate_response(prompt)
+            response = generate_response(messages, cortex_params)
             st.write(response)
 
 with st.expander(":material/database: See Data", expanded=True):
