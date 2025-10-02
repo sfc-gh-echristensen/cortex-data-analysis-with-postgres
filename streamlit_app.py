@@ -76,7 +76,8 @@ SCHEMA = "AGENTS"
 AGENT = "BUILD25_POSTGRES_DEMO"
 
 # Build full URL
-HOST = st.secrets.get("SNOWFLAKE_HOST")
+HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_HOST")
+print("Using Snowflake host:", HOST)
 API_ENDPOINT = f"https://{HOST}/api/v2/databases/{DATABASE}/schemas/{SCHEMA}/agents/{AGENT}:run"
 API_TIMEOUT = 60  # timeout in seconds for requests library
 
@@ -123,7 +124,7 @@ if st.button("Submit"):
     
     try:
         # Get authentication token from session
-        token = st.secrets.get("SNOWFLAKE_PAT")
+        token = HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_PAT")
         
         # Make API call using requests with streaming
         headers = {
