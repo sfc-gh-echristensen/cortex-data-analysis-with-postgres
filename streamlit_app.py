@@ -71,9 +71,9 @@ if use_postgres:
             use_postgres = False
 
 # Agent configuration
-DATABASE = "SNOWFLAKE_INTELLIGENCE"
+DATABASE = "BUILD25_POSTGRES_CORTEX"
 SCHEMA = "AGENTS"
-AGENT = "BUILD25_POSTGRES_DEMO"
+AGENT = "POSTGRES_AGENT"
 
 # Build full URL
 HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_HOST")
