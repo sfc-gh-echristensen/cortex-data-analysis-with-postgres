@@ -4,15 +4,19 @@ import json
 import re
 import os
 from typing import Optional
+import requests
+import urllib3
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker
 from db import init_db, make_engine, make_session_factory, save_completion_with_session, fetch_history_with_session
 
+# Suppress SSL warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 # Initialize connection to Snowflake using the connection from secrets
 conn = st.connection("snowflake")
 session = conn.session()
-
 
 # --- Helpers: Postgres connection / operations
 def make_postgres_engine(user: str, password: str, host: str, port: int, dbname: str, sslmode: str | None = None) -> Engine:
@@ -66,110 +70,196 @@ if use_postgres:
             st.sidebar.error(f"PostgreSQL connection failed: {e}")
             use_postgres = False
 
-# Retrieve Snowflake data
-data = session.sql("SELECT * FROM BUILD25_POSTGRES_CORTEX.PUBLIC.BUDGET_ANALYSIS")
-df = data.to_pandas()
+# Agent configuration
+DATABASE = "BUILD25_POSTGRES_CORTEX"
+SCHEMA = "AGENTS"
+AGENT = "POSTGRES_AGENT"
 
-st.header("Search Snowflake with Cortex")
+# Build full URL
+HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_HOST")
+print("Using Snowflake host:", HOST)
+API_ENDPOINT = f"https://{HOST}/api/v2/databases/{DATABASE}/schemas/{SCHEMA}/agents/{AGENT}:run"
+API_TIMEOUT = 60  # timeout in seconds for requests library
 
-# Prompting
-user_queries = ["Provide a summary of my spending for Bills & Utilities.", "What's my biggest spending category in the last year, and how has it changed over time?"]
+st.header("Search Snowflake with Cortex Agent")
 
-questions_list = st.selectbox("What would you like to know?", user_queries)
+# Initialize session state for messages
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-# Create a text area for the user to enter or edit a prompt
-question = st.text_area("Enter a question:", value=questions_list)
-
-messages = [
-    {
-        'role': 'system',
-        'content': 'You are a helpful assistant that uses provided data to answer natural language questions.'
-    },
-    {
-        'role': 'user',
-        'content': (
-            f'The user has asked a question: {question}. '
-            f'Please use this data to answer the question: {df.to_markdown(index=False)}'
-        )
-    }
+# Predefined user queries
+user_queries = [
+    "Provide a summary of my spending for Bills & Utilities.",
+    "What's my biggest spending category in the last year, and how has it changed over time?"
 ]
 
-# Cortex parameters
-cortex_params = {
-    'temperature': 0.7,
-    # 'max_tokens': 1000,
-    'guardrails': True
-}
+# UI for question selection/input
+questions_list = st.selectbox("What would you like to know?", user_queries)
+question = st.text_area("Enter a question:", value=questions_list)
 
-# Response generation
-def generate_response(messages, params=None):
-    if params is None:
-        params = {}
-    
-    # Prepare the prompt data for Cortex
-    prompt_data = {
-        'messages': messages,
-        **params
-    }
-    
-    prompt_json = escape_sql_string(json.dumps(prompt_data))
-    response = session.sql(
-        "select snowflake.cortex.complete(?, ?)", 
-        params=['claude-3-5-sonnet', prompt_json]
-    ).collect()[0][0]
-    
-    return response
-
-def escape_sql_string(s):
-    return s.replace("'", "''")
-
-
+# Add a reset button
+if st.button("Reset Conversation"):
+    st.session_state.messages = []
+    st.success("Conversation reset!")
 
 if st.button("Submit"):
-    with st.spinner("Generating response ...", show_time=True):
-        with st.expander(":material/output: Generated Output", expanded=True):
-            response = generate_response(messages, cortex_params)
-            st.write(response)
+    # Add user message to conversation
+    user_message = {
+        "role": "user",
+        "content": [{"type": "text", "text": question}]
+    }
+    
+    # Create a clean messages list for this request
+    messages_to_send = [user_message]
+    
+    # Prepare agent request payload with correct structure
+    payload = {
+        "messages": messages_to_send
+    }
+    
+    # Placeholders for streaming display
+    status_placeholder = st.empty()
+    output_container = st.container()
+    text_placeholder = output_container.empty()
+    
+    try:
+        # Get authentication token from session
+        token = HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_PAT")
+        
+        # Make API call using requests with streaming
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+        
+        status_placeholder.info("Connecting to agent...")
+        
+        response = requests.post(
+            API_ENDPOINT,
+            json=payload,
+            headers=headers,
+            timeout=API_TIMEOUT,
+            verify=False,  # Disable SSL verification for hostname with underscore
+            stream=True  # Enable streaming
+        )
+        
+        # Check response status
+        if response.status_code != 200:
+            status_placeholder.error(f"Error: Status {response.status_code}")
+            st.text(response.text)
+        else:
+            # Process SSE stream
+            text_buffer = ""
+            final_message = None
+            buffer = ""
             
-            # Optionally save the prompt/result to PostgreSQL using ORM
-            if use_postgres and engine is not None:
-                try:
-                    SessionFactory = make_session_factory(engine)
-                    with SessionFactory() as db_sess:
-                        # Convert response to JSON if it's a string
-                        result_json = {"response": response} if isinstance(response, str) else response
-                        c = save_completion_with_session(db_sess, question, result_json)
-                    st.info(f"Saved completion to PostgreSQL (id={c.id})")
-                except Exception as e:
-                    st.error(f"Failed to save to PostgreSQL: {e}")
-
-with st.expander(":material/database: See Data", expanded=False):
-    df
-
-# Create visualizations
-st.subheader("Budget Analysis Charts")
-
-if not df.empty:
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        # Chart 1: Spending by Category
-        if 'CATEGORY' in df.columns and 'TOTAL_SPEND' in df.columns:
-            category_spend = df.groupby('CATEGORY')['TOTAL_SPEND'].sum().sort_values(ascending=False)
-            st.bar_chart(category_spend, use_container_width=True)
-            st.caption("Total Spending by Category")
-    
-    with col2:
-        # Chart 2: Budget vs Actual Spending
-        if 'CATEGORY' in df.columns and 'BUDGET_ALLOCATION' in df.columns and 'TOTAL_SPEND' in df.columns:
-            budget_comparison = df.groupby('CATEGORY').agg({
-                'BUDGET_ALLOCATION': 'sum',
-                'TOTAL_SPEND': 'sum'
-            }).sort_values('TOTAL_SPEND', ascending=False)
-            st.bar_chart(budget_comparison, use_container_width=True)
-            st.caption("Budget vs Actual Spending by Category")
-else:
-    st.info("No data available for visualization.")
+            # Stream the response line by line
+            for line in response.iter_lines(decode_unicode=True):
+                if not line:
+                    continue
+                
+                line = line.strip()
+                
+                # Parse SSE format
+                if line.startswith('event:'):
+                    event_type = line.split('event:', 1)[1].strip()
+                    buffer = event_type
+                    
+                elif line.startswith('data:'):
+                    data_line = line.split('data:', 1)[1].strip()
+                    
+                    try:
+                        data = json.loads(data_line)
+                        
+                        # Show status updates
+                        if buffer == 'response.status':
+                            status_placeholder.info(f"Status: {data.get('message', '')}")
+                        
+                        # Stream text deltas in real-time
+                        elif buffer == 'response.text.delta':
+                            text_buffer += data.get('text', '')
+                            text_placeholder.markdown(text_buffer)
+                        
+                        # Parse the final response event
+                        elif buffer == 'response':
+                            final_message = data
+                            
+                    except json.JSONDecodeError:
+                        pass
+            
+            status_placeholder.empty()  # Clear status
+            
+            if final_message:
+                # Add messages to session state
+                st.session_state.messages.append(user_message)
+                st.session_state.messages.append(final_message)
+                
+                # Clear the streaming text and show final formatted output
+                text_placeholder.empty()
+                
+                # Display final response
+                with output_container.expander(":material/output: Generated Output", expanded=True):
+                    # Extract and display content
+                    content_items = final_message.get("content", [])
+                    response_text = ""
+                    
+                    for item in content_items:
+                        item_type = item.get("type")
+                        
+                        if item_type == "text":
+                            text_content = item.get("text", "")
+                            st.markdown(text_content)
+                            response_text += text_content
+                        
+                        elif item_type == "thinking":
+                            with st.expander("Thinking"):
+                                st.write(item.get("thinking", {}).get("text", ""))
+                        
+                        elif item_type == "tool_use":
+                            with st.expander(f"Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
+                                st.json(item.get("tool_use"))
+                        
+                        elif item_type == "tool_result":
+                            with st.expander("Tool Result"):
+                                tool_result = item.get("tool_result", {})
+                                content = tool_result.get("content", [])
+                                for c in content:
+                                    if c.get("type") == "json":
+                                        json_data = c.get("json", {})
+                                        if "sql" in json_data:
+                                            st.code(json_data["sql"], language="sql")
+                        
+                        elif item_type == "chart":
+                            chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
+                            st.vega_lite_chart(chart_spec, use_container_width=True)
+                        
+                        elif item_type == "table":
+                            result_set = item.get("table", {}).get("result_set", {})
+                            data_array = result_set.get("data", [])
+                            row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
+                            column_names = [col.get("name") for col in row_type]
+                            
+                            df_result = pd.DataFrame(data_array, columns=column_names)
+                            st.dataframe(df_result)
+                    
+                    # Optionally save the prompt/result to PostgreSQL using ORM
+                    if use_postgres and engine is not None:
+                        try:
+                            SessionFactory = make_session_factory(engine)
+                            with SessionFactory() as db_sess:
+                                # Convert response to JSON if it's a string
+                                result_json = {"response": response_text} if isinstance(response_text, str) else response_text
+                                c = save_completion_with_session(db_sess, question, result_json)
+                            st.info(f"Saved completion to PostgreSQL (id={c.id})")
+                        except Exception as e:
+                            st.error(f"Failed to save to PostgreSQL: {e}")
+            else:
+                st.warning("No final response found in events")
+                
+    except Exception as e:
+        st.error(f"Agent request failed: {str(e)}")
+        import traceback
+        st.code(traceback.format_exc())
 
 # --- Real Time Financial Data Search
 st.markdown("---")
