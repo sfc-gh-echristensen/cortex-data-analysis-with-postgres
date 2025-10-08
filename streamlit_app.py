@@ -214,109 +214,156 @@ if use_postgres and engine is not None:
                 except Exception as e:
                     st.error(f"Error searching accounts: {e}")
 
-    # Financial Q&A
+    # Financial Q&A with Cortex-powered Text-to-SQL
     user_question = st.text_input("Ask a question about your finances:", "How much did I spend on groceries last week?")
 
-    def heuristic_extract(question: str) -> dict:
-        """Very simple heuristic extractor for demo purposes."""
-        import re
-        from datetime import datetime, timedelta
+    def generate_sql_with_cortex(question: str, schema_info: str) -> dict:
+        """Use Snowflake Cortex to generate SQL from natural language."""
+        try:
+            # Create a specialized prompt for text-to-SQL conversion
+            sql_prompt = """You are an expert SQL generator for PostgreSQL. Convert the following natural language question into a SQL query.
 
-        q = question.lower()
-        entities = {}
+Database Schema:
+""" + schema_info + """
 
-        # timeframe: last week / this week / last month
-        if "last week" in q:
-            today = datetime.utcnow().date()
-            # last calendar week (Mon-Sun) ending last Sunday
-            last_sunday = today - timedelta(days=today.weekday() + 1)
-            start = last_sunday - timedelta(days=6)
-            end = last_sunday
-            entities["start_date"] = start.isoformat()
-            entities["end_date"] = end.isoformat()
-        elif "this week" in q:
-            today = datetime.utcnow().date()
-            start = datetime.combine(today - timedelta(days=today.weekday()), datetime.min.time()).date()
-            end = today
-            entities["start_date"] = start.isoformat()
-            entities["end_date"] = end.isoformat()
+IMPORTANT: In this database, ALL transaction amounts are stored as POSITIVE numbers. Expenses like groceries, dining, utilities are positive amounts (e.g., 15.00 for a $15 meal). Do NOT filter by amount < 0.
 
-        # category
-        m = re.search(r"grocer|grocery|groceries", q)
-        if m:
-            entities["category"] = "Groceries"
+Rules:
+1. Generate only valid PostgreSQL SQL
+2. Use parameterized queries with :param_name format for SQLAlchemy for user input values
+3. For relative dates (like "last week", "this month"), embed date functions directly in SQL, not as parameters
+4. Always JOIN accounts and transactions tables when needed
+5. Use ILIKE for case-insensitive text matching
+6. Use NOW() - INTERVAL for relative dates (e.g., NOW() - INTERVAL '7 days' for last week)
+7. All amounts are positive - do not filter by amount < 0
+8. Return a JSON object with 'sql' and 'params' keys
 
-        # account
-        if "checking" in q:
-            entities["account_name"] = "Checking"
+Question: """ + question + """
 
-        return entities
+Return your response as a JSON object with:
+- "sql": the SQL query string (with date functions embedded directly)
+- "params": an object with parameter names and values (only for user input, not dates)
+- "explanation": brief explanation of what the query does
 
-    def query_finances(engine: Engine, start_date: str | None, end_date: str | None, category: str | None, account_name: str | None):
-        """Run parameterized queries against the demo financial schema."""
-        from datetime import datetime
+Example response formats:
+For category search: {"sql": "SELECT SUM(t.amount) FROM transactions t JOIN accounts a ON t.account_id = a.account_id WHERE t.category ILIKE :category", "params": {"category": "Groceries"}, "explanation": "Sums all transaction amounts for grocery purchases"}
+
+For spending queries: {"sql": "SELECT SUM(t.amount) FROM transactions t WHERE t.date >= NOW() - INTERVAL '7 days'", "params": {}, "explanation": "Total spending in the last 7 days"}
+"""
+
+            # Use Cortex to generate SQL
+            response = session.sql(
+                "select snowflake.cortex.complete(?, ?)", 
+                params=['claude-3-5-sonnet', sql_prompt]
+            ).collect()[0][0]
+            
+            # Parse the JSON response
+            try:
+                return json.loads(response)
+            except json.JSONDecodeError:
+                # If response isn't valid JSON, try to extract it
+                import re
+                json_match = re.search(r'\{.*\}', response, re.DOTALL)
+                if json_match:
+                    return json.loads(json_match.group())
+                else:
+                    return {"error": "Could not parse SQL generation response", "raw_response": response}
+                    
+        except Exception as e:
+            return {"error": f"Failed to generate SQL: {str(e)}"}
+
+    def get_schema_info() -> str:
+        """Get schema information for the financial database."""
+        return """
+Tables:
+1. accounts
+   - account_id (INTEGER, PRIMARY KEY)
+   - account_name (VARCHAR, NOT NULL, UNIQUE)
+   - current_balance (NUMERIC(14,2), NOT NULL)
+
+2. transactions
+   - transaction_id (INTEGER, PRIMARY KEY)
+   - date (TIMESTAMP, NOT NULL)
+   - amount (NUMERIC(12,2), NOT NULL)
+   - merchant (VARCHAR)
+   - category (VARCHAR)
+   - notes (TEXT)
+   - account_id (INTEGER, FOREIGN KEY to accounts.account_id)
+
+Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, Shopping, Dining, etc.
+"""
+
+    def execute_cortex_query(engine: Engine, sql: str, params: dict):
+        """Execute the Cortex-generated SQL query."""
         SessionFactory = sessionmaker(bind=engine)
         with SessionFactory() as s:
-            # If asking about balance and account_name provided
-            if ("balance" in user_question.lower() or "what's the balance" in user_question.lower()) and account_name:
-                row = s.execute(
-                    text("SELECT account_id, account_name, current_balance FROM accounts WHERE account_name ILIKE :name LIMIT 1"),
-                    {"name": account_name}
-                ).fetchone()
-                return {"type": "balance", "result": dict(row._mapping) if row else None}
-
-            # Otherwise, attempt sum on transactions
-            params = {}
-            where_clauses = []
-            sql = "SELECT SUM(t.amount) as total FROM transactions t JOIN accounts ON t.account_id = accounts.account_id"
-
-            if category:
-                where_clauses.append("t.category ILIKE :category")
-                params["category"] = category
-            if start_date and end_date:
-                where_clauses.append("t.date BETWEEN :start_date AND :end_date")
-                params["start_date"] = start_date
-                params["end_date"] = end_date
-            if account_name:
-                where_clauses.append("accounts.account_name ILIKE :acct")
-                params["acct"] = account_name
-
-            if where_clauses:
-                sql = sql + " WHERE " + " AND ".join(where_clauses)
-
-            row = s.execute(text(sql), params).fetchone()
-            total = row[0] if row is not None else None
-            return {"type": "sum", "total": float(total) if total is not None else 0.0, "sql": sql, "params": params}
-
-    if st.button("Run Financial Query"):
-        if not st.session_state.get("account_search_done"):
-            st.error("Please run the PostgreSQL account search first and select an account before running the query.")
-        else:
-            # Extract entities from the question
-            entities = heuristic_extract(user_question)
-
-            # prefer selected account from PostgreSQL-first search if present
-            acct_name = st.session_state.get("selected_account_name") or entities.get("account_name")
-            
             try:
-                qres = query_finances(engine, entities.get("start_date"), entities.get("end_date"), entities.get("category"), acct_name)
-                if qres.get("type") == "balance":
-                    if qres.get("result"):
-                        st.success(f"Account '{qres['result']['account_name']}' balance: ${qres['result']['current_balance']}")
-                    else:
-                        st.write("Account not found.")
-                else:
-                    st.success(f"Total: ${qres.get('total')}")
-                
-                # Show the SQL and parameters used (for demo / debugging) - in a collapsible section
-                with st.expander("Query Details", expanded=False):
-                    st.write("Detected entities:", entities)
-                    st.markdown("**SQL sent to PostgreSQL:**")
-                    st.code(qres.get("sql", ""))
-                    st.markdown("**Parameters:**")
-                    st.json(qres.get("params", {}))
+                result = s.execute(text(sql), params).fetchall()
+                return {"success": True, "result": result, "sql": sql, "params": params}
             except Exception as e:
-                st.error(f"Error running financial query: {e}")
+                return {"success": False, "error": str(e), "sql": sql, "params": params}
+
+    if st.button("Run AI-Powered Financial Query"):
+        if not st.session_state.get("account_search_done"):
+            st.warning("Consider running the PostgreSQL account search first to identify available accounts.")
+        
+        with st.spinner("Generating SQL with Cortex AI..."):
+            # Get schema information
+            schema_info = get_schema_info()
+            
+            # Add selected account context if available
+            context_question = user_question
+            if st.session_state.get("selected_account_name"):
+                context_question += f" (Focus on account: {st.session_state['selected_account_name']})"
+            
+            # Generate SQL using Cortex
+            cortex_result = generate_sql_with_cortex(context_question, schema_info)
+            
+            if "error" in cortex_result:
+                st.error(f"Error generating SQL: {cortex_result['error']}")
+                if "raw_response" in cortex_result:
+                    with st.expander("Raw Cortex Response"):
+                        st.text(cortex_result["raw_response"])
+            else:
+                # Display the generated SQL and explanation
+                st.success("✨ SQL Generated Successfully!")
+                
+                if "explanation" in cortex_result:
+                    st.info(f"**Query Explanation:** {cortex_result['explanation']}")
+                
+                # Execute the query
+                query_result = execute_cortex_query(engine, cortex_result["sql"], cortex_result.get("params", {}))
+                
+                if query_result["success"]:
+                    result_data = query_result["result"]
+                    
+                    if result_data:
+                        # Display results in a nice format
+                        if len(result_data) == 1 and len(result_data[0]) == 1:
+                            # Single value result (like SUM, COUNT)
+                            value = result_data[0][0]
+                            if isinstance(value, (int, float)):
+                                st.metric("Result", f"${value:,.2f}" if "amount" in cortex_result["sql"].lower() else f"{value:,}")
+                            else:
+                                st.success(f"Result: {value}")
+                        else:
+                            # Multiple results - show as table
+                            df_result = pd.DataFrame(result_data)
+                            st.dataframe(df_result, use_container_width=True)
+                    else:
+                        st.info("Query executed successfully but returned no results.")
+                else:
+                    st.error(f"Error executing SQL: {query_result['error']}")
+                
+                # Show query details in collapsible section
+                with st.expander("🔍 Query Details", expanded=False):
+                    st.markdown("**Generated SQL:**")
+                    st.code(cortex_result["sql"], language="sql")
+                    st.markdown("**Parameters:**")
+                    st.json(cortex_result.get("params", {}))
+                    if not query_result["success"]:
+                        st.markdown("**Error Details:**")
+                        st.error(query_result["error"])
 
 else:
     st.info("Enable PostgreSQL connection in the sidebar to access real-time financial data search.")
