@@ -81,185 +81,226 @@ print("Using Snowflake host:", HOST)
 API_ENDPOINT = f"https://{HOST}/api/v2/databases/{DATABASE}/schemas/{SCHEMA}/agents/{AGENT}:run"
 API_TIMEOUT = 60  # timeout in seconds for requests library
 
-st.header("Search Snowflake with Cortex Agent")
+st.header("🤖 Chat with Cortex Agent")
 
-# Initialize session state for messages
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+# Initialize session state for chat messages
+if "chat_messages" not in st.session_state:
+    st.session_state.chat_messages = []
 
-# Predefined user queries
-user_queries = [
-    "Provide a summary of my spending for Bills & Utilities.",
-    "What's my biggest spending category in the last year, and how has it changed over time?"
-]
+# Display chat messages
+for message in st.session_state.chat_messages:
+    with st.chat_message(message["role"]):
+        if message["role"] == "user":
+            st.markdown(message["content"])
+        else:
+            # Display assistant message with all content types
+            content_items = message.get("content", [])
+            
+            for item in content_items:
+                item_type = item.get("type")
+                
+                if item_type == "text":
+                    st.markdown(item.get("text", ""))
+                
+                elif item_type == "thinking":
+                    with st.expander("🤔 Thinking"):
+                        st.write(item.get("thinking", {}).get("text", ""))
+                
+                elif item_type == "tool_use":
+                    with st.expander(f"🔧 Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
+                        st.json(item.get("tool_use"))
+                
+                elif item_type == "tool_result":
+                    with st.expander("📊 Tool Result"):
+                        tool_result = item.get("tool_result", {})
+                        content = tool_result.get("content", [])
+                        for c in content:
+                            if c.get("type") == "json":
+                                json_data = c.get("json", {})
+                                if "sql" in json_data:
+                                    st.code(json_data["sql"], language="sql")
+                
+                elif item_type == "chart":
+                    chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
+                    st.vega_lite_chart(chart_spec, use_container_width=True)
+                
+                elif item_type == "table":
+                    result_set = item.get("table", {}).get("result_set", {})
+                    data_array = result_set.get("data", [])
+                    row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
+                    column_names = [col.get("name") for col in row_type]
+                    
+                    df_result = pd.DataFrame(data_array, columns=column_names)
+                    st.dataframe(df_result)
 
-# UI for question selection/input
-questions_list = st.selectbox("What would you like to know?", user_queries)
-question = st.text_area("Enter a question:", value=questions_list)
-
-# Add a reset button
-if st.button("Reset Conversation"):
-    st.session_state.messages = []
-    st.success("Conversation reset!")
-
-if st.button("Submit"):
-    # Add user message to conversation
-    user_message = {
-        "role": "user",
-        "content": [{"type": "text", "text": question}]
-    }
+# Chat input
+if prompt := st.chat_input("Ask me about your financial data..."):
+    # Add user message to chat history
+    user_message_content = prompt
+    st.session_state.chat_messages.append({"role": "user", "content": user_message_content})
     
-    # Create a clean messages list for this request
-    messages_to_send = [user_message]
+    # Display user message
+    with st.chat_message("user"):
+        st.markdown(prompt)
     
-    # Prepare agent request payload with correct structure
-    payload = {
-        "messages": messages_to_send
-    }
-    
-    # Placeholders for streaming display
-    status_placeholder = st.empty()
-    output_container = st.container()
-    text_placeholder = output_container.empty()
-    
-    try:
-        # Get authentication token from session
-        token = HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_PAT")
-        
-        # Make API call using requests with streaming
-        headers = {
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json"
+    # Display assistant response
+    with st.chat_message("assistant"):
+        # Create message payload for agent
+        user_message = {
+            "role": "user",
+            "content": [{"type": "text", "text": prompt}]
         }
         
-        status_placeholder.info("Connecting to agent...")
+        payload = {
+            "messages": [user_message]
+        }
         
-        response = requests.post(
-            API_ENDPOINT,
-            json=payload,
-            headers=headers,
-            timeout=API_TIMEOUT,
-            verify=False,  # Disable SSL verification for hostname with underscore
-            stream=True  # Enable streaming
-        )
-        
-        # Check response status
-        if response.status_code != 200:
-            status_placeholder.error(f"Error: Status {response.status_code}")
-            st.text(response.text)
-        else:
-            # Process SSE stream
-            text_buffer = ""
-            final_message = None
-            buffer = ""
-            
-            # Stream the response line by line
-            for line in response.iter_lines(decode_unicode=True):
-                if not line:
-                    continue
+        # Show thinking indicator
+        with st.status("Thinking...", expanded=True) as status:
+            try:
+                # Get authentication token
+                token = st.secrets.get("agent", {}).get("SNOWFLAKE_PAT")
                 
-                line = line.strip()
+                # Make API call
+                headers = {
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/json"
+                }
                 
-                # Parse SSE format
-                if line.startswith('event:'):
-                    event_type = line.split('event:', 1)[1].strip()
-                    buffer = event_type
+                status.update(label="Connecting to agent...", state="running")
+                
+                response = requests.post(
+                    API_ENDPOINT,
+                    json=payload,
+                    headers=headers,
+                    timeout=API_TIMEOUT,
+                    verify=False,
+                    stream=True
+                )
+                
+                if response.status_code != 200:
+                    st.error(f"Error: Status {response.status_code}")
+                    st.text(response.text)
+                else:
+                    # Process streaming response
+                    text_buffer = ""
+                    final_message = None
+                    buffer = ""
                     
-                elif line.startswith('data:'):
-                    data_line = line.split('data:', 1)[1].strip()
+                    # Create placeholders for streaming
+                    status.update(label="Processing response...", state="running")
+                    response_placeholder = st.empty()
                     
-                    try:
-                        data = json.loads(data_line)
+                    # Stream the response
+                    for line in response.iter_lines(decode_unicode=True):
+                        if not line:
+                            continue
                         
-                        # Show status updates
-                        if buffer == 'response.status':
-                            status_placeholder.info(f"Status: {data.get('message', '')}")
+                        line = line.strip()
                         
-                        # Stream text deltas in real-time
-                        elif buffer == 'response.text.delta':
-                            text_buffer += data.get('text', '')
-                            text_placeholder.markdown(text_buffer)
-                        
-                        # Parse the final response event
-                        elif buffer == 'response':
-                            final_message = data
+                        if line.startswith('event:'):
+                            event_type = line.split('event:', 1)[1].strip()
+                            buffer = event_type
                             
-                    except json.JSONDecodeError:
-                        pass
-            
-            status_placeholder.empty()  # Clear status
-            
-            if final_message:
-                # Add messages to session state
-                st.session_state.messages.append(user_message)
-                st.session_state.messages.append(final_message)
-                
-                # Clear the streaming text and show final formatted output
-                text_placeholder.empty()
-                
-                # Display final response
-                with output_container.expander(":material/output: Generated Output", expanded=True):
-                    # Extract and display content
-                    content_items = final_message.get("content", [])
-                    response_text = ""
-                    
-                    for item in content_items:
-                        item_type = item.get("type")
-                        
-                        if item_type == "text":
-                            text_content = item.get("text", "")
-                            st.markdown(text_content)
-                            response_text += text_content
-                        
-                        elif item_type == "thinking":
-                            with st.expander("Thinking"):
-                                st.write(item.get("thinking", {}).get("text", ""))
-                        
-                        elif item_type == "tool_use":
-                            with st.expander(f"Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
-                                st.json(item.get("tool_use"))
-                        
-                        elif item_type == "tool_result":
-                            with st.expander("Tool Result"):
-                                tool_result = item.get("tool_result", {})
-                                content = tool_result.get("content", [])
-                                for c in content:
-                                    if c.get("type") == "json":
-                                        json_data = c.get("json", {})
-                                        if "sql" in json_data:
-                                            st.code(json_data["sql"], language="sql")
-                        
-                        elif item_type == "chart":
-                            chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
-                            st.vega_lite_chart(chart_spec, use_container_width=True)
-                        
-                        elif item_type == "table":
-                            result_set = item.get("table", {}).get("result_set", {})
-                            data_array = result_set.get("data", [])
-                            row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
-                            column_names = [col.get("name") for col in row_type]
+                        elif line.startswith('data:'):
+                            data_line = line.split('data:', 1)[1].strip()
                             
-                            df_result = pd.DataFrame(data_array, columns=column_names)
-                            st.dataframe(df_result)
+                            try:
+                                data = json.loads(data_line)
+                                
+                                # Update status
+                                if buffer == 'response.status':
+                                    status.update(label=f"Status: {data.get('message', '')}", state="running")
+                                
+                                # Stream text updates
+                                elif buffer == 'response.text.delta':
+                                    text_buffer += data.get('text', '')
+                                    response_placeholder.markdown(text_buffer)
+                                
+                                # Parse final response
+                                elif buffer == 'response':
+                                    final_message = data
+                                    
+                            except json.JSONDecodeError:
+                                pass
                     
-                    # Optionally save the prompt/result to PostgreSQL using ORM
-                    if use_postgres and engine is not None:
-                        try:
-                            SessionFactory = make_session_factory(engine)
-                            with SessionFactory() as db_sess:
-                                # Convert response to JSON if it's a string
-                                result_json = {"response": response_text} if isinstance(response_text, str) else response_text
-                                c = save_completion_with_session(db_sess, question, result_json)
-                            st.info(f"Saved completion to PostgreSQL (id={c.id})")
-                        except Exception as e:
-                            st.error(f"Failed to save to PostgreSQL: {e}")
-            else:
-                st.warning("No final response found in events")
-                
-    except Exception as e:
-        st.error(f"Agent request failed: {str(e)}")
-        import traceback
-        st.code(traceback.format_exc())
+                    status.update(label="Complete!", state="complete")
+                    
+                    if final_message:
+                        # Clear the streaming placeholder and show final response
+                        response_placeholder.empty()
+                        
+                        # Extract and display content
+                        content_items = final_message.get("content", [])
+                        response_text = ""
+                        
+                        for item in content_items:
+                            item_type = item.get("type")
+                            
+                            if item_type == "text":
+                                text_content = item.get("text", "")
+                                st.markdown(text_content)
+                                response_text += text_content
+                            
+                            elif item_type == "thinking":
+                                with st.expander("🤔 Thinking"):
+                                    st.write(item.get("thinking", {}).get("text", ""))
+                            
+                            elif item_type == "tool_use":
+                                with st.expander(f"🔧 Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
+                                    st.json(item.get("tool_use"))
+                            
+                            elif item_type == "tool_result":
+                                with st.expander("📊 Tool Result"):
+                                    tool_result = item.get("tool_result", {})
+                                    content = tool_result.get("content", [])
+                                    for c in content:
+                                        if c.get("type") == "json":
+                                            json_data = c.get("json", {})
+                                            if "sql" in json_data:
+                                                st.code(json_data["sql"], language="sql")
+                            
+                            elif item_type == "chart":
+                                chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
+                                st.vega_lite_chart(chart_spec, use_container_width=True)
+                            
+                            elif item_type == "table":
+                                result_set = item.get("table", {}).get("result_set", {})
+                                data_array = result_set.get("data", [])
+                                row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
+                                column_names = [col.get("name") for col in row_type]
+                                
+                                df_result = pd.DataFrame(data_array, columns=column_names)
+                                st.dataframe(df_result)
+                        
+                        # Add assistant message to chat history
+                        st.session_state.chat_messages.append({
+                            "role": "assistant", 
+                            "content": final_message.get("content", [])
+                        })
+                        
+                        # Save to PostgreSQL if enabled
+                        if use_postgres and engine is not None:
+                            try:
+                                SessionFactory = make_session_factory(engine)
+                                with SessionFactory() as db_sess:
+                                    result_json = {"response": response_text} if isinstance(response_text, str) else response_text
+                                    c = save_completion_with_session(db_sess, prompt, result_json)
+                                st.success(f"💾 Saved to PostgreSQL (id={c.id})")
+                            except Exception as e:
+                                st.error(f"Failed to save to PostgreSQL: {e}")
+                    else:
+                        st.warning("No final response found in events")
+                        
+            except Exception as e:
+                st.error(f"Agent request failed: {str(e)}")
+                import traceback
+                st.code(traceback.format_exc())
+
+# Add a button to clear chat history
+if st.button("🗑️ Clear Chat History"):
+    st.session_state.chat_messages = []
+    st.rerun()
 
 # --- Real Time Financial Data Search
 st.markdown("---")
