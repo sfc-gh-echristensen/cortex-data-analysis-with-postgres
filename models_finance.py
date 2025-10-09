@@ -25,6 +25,7 @@ class Transaction(Base):
     merchant = Column(String(200), nullable=True)
     category = Column(String(100), nullable=True)
     notes = Column(Text, nullable=True)
+    status = Column(String(20), nullable=False, default='pending')  # pending, approved, declined, cancelled
     account_id = Column(Integer, ForeignKey("accounts.account_id"), nullable=False)
 
     account = relationship("Account", back_populates="transactions")

@@ -10,6 +10,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker
 from db import init_db, make_engine, make_session_factory, save_completion_with_session, fetch_history_with_session
+from db_utils import TransactionManager, test_connection, ensure_status_column_exists, get_db_connection
 
 # Suppress SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -342,6 +343,344 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                 st.write("No history found.")
         except Exception as e:
             st.error(f"Failed to load history: {e}")
+
+    # =============================================================================
+    # PENDING TRANSACTIONS AGENT
+    # =============================================================================
+
+    st.markdown("---")
+    st.header("🤖 Pending Transaction Manager")
+
+    # Check database status and connection
+    with st.expander("🔧 Database Status & Debug Info", expanded=False):
+        conn_success, conn_msg = test_connection()
+        if conn_success:
+            st.success(f"✅ {conn_msg}")
+            
+            # Check status column
+            status_exists, status_msg = ensure_status_column_exists()
+            if status_exists:
+                st.success(f"✅ {status_msg}")
+            else:
+                st.warning(f"⚠️ {status_msg}")
+                st.info("Run `python migrate_add_status.py` to add the status column")
+            
+            # Show transaction statistics
+            try:
+                stats = TransactionManager.get_transaction_stats()
+                st.write("**Transaction Statistics:**")
+                for status, data in stats.items():
+                    st.write(f"- **{status.title()}**: {data['count']} transactions (${data['total_amount']:.2f} total)")
+            except Exception as e:
+                st.error(f"Could not load transaction statistics: {e}")
+            
+            # Real-time database query
+            if st.button("🔍 Query Database Directly", key="debug_query"):
+                try:
+                    from db_utils import get_db_connection
+                    with get_db_connection() as conn:
+                        result = conn.execute(text("""
+                            SELECT 
+                                transaction_id,
+                                merchant,
+                                amount,
+                                status,
+                                date,
+                                CASE 
+                                    WHEN LENGTH(notes) > 50 THEN LEFT(notes, 50) || '...'
+                                    ELSE notes
+                                END as notes_preview
+                            FROM transactions 
+                            ORDER BY date DESC, transaction_id DESC
+                            LIMIT 10
+                        """))
+                        
+                        recent_txns = result.fetchall()
+                        st.write("**Last 10 Transactions (Direct from Database):**")
+                        
+                        for txn in recent_txns:
+                            status_emoji = {
+                                'pending': '🟡',
+                                'approved': '🟢', 
+                                'declined': '🔴',
+                                'cancelled': '❌'
+                            }.get(txn.status, '⚪')
+                            
+                            st.write(f"**ID {txn.transaction_id}** {status_emoji} {txn.merchant} - ${txn.amount} ({txn.status})")
+                            if txn.notes_preview:
+                                st.write(f"   _Notes: {txn.notes_preview}_")
+                        
+                except Exception as e:
+                    st.error(f"Direct database query failed: {e}")
+        else:
+            st.error(f"❌ {conn_msg}")
+            st.info("Check your PostgreSQL connection settings in the sidebar")
+
+    # Initialize session state for cancellation feedback
+    if 'cancellation_success' not in st.session_state:
+        st.session_state.cancellation_success = None
+    if 'cancellation_message' not in st.session_state:
+        st.session_state.cancellation_message = None
+    if 'show_feedback' not in st.session_state:
+        st.session_state.show_feedback = False
+
+    # Add refresh button and auto-refresh controls
+    col1, col2, col3 = st.columns([1, 1, 2])
+    with col1:
+        if st.button("🔄 Refresh Data", key="refresh_transactions"):
+            st.rerun()
+    
+    with col2:
+        auto_refresh = st.checkbox("Auto-refresh", value=False, key="auto_refresh_checkbox")
+    
+    with col3:
+        if auto_refresh:
+            st.info("⚡ Auto-refresh enabled - page will refresh automatically")
+
+    # Debug session state (remove this after testing)
+    with st.expander("🐛 Debug Session State", expanded=False):
+        st.write("Session State Values:")
+        st.write(f"- show_feedback: {st.session_state.get('show_feedback', 'Not set')}")
+        st.write(f"- cancellation_success: {st.session_state.get('cancellation_success', 'Not set')}")
+        st.write(f"- cancellation_message: {st.session_state.get('cancellation_message', 'Not set')}")
+    
+    # Display any pending success message at the top - PERSISTENT FEEDBACK
+    if st.session_state.get('show_feedback', False):
+        if st.session_state.get('cancellation_success', False):
+            st.success(f"✅ **TRANSACTION CANCELLED**: {st.session_state.get('cancellation_message', 'Unknown transaction')}")
+            st.balloons()
+            st.info(f"🔄 **Database Updated**: Transaction status changed to 'declined' in PostgreSQL")
+            
+            # Add verification section
+            with st.expander("🔍 Verification Details", expanded=True):
+                st.write("**What happened:**")
+                st.write("1. ✅ Database transaction started")
+                st.write("2. ✅ Transaction found and verified as 'pending'")
+                st.write("3. ✅ Status updated to 'declined'")
+                st.write("4. ✅ Cancellation reason added to notes")
+                st.write("5. ✅ Database transaction committed")
+                st.write("6. ✅ Changes verified in database")
+                
+                st.info("💡 **Tip**: Click 'Refresh Data' to see the updated transaction list")
+            
+            # Auto-clear after showing (but only after a manual clear button)
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("✅ Clear Success Message", key="clear_success"):
+                    st.session_state.show_feedback = False
+                    st.session_state.cancellation_success = None
+                    st.session_state.cancellation_message = None
+                    st.rerun()
+            with col2:
+                if st.button("🔄 Refresh & Keep Message", key="refresh_keep"):
+                    st.rerun()
+                    
+        elif st.session_state.get('cancellation_success') == False:
+            st.error(f"❌ **CANCELLATION FAILED**: {st.session_state.get('cancellation_message', 'Unknown error')}")
+            
+            # Add button to clear error feedback  
+            if st.button("❌ Clear Error Message", key="clear_error"):
+                st.session_state.show_feedback = False
+                st.session_state.cancellation_success = None
+                st.session_state.cancellation_message = None
+                st.rerun()
+
+    # Display pending transactions
+    try:
+        pending_transactions = TransactionManager.get_pending_transactions()
+    except Exception as e:
+        st.error(f"Failed to fetch pending transactions: {e}")
+        pending_transactions = []
+
+    if pending_transactions:
+        st.write(f"**Found {len(pending_transactions)} pending transactions:**")
+        
+        # Create a DataFrame for better display
+        df_pending = pd.DataFrame(pending_transactions)
+        df_pending['amount'] = df_pending['amount'].apply(lambda x: f"${x:.2f}")
+        df_pending['date'] = pd.to_datetime(df_pending['date']).dt.strftime('%Y-%m-%d')
+        
+        # Display the table
+        st.dataframe(df_pending[['transaction_id', 'date', 'amount', 'merchant', 'category']], use_container_width=True)
+        
+        # Agent interaction section
+        st.markdown("### 🔍 AI Transaction Analysis")
+        st.info("💡 **I can help you identify and cancel problematic pending transactions!**")
+        st.write("Try asking me things like:")
+        st.write("- *'Are there any suspicious large transactions?'*")
+        st.write("- *'Cancel transactions over $100'*")
+        st.write("- *'Which transactions look unusual?'*")
+        
+        # Simple agent prompt
+        if st.button("🤖 Analyze Pending Transactions"):
+            with st.spinner("Analyzing pending transactions..."):
+                st.write(f"**🔍 Analyzing {len(pending_transactions)} pending transactions...**")
+                
+                # Debug: Show all pending transactions first
+                st.write("**All Pending Transactions:**")
+                for i, t in enumerate(pending_transactions):
+                    st.write(f"{i+1}. ID {t['transaction_id']}: {t['merchant']} - ${t['amount']:.2f}")
+                
+                # Simple rule-based analysis with more relaxed criteria
+                high_amount_transactions = [t for t in pending_transactions if float(t['amount']) > 200]  # Lowered from 500
+                unusual_merchants = [t for t in pending_transactions if any(word in t['merchant'].lower() 
+                                   for word in ['gadget', 'airlines', 'electronics', 'store', 'unknown', 'luxury'])]
+                
+                st.write(f"**Analysis Results:**")
+                st.write(f"- High amount transactions (>$200): {len(high_amount_transactions)}")
+                st.write(f"- Unusual merchants: {len(unusual_merchants)}")
+                
+                if high_amount_transactions or unusual_merchants:
+                    st.warning("⚠️ **Potentially problematic transactions detected:**")
+                    
+                    for txn in high_amount_transactions:
+                        st.write(f"🚨 **High Amount**: {txn['merchant']} - ${txn['amount']:.2f} (ID: {txn['transaction_id']})")
+                        cancel_key = f"cancel_high_{txn['transaction_id']}"
+                        st.write(f"Button key: {cancel_key}")
+                        
+                        if st.button(f"❌ Cancel High Amount Transaction {txn['transaction_id']}", key=cancel_key):
+                            st.info(f"🎯 HIGH AMOUNT: Button clicked for transaction {txn['transaction_id']}...")
+                            
+                            # Immediate cancellation without spinner for debugging
+                            try:
+                                success, message = TransactionManager.cancel_transaction(txn['transaction_id'], "High amount flagged by AI")
+                                st.success(f"✅ CANCELLATION RESULT: {message}")
+                                
+                                # Set session state
+                                st.session_state.cancellation_success = success
+                                st.session_state.cancellation_message = message
+                                st.session_state.show_feedback = True
+                                
+                                st.write("🔄 Rerunning app to show feedback...")
+                                st.rerun()
+                                
+                            except Exception as e:
+                                st.error(f"❌ EXCEPTION: {e}")
+                                import traceback
+                                st.code(traceback.format_exc())
+                    
+                    for txn in unusual_merchants:
+                        if txn not in high_amount_transactions:  # Don't duplicate
+                            st.write(f"🔍 **Unusual Merchant**: {txn['merchant']} - ${txn['amount']:.2f} (ID: {txn['transaction_id']})")
+                            cancel_key = f"cancel_unusual_{txn['transaction_id']}"
+                            st.write(f"Button key: {cancel_key}")
+                            
+                            if st.button(f"❌ Cancel Unusual Merchant {txn['transaction_id']}", key=cancel_key):
+                                st.info(f"🎯 UNUSUAL: Button clicked for transaction {txn['transaction_id']}...")
+                                
+                                # Immediate cancellation without spinner for debugging
+                                try:
+                                    success, message = TransactionManager.cancel_transaction(txn['transaction_id'], "Unusual merchant flagged by AI")
+                                    st.success(f"✅ CANCELLATION RESULT: {message}")
+                                    
+                                    # Set session state
+                                    st.session_state.cancellation_success = success
+                                    st.session_state.cancellation_message = message
+                                    st.session_state.show_feedback = True
+                                    
+                                    st.write("🔄 Rerunning app to show feedback...")
+                                    st.rerun()
+                                    
+                                except Exception as e:
+                                    st.error(f"❌ EXCEPTION: {e}")
+                                    import traceback
+                                    st.code(traceback.format_exc())
+                else:
+                    st.success("✅ All pending transactions appear normal.")
+                    st.info("💡 Try lowering the analysis thresholds or check if transactions match the criteria.")
+        
+        # Manual transaction cancellation
+        with st.expander("🛠️ Manual Transaction Management"):
+            st.write("**Cancel a specific transaction:**")
+            
+            # Create selectbox with transaction details
+            transaction_options = [f"ID {t['transaction_id']}: {t['merchant']} - ${t['amount']:.2f}" for t in pending_transactions]
+            selected_transaction = st.selectbox("Select transaction to cancel:", [""] + transaction_options)
+            
+            if selected_transaction:
+                # Extract transaction ID from the selected option
+                transaction_id = int(selected_transaction.split(":")[0].replace("ID ", ""))
+                reason = st.text_input("Cancellation reason:", value="Manually cancelled by user")
+                
+                if st.button("Cancel Selected Transaction"):
+                    st.info(f"🎯 Manual cancellation button clicked for transaction {transaction_id}...")
+                    with st.spinner(f"Cancelling transaction {transaction_id}..."):
+                        try:
+                            success, message = TransactionManager.cancel_transaction(transaction_id, reason)
+                            st.write(f"DEBUG: Manual cancellation returned - success: {success}, message: {message}")
+                            
+                            st.session_state.cancellation_success = success
+                            st.session_state.cancellation_message = f"{message} - Reason: {reason}"
+                            st.session_state.show_feedback = True
+                            
+                            st.write(f"DEBUG: Manual session state set - show_feedback: {st.session_state.show_feedback}")
+                            st.rerun()
+                        except Exception as e:
+                            st.error(f"Exception during manual cancellation: {e}")
+                            st.session_state.cancellation_success = False
+                            st.session_state.cancellation_message = f"Error: {e}"
+                            st.session_state.show_feedback = True
+
+    else:
+        st.info("No pending transactions found.")
+        
+        # Show recently cancelled transactions for reference
+        try:
+            with get_db_connection() as conn:
+                result = conn.execute(text("""
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        amount,
+                        status,
+                        notes,
+                        date
+                    FROM transactions 
+                    WHERE status IN ('declined', 'cancelled')
+                      AND notes LIKE '%CANCELLED:%'
+                    ORDER BY date DESC
+                    LIMIT 5
+                """))
+                
+                recent_cancelled = result.fetchall()
+                
+                if recent_cancelled:
+                    st.write("**Recently Cancelled Transactions:**")
+                    for txn in recent_cancelled:
+                        st.write(f"❌ **ID {txn.transaction_id}**: {txn.merchant} ${txn.amount} ({txn.status})")
+                        if txn.notes:
+                            # Extract cancellation reason
+                            cancellation_note = [line for line in txn.notes.split('\n') if 'CANCELLED:' in line]
+                            if cancellation_note:
+                                st.write(f"   📝 {cancellation_note[0]}")
+                else:
+                    st.info("No recently cancelled transactions found.")
+        except Exception as e:
+            st.error(f"Could not load recently cancelled transactions: {e}")
+    
+    # Add troubleshooting section
+    with st.expander("🔧 Troubleshooting Guide", expanded=False):
+        st.write("**If transaction cancellations don't seem to work:**")
+        st.write("1. **Check the logs**: Look at `db_operations.log` and `transaction_debug.log`")
+        st.write("2. **Refresh the page**: Click the '🔄 Refresh Data' button above")
+        st.write("3. **Check database directly**: Use the '🔍 Query Database Directly' button")
+        st.write("4. **Verify transaction ID**: Make sure you're cancelling the correct transaction")
+        st.write("5. **Check transaction status**: Only 'pending' transactions can be cancelled")
+        
+        st.write("\n**Debug Commands:**")
+        st.code("python3 debug_transactions.py", language="bash")
+        st.code("python3 test_gadget_store.py", language="bash")
+        
+        st.write("\n**Log Files:**")
+        st.write("- `db_operations.log` - Database operation logs")  
+        st.write("- `transaction_debug.log` - Debug session logs")
+        
+        if st.button("📊 Show Transaction Statistics", key="show_stats"):
+            try:
+                stats = TransactionManager.get_transaction_stats()
+                st.json(stats)
+            except Exception as e:
+                st.error(f"Could not load statistics: {e}")
 
 else:
     st.info("💡 Enable PostgreSQL connection in the sidebar to access financial data analysis.")
