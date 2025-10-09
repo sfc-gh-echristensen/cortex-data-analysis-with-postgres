@@ -616,3 +616,332 @@ CANCELLED: Testing simplified UPDATE
 2025-10-09 11:39:47,529 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
 2025-10-09 11:39:47,529 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
 2025-10-09 11:39:47,529 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:44:02,176 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:44:03,545 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:44:03,658 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:44:03,658 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:44:03,710 - db_utils - INFO - 🎯 CANCEL_TRANSACTION: Starting cancellation for transaction 10
+2025-10-09 11:44:03,711 - db_utils - INFO -    Reason: Agent test
+2025-10-09 11:44:03,711 - db_utils - DEBUG - Creating database connection...
+2025-10-09 11:44:04,596 - db_utils - DEBUG - ✅ Database connection established
+2025-10-09 11:44:04,596 - db_utils - DEBUG - Using SQLAlchemy autobegin transaction...
+2025-10-09 11:44:04,596 - db_utils - DEBUG - Checking if transaction 10 exists and is pending...
+2025-10-09 11:44:04,705 - db_utils - DEBUG - Query result: {'transaction_id': 10, 'status': 'pending', 'merchant': 'Major Airlines', 'amount': Decimal('1250.00'), 'notes': 'Flight to New York (Booking ref: XYZ789)\nCANCELLED: Debug test cancellation\nCANCELLED: Fixed SQLAlchemy autobegin test'}
+2025-10-09 11:44:04,706 - db_utils - INFO - 📊 Found transaction: Major Airlines $1250.00 (status: pending)
+2025-10-09 11:44:04,706 - db_utils - INFO - 🔄 Updating transaction 10 status to 'declined'...
+2025-10-09 11:44:04,706 - db_utils - DEBUG - Adding cancellation reason: CANCELLED: Agent test
+2025-10-09 11:44:04,759 - db_utils - INFO - 📈 Status update affected 1 rows
+2025-10-09 11:44:04,815 - db_utils - INFO - 📈 Notes update affected 1 rows
+2025-10-09 11:44:04,815 - db_utils - INFO - 💾 Committing transaction...
+2025-10-09 11:44:04,870 - db_utils - INFO - ✅ TRANSACTION SUCCESSFULLY CANCELLED!
+2025-10-09 11:44:04,871 - db_utils - DEBUG - Verifying the cancellation...
+2025-10-09 11:44:04,987 - db_utils - INFO - ✅ Verification: Transaction 10 now has status 'declined'
+2025-10-09 11:44:04,987 - db_utils - DEBUG -    Updated notes: Flight to New York (Booking ref: XYZ789)
+CANCELLED: Debug test cancellation
+CANCELLED: Fixed SQLAlchemy autobegin test
+CANCELLED: Agent test
+2025-10-09 11:44:04,987 - db_utils - INFO - 🎉 Transaction 10 (Major Airlines: $1250.00) successfully cancelled
+2025-10-09 11:50:17,422 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:50:18,339 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:50:18,447 - db_utils - INFO - 📊 Found 6 pending transactions
+2025-10-09 11:50:18,447 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:50:18,447 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:50:18,448 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:50:18,448 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:50:18,448 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:50:18,448 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:50:32,211 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:50:33,113 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:50:33,227 - db_utils - INFO - 📊 Found 6 pending transactions
+2025-10-09 11:50:33,227 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:50:33,227 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:50:33,227 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:50:33,227 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:50:33,227 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:50:33,227 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:50:45,041 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:50:45,923 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:50:46,037 - db_utils - INFO - 📊 Found 6 pending transactions
+2025-10-09 11:50:46,037 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:50:46,037 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:50:46,037 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:50:46,037 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:50:46,037 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:50:46,038 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:52:44,567 - db_utils - INFO - 🎯 CANCEL_TRANSACTION: Starting cancellation for transaction 5
+2025-10-09 11:52:44,569 - db_utils - INFO -    Reason: Direct test cancellation
+2025-10-09 11:52:44,569 - db_utils - DEBUG - Creating database connection...
+2025-10-09 11:52:45,517 - db_utils - DEBUG - ✅ Database connection established
+2025-10-09 11:52:45,517 - db_utils - DEBUG - Using SQLAlchemy autobegin transaction...
+2025-10-09 11:52:45,517 - db_utils - DEBUG - Checking if transaction 5 exists and is pending...
+2025-10-09 11:52:45,628 - db_utils - DEBUG - Query result: {'transaction_id': 5, 'status': 'pending', 'merchant': 'Gadget Store', 'amount': Decimal('350.00'), 'notes': 'New headphones\nCANCELLED: Test cancellation from debug script'}
+2025-10-09 11:52:45,628 - db_utils - INFO - 📊 Found transaction: Gadget Store $350.00 (status: pending)
+2025-10-09 11:52:45,628 - db_utils - INFO - 🔄 Updating transaction 5 status to 'declined'...
+2025-10-09 11:52:45,629 - db_utils - DEBUG - Adding cancellation reason: CANCELLED: Direct test cancellation
+2025-10-09 11:52:45,683 - db_utils - INFO - 📈 Status update affected 1 rows
+2025-10-09 11:52:45,741 - db_utils - INFO - 📈 Notes update affected 1 rows
+2025-10-09 11:52:45,742 - db_utils - INFO - 💾 Committing transaction...
+2025-10-09 11:52:45,797 - db_utils - INFO - ✅ TRANSACTION SUCCESSFULLY CANCELLED!
+2025-10-09 11:52:45,797 - db_utils - DEBUG - Verifying the cancellation...
+2025-10-09 11:52:45,912 - db_utils - INFO - ✅ Verification: Transaction 5 now has status 'declined'
+2025-10-09 11:52:45,912 - db_utils - DEBUG -    Updated notes: New headphones
+CANCELLED: Test cancellation from debug script
+CANCELLED: Direct test cancellation
+2025-10-09 11:52:45,912 - db_utils - INFO - 🎉 Transaction 5 (Gadget Store: $350.00) successfully cancelled
+2025-10-09 11:53:17,897 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:53:19,280 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:53:19,485 - db_utils - INFO - 📊 Found 5 pending transactions
+2025-10-09 11:53:19,485 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:53:19,485 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:53:19,485 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:53:19,485 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:53:19,485 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:55:53,554 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:55:54,415 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:55:54,529 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:55:54,529 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:56:06,387 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:56:07,258 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:56:07,367 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:56:07,368 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:56:17,604 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:56:18,568 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:56:18,676 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:56:18,677 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:57:33,434 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:57:34,328 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:57:34,443 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:57:34,443 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:57:46,446 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:57:47,308 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:57:47,416 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:57:47,416 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:57:54,365 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:57:55,725 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:57:55,839 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:57:55,840 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:57:55,894 - db_utils - INFO - 🎯 CANCEL_TRANSACTION: Starting cancellation for transaction 10
+2025-10-09 11:57:55,894 - db_utils - INFO -    Reason: Debug test from script
+2025-10-09 11:57:55,894 - db_utils - DEBUG - Creating database connection...
+2025-10-09 11:57:56,764 - db_utils - DEBUG - ✅ Database connection established
+2025-10-09 11:57:56,765 - db_utils - DEBUG - Using SQLAlchemy autobegin transaction...
+2025-10-09 11:57:56,765 - db_utils - DEBUG - Checking if transaction 10 exists and is pending...
+2025-10-09 11:57:56,872 - db_utils - DEBUG - Query result: {'transaction_id': 10, 'status': 'pending', 'merchant': 'Major Airlines', 'amount': Decimal('1250.00'), 'notes': 'Flight to New York (Booking ref: XYZ789)\nCANCELLED: Debug test cancellation\nCANCELLED: Fixed SQLAlchemy autobegin test\nCANCELLED: Agent test'}
+2025-10-09 11:57:56,873 - db_utils - INFO - 📊 Found transaction: Major Airlines $1250.00 (status: pending)
+2025-10-09 11:57:56,873 - db_utils - INFO - 🔄 Updating transaction 10 status to 'declined'...
+2025-10-09 11:57:56,873 - db_utils - DEBUG - Adding cancellation reason: CANCELLED: Debug test from script
+2025-10-09 11:57:56,928 - db_utils - INFO - 📈 Status update affected 1 rows
+2025-10-09 11:57:56,983 - db_utils - INFO - 📈 Notes update affected 1 rows
+2025-10-09 11:57:56,984 - db_utils - INFO - 💾 Committing transaction...
+2025-10-09 11:57:57,037 - db_utils - INFO - ✅ TRANSACTION SUCCESSFULLY CANCELLED!
+2025-10-09 11:57:57,038 - db_utils - DEBUG - Verifying the cancellation...
+2025-10-09 11:57:57,145 - db_utils - INFO - ✅ Verification: Transaction 10 now has status 'declined'
+2025-10-09 11:57:57,145 - db_utils - DEBUG -    Updated notes: Flight to New York (Booking ref: XYZ789)
+CANCELLED: Debug test cancellation
+CANCELLED: Fixed SQLAlchemy autobegin test
+CANCELLED: Agent test
+CANCELLED: Debug test from script
+2025-10-09 11:57:57,145 - db_utils - INFO - 🎉 Transaction 10 (Major Airlines: $1250.00) successfully cancelled
+2025-10-09 11:58:27,134 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:58:28,011 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:58:28,127 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:58:28,128 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 11:58:39,422 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 11:58:40,327 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 11:58:40,439 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 11:58:40,439 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:01:41,193 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:01:42,081 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:01:42,191 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:01:42,192 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:01:58,423 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:01:59,351 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:01:59,464 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:01:59,464 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:02:10,757 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:02:11,632 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:02:11,741 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:02:11,742 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:02:31,671 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:02:32,548 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:02:32,657 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:02:32,658 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:02:38,621 - db_utils - INFO - 🧪 DEBUG: Button click detected in Streamlit
+2025-10-09 12:02:38,621 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:02:39,497 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:02:39,611 - db_utils - INFO - 📊 Found 7 pending transactions
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:02:39,611 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:02:44,623 - db_utils - INFO - 🎯 CANCEL_TRANSACTION: Starting cancellation for transaction 5
+2025-10-09 12:02:44,623 - db_utils - INFO -    Reason: DEBUG: Streamlit UI button test
+2025-10-09 12:02:44,624 - db_utils - DEBUG - Creating database connection...
+2025-10-09 12:02:45,491 - db_utils - DEBUG - ✅ Database connection established
+2025-10-09 12:02:45,491 - db_utils - DEBUG - Using SQLAlchemy autobegin transaction...
+2025-10-09 12:02:45,491 - db_utils - DEBUG - Checking if transaction 5 exists and is pending...
+2025-10-09 12:02:45,598 - db_utils - DEBUG - Query result: {'transaction_id': 5, 'status': 'pending', 'merchant': 'Gadget Store', 'amount': Decimal('350.00'), 'notes': 'New headphones\nCANCELLED: Test cancellation from debug script\nCANCELLED: Direct test cancellation'}
+2025-10-09 12:02:45,598 - db_utils - INFO - 📊 Found transaction: Gadget Store $350.00 (status: pending)
+2025-10-09 12:02:45,599 - db_utils - INFO - 🔄 Updating transaction 5 status to 'declined'...
+2025-10-09 12:02:45,599 - db_utils - DEBUG - Adding cancellation reason: CANCELLED: DEBUG: Streamlit UI button test
+2025-10-09 12:02:45,652 - db_utils - INFO - 📈 Status update affected 1 rows
+2025-10-09 12:02:45,709 - db_utils - INFO - 📈 Notes update affected 1 rows
+2025-10-09 12:02:45,710 - db_utils - INFO - 💾 Committing transaction...
+2025-10-09 12:02:45,765 - db_utils - INFO - ✅ TRANSACTION SUCCESSFULLY CANCELLED!
+2025-10-09 12:02:45,766 - db_utils - DEBUG - Verifying the cancellation...
+2025-10-09 12:02:45,874 - db_utils - INFO - ✅ Verification: Transaction 5 now has status 'declined'
+2025-10-09 12:02:45,874 - db_utils - DEBUG -    Updated notes: New headphones
+CANCELLED: Test cancellation from debug script
+CANCELLED: Direct test cancellation
+CANCELLED: DEBUG: Streamlit UI button test
+2025-10-09 12:02:45,875 - db_utils - INFO - 🎉 Transaction 5 (Gadget Store: $350.00) successfully cancelled
+2025-10-09 12:02:45,929 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:02:46,885 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:02:46,995 - db_utils - INFO - 📊 Found 6 pending transactions
+2025-10-09 12:02:46,996 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:02:46,996 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:02:46,996 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:02:46,996 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:02:46,996 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:02:46,996 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:06:32,019 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:06:32,912 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:06:33,022 - db_utils - INFO - 📊 Found 6 pending transactions
+2025-10-09 12:06:33,023 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:06:33,023 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:06:33,023 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:06:33,023 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:06:33,023 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:06:33,023 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:06:55,442 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:06:56,303 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:06:56,409 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:06:56,409 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:07:13,469 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 12:07:14,374 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 12:07:14,486 - db_utils - INFO - 📊 Found 8 pending transactions
+2025-10-09 12:07:14,486 - db_utils - DEBUG -    - ID 11: Raw SQL Test $1.00 (pending)
+2025-10-09 12:07:14,486 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 12:07:14,486 - db_utils - DEBUG -    - ID 6: Internal Transfer $200.00 (pending)
+2025-10-09 12:07:14,486 - db_utils - DEBUG -    - ID 2: Supermart $82.10 (pending)
+2025-10-09 12:07:14,486 - db_utils - DEBUG -    - ID 1: Local Grocery $45.23 (pending)
+2025-10-09 12:07:14,486 - db_utils - DEBUG -    - ID 3: Cafe Corner $15.00 (pending)
+2025-10-09 12:07:14,487 - db_utils - DEBUG -    - ID 5: Gadget Store $350.00 (pending)
+2025-10-09 12:07:14,487 - db_utils - DEBUG -    - ID 4: Electric Co $120.00 (pending)
+2025-10-09 12:07:14,555 - db_utils - INFO - 🎯 CANCEL_TRANSACTION: Starting cancellation for transaction 10
+2025-10-09 12:07:14,555 - db_utils - INFO -    Reason: High amount flagged by AI
+2025-10-09 12:07:14,556 - db_utils - DEBUG - Creating database connection...
+2025-10-09 12:07:15,428 - db_utils - DEBUG - ✅ Database connection established
+2025-10-09 12:07:15,428 - db_utils - DEBUG - Using SQLAlchemy autobegin transaction...
+2025-10-09 12:07:15,428 - db_utils - DEBUG - Checking if transaction 10 exists and is pending...
+2025-10-09 12:07:15,534 - db_utils - DEBUG - Query result: {'transaction_id': 10, 'status': 'pending', 'merchant': 'Major Airlines', 'amount': Decimal('1250.00'), 'notes': 'Flight to New York (Booking ref: XYZ789)\nCANCELLED: Debug test cancellation\nCANCELLED: Fixed SQLAlchemy autobegin test\nCANCELLED: Agent test\nCANCELLED: Debug test from script'}
+2025-10-09 12:07:15,534 - db_utils - INFO - 📊 Found transaction: Major Airlines $1250.00 (status: pending)
+2025-10-09 12:07:15,534 - db_utils - INFO - 🔄 Updating transaction 10 status to 'declined'...
+2025-10-09 12:07:15,535 - db_utils - DEBUG - Adding cancellation reason: CANCELLED: High amount flagged by AI
+2025-10-09 12:07:15,588 - db_utils - INFO - 📈 Status update affected 1 rows
+2025-10-09 12:07:15,642 - db_utils - INFO - 📈 Notes update affected 1 rows
+2025-10-09 12:07:15,642 - db_utils - INFO - 💾 Committing transaction...
+2025-10-09 12:07:15,698 - db_utils - INFO - ✅ TRANSACTION SUCCESSFULLY CANCELLED!
+2025-10-09 12:07:15,698 - db_utils - DEBUG - Verifying the cancellation...
+2025-10-09 12:07:15,807 - db_utils - INFO - ✅ Verification: Transaction 10 now has status 'declined'
+2025-10-09 12:07:15,807 - db_utils - DEBUG -    Updated notes: Flight to New York (Booking ref: XYZ789)
+CANCELLED: Debug test cancellation
+CANCELLED: Fixed SQLAlchemy autobegin test
+CANCELLED: Agent test
+CANCELLED: Debug test from script
+CANCELLED: High amount flagged by AI
+2025-10-09 12:07:15,808 - db_utils - INFO - 🎉 Transaction 10 (Major Airlines: $1250.00) successfully cancelled

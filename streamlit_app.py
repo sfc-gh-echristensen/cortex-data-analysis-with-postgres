@@ -485,6 +485,38 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                 st.session_state.cancellation_message = None
                 st.rerun()
 
+    # DEBUG: Multiple test buttons to isolate UI issues
+    st.write("---")
+    st.write("🧪 **DEBUG: Button Tests**")
+    
+    # Test 1: Minimal button
+    if st.button("🟢 MINIMAL TEST", key="minimal_test"):
+        st.write("✅ Minimal button clicked!")
+    
+    # Test 2: Button with logging
+    if st.button("🔵 LOGGING TEST", key="logging_test"):
+        st.write("✅ Logging button clicked!")
+        import logging
+        logging.getLogger('db_utils').info("🧪 DEBUG: Button click detected in Streamlit")
+    
+    # Test 3: Database test button
+    if st.button("🔥 DATABASE TEST", key="database_test"):
+        st.write("✅ Database button clicked!")
+        try:
+            # Try to cancel transaction 5 (Gadget Store)
+            st.info("🎯 About to call TransactionManager.cancel_transaction...")
+            success, message = TransactionManager.cancel_transaction(5, "DEBUG: Streamlit UI button test")
+            if success:
+                st.success(f"✅ DATABASE TEST SUCCESS: {message}")
+            else:
+                st.error(f"❌ DATABASE TEST FAILED: {message}")
+        except Exception as e:
+            st.error(f"❌ DATABASE TEST EXCEPTION: {e}")
+            import traceback
+            st.code(traceback.format_exc())
+    
+    st.write("---")
+
     # Display pending transactions
     try:
         pending_transactions = TransactionManager.get_pending_transactions()
@@ -511,7 +543,7 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
         st.write("- *'Cancel transactions over $100'*")
         st.write("- *'Which transactions look unusual?'*")
         
-        # Simple agent prompt
+        # Simple agent prompt with session state persistence
         if st.button("🤖 Analyze Pending Transactions"):
             with st.spinner("Analyzing pending transactions..."):
                 st.write(f"**🔍 Analyzing {len(pending_transactions)} pending transactions...**")
@@ -526,68 +558,99 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                 unusual_merchants = [t for t in pending_transactions if any(word in t['merchant'].lower() 
                                    for word in ['gadget', 'airlines', 'electronics', 'store', 'unknown', 'luxury'])]
                 
+                # Store results in session state for persistence
+                st.session_state.analysis_performed = True
+                st.session_state.high_amount_transactions = high_amount_transactions
+                st.session_state.unusual_merchants = unusual_merchants
+                st.session_state.analysis_pending_count = len(pending_transactions)
+                
                 st.write(f"**Analysis Results:**")
                 st.write(f"- High amount transactions (>$200): {len(high_amount_transactions)}")
                 st.write(f"- Unusual merchants: {len(unusual_merchants)}")
+        
+        # Show analysis results if they exist in session state (persists across reruns)
+        if st.session_state.get('analysis_performed', False):
+            high_amount_transactions = st.session_state.get('high_amount_transactions', [])
+            unusual_merchants = st.session_state.get('unusual_merchants', [])
+            
+            if st.button("🔄 Clear Analysis", key="clear_analysis"):
+                st.session_state.analysis_performed = False
+                st.session_state.high_amount_transactions = []
+                st.session_state.unusual_merchants = []
+                st.rerun()
+            
+            st.write(f"**📊 Analysis Results (from {st.session_state.get('analysis_pending_count', 0)} transactions):**")
+            st.write(f"- High amount transactions (>$200): {len(high_amount_transactions)}")
+            st.write(f"- Unusual merchants: {len(unusual_merchants)}")
+            
+            if high_amount_transactions or unusual_merchants:
+                st.warning("⚠️ **Potentially problematic transactions detected:**")
                 
-                if high_amount_transactions or unusual_merchants:
-                    st.warning("⚠️ **Potentially problematic transactions detected:**")
+                for txn in high_amount_transactions:
+                    st.write(f"🚨 **High Amount**: {txn['merchant']} - ${txn['amount']:.2f} (ID: {txn['transaction_id']})")
+                    cancel_key = f"cancel_high_{txn['transaction_id']}"
+                    st.write(f"Button key: {cancel_key}")
                     
-                    for txn in high_amount_transactions:
-                        st.write(f"🚨 **High Amount**: {txn['merchant']} - ${txn['amount']:.2f} (ID: {txn['transaction_id']})")
-                        cancel_key = f"cancel_high_{txn['transaction_id']}"
-                        st.write(f"Button key: {cancel_key}")
+                    if st.button(f"❌ Cancel High Amount Transaction {txn['transaction_id']}", key=cancel_key):
+                        st.info(f"🎯 HIGH AMOUNT: Button clicked for transaction {txn['transaction_id']}...")
                         
-                        if st.button(f"❌ Cancel High Amount Transaction {txn['transaction_id']}", key=cancel_key):
-                            st.info(f"🎯 HIGH AMOUNT: Button clicked for transaction {txn['transaction_id']}...")
-                            
-                            # Immediate cancellation without spinner for debugging
+                        # Show immediate feedback
+                        with st.spinner(f"Cancelling transaction {txn['transaction_id']}..."):
                             try:
                                 success, message = TransactionManager.cancel_transaction(txn['transaction_id'], "High amount flagged by AI")
-                                st.success(f"✅ CANCELLATION RESULT: {message}")
                                 
-                                # Set session state
-                                st.session_state.cancellation_success = success
-                                st.session_state.cancellation_message = message
-                                st.session_state.show_feedback = True
-                                
-                                st.write("🔄 Rerunning app to show feedback...")
-                                st.rerun()
-                                
+                                if success:
+                                    st.success(f"✅ SUCCESS: {message}")
+                                    
+                                    # Set session state for persistent feedback
+                                    st.session_state.cancellation_success = success
+                                    st.session_state.cancellation_message = message
+                                    st.session_state.show_feedback = True
+                                else:
+                                    st.error(f"❌ FAILED: {message}")
+                                    st.session_state.cancellation_success = False
+                                    st.session_state.cancellation_message = message
+                                    st.session_state.show_feedback = True
+                                    
                             except Exception as e:
                                 st.error(f"❌ EXCEPTION: {e}")
                                 import traceback
                                 st.code(traceback.format_exc())
                     
-                    for txn in unusual_merchants:
-                        if txn not in high_amount_transactions:  # Don't duplicate
-                            st.write(f"🔍 **Unusual Merchant**: {txn['merchant']} - ${txn['amount']:.2f} (ID: {txn['transaction_id']})")
-                            cancel_key = f"cancel_unusual_{txn['transaction_id']}"
-                            st.write(f"Button key: {cancel_key}")
+                for txn in unusual_merchants:
+                    if txn not in high_amount_transactions:  # Don't duplicate
+                        st.write(f"🔍 **Unusual Merchant**: {txn['merchant']} - ${txn['amount']:.2f} (ID: {txn['transaction_id']})")
+                        cancel_key = f"cancel_unusual_{txn['transaction_id']}"
+                        st.write(f"Button key: {cancel_key}")
+                        
+                        if st.button(f"❌ Cancel Unusual Merchant {txn['transaction_id']}", key=cancel_key):
+                            st.info(f"🎯 UNUSUAL: Button clicked for transaction {txn['transaction_id']}...")
                             
-                            if st.button(f"❌ Cancel Unusual Merchant {txn['transaction_id']}", key=cancel_key):
-                                st.info(f"🎯 UNUSUAL: Button clicked for transaction {txn['transaction_id']}...")
-                                
-                                # Immediate cancellation without spinner for debugging
+                            # Show immediate feedback
+                            with st.spinner(f"Cancelling unusual merchant transaction {txn['transaction_id']}..."):
                                 try:
                                     success, message = TransactionManager.cancel_transaction(txn['transaction_id'], "Unusual merchant flagged by AI")
-                                    st.success(f"✅ CANCELLATION RESULT: {message}")
                                     
-                                    # Set session state
-                                    st.session_state.cancellation_success = success
-                                    st.session_state.cancellation_message = message
-                                    st.session_state.show_feedback = True
-                                    
-                                    st.write("🔄 Rerunning app to show feedback...")
-                                    st.rerun()
-                                    
+                                    if success:
+                                        st.success(f"✅ SUCCESS: {message}")
+                                        
+                                        # Set session state for persistent feedback
+                                        st.session_state.cancellation_success = success
+                                        st.session_state.cancellation_message = message
+                                        st.session_state.show_feedback = True
+                                    else:
+                                        st.error(f"❌ FAILED: {message}")
+                                        st.session_state.cancellation_success = False
+                                        st.session_state.cancellation_message = message
+                                        st.session_state.show_feedback = True
+                                        
                                 except Exception as e:
                                     st.error(f"❌ EXCEPTION: {e}")
                                     import traceback
                                     st.code(traceback.format_exc())
-                else:
-                    st.success("✅ All pending transactions appear normal.")
-                    st.info("💡 Try lowering the analysis thresholds or check if transactions match the criteria.")
+            else:
+                st.success("✅ All pending transactions appear normal.")
+                st.info("💡 Try lowering the analysis thresholds or check if transactions match the criteria.")
         
         # Manual transaction cancellation
         with st.expander("🛠️ Manual Transaction Management"):
@@ -607,16 +670,23 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                     with st.spinner(f"Cancelling transaction {transaction_id}..."):
                         try:
                             success, message = TransactionManager.cancel_transaction(transaction_id, reason)
-                            st.write(f"DEBUG: Manual cancellation returned - success: {success}, message: {message}")
                             
-                            st.session_state.cancellation_success = success
-                            st.session_state.cancellation_message = f"{message} - Reason: {reason}"
-                            st.session_state.show_feedback = True
-                            
-                            st.write(f"DEBUG: Manual session state set - show_feedback: {st.session_state.show_feedback}")
-                            st.rerun()
+                            if success:
+                                st.success(f"✅ SUCCESS: {message}")
+                                st.info(f"📝 Reason: {reason}")
+                                
+                                # Set session state for persistent feedback
+                                st.session_state.cancellation_success = success
+                                st.session_state.cancellation_message = f"{message} - Reason: {reason}"
+                                st.session_state.show_feedback = True
+                            else:
+                                st.error(f"❌ FAILED: {message}")
+                                st.session_state.cancellation_success = False
+                                st.session_state.cancellation_message = f"Error: {message}"
+                                st.session_state.show_feedback = True
+                                
                         except Exception as e:
-                            st.error(f"Exception during manual cancellation: {e}")
+                            st.error(f"❌ Exception during manual cancellation: {e}")
                             st.session_state.cancellation_success = False
                             st.session_state.cancellation_message = f"Error: {e}"
                             st.session_state.show_feedback = True
