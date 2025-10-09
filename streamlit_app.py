@@ -33,7 +33,58 @@ def ensure_table(engine: Engine):
     # Create tables via ORM metadata
     init_db(engine)
 
-st.title(":material/network_intel_node: Past Financials")
+# =============================================================================
+# APP HEADER / BANNER
+# =============================================================================
+
+# Create a professional banner header
+st.markdown("""
+<style>
+.banner {
+    background: linear-gradient(90deg, #1f4e79 0%, #2980b9 100%);
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.banner h1 {
+    color: white;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.banner p {
+    color: #e8f4f8;
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 300;
+}
+.feature-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin: 0.2rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="banner">
+    <h1>💰 Budget Tracker 9000</h1>
+    <p>AI-Powered Financial Analytics & Real-Time Data Insights</p>
+    <div style="text-align: center; margin-top: 1rem;">
+        <span class="feature-badge">🐘 PostgreSQL</span>
+        <span class="feature-badge">❄️ Snowflake Cortex</span>
+        <span class="feature-badge">🤖 AI-Powered SQL</span>
+        <span class="feature-badge">💬 Chat Interface</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Sidebar: Postgres configuration
 st.sidebar.header("PostgreSQL Configuration")
@@ -70,282 +121,58 @@ if use_postgres:
             st.sidebar.error(f"PostgreSQL connection failed: {e}")
             use_postgres = False
 
-# Agent configuration
-DATABASE = "BUILD25_POSTGRES_CORTEX"
-SCHEMA = "AGENTS"
-AGENT = "POSTGRES_AGENT"
-
-# Build full URL
-HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_HOST")
-print("Using Snowflake host:", HOST)
-API_ENDPOINT = f"https://{HOST}/api/v2/databases/{DATABASE}/schemas/{SCHEMA}/agents/{AGENT}:run"
-API_TIMEOUT = 60  # timeout in seconds for requests library
-
-st.header("🤖 Chat with Cortex Agent")
-
-# Initialize session state for chat messages
-if "chat_messages" not in st.session_state:
-    st.session_state.chat_messages = []
-
-# Display chat messages
-for message in st.session_state.chat_messages:
-    with st.chat_message(message["role"]):
-        if message["role"] == "user":
-            st.markdown(message["content"])
-        else:
-            # Display assistant message with all content types
-            content_items = message.get("content", [])
-            
-            for item in content_items:
-                item_type = item.get("type")
-                
-                if item_type == "text":
-                    st.markdown(item.get("text", ""))
-                
-                elif item_type == "thinking":
-                    with st.expander("🤔 Thinking"):
-                        st.write(item.get("thinking", {}).get("text", ""))
-                
-                elif item_type == "tool_use":
-                    with st.expander(f"🔧 Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
-                        st.json(item.get("tool_use"))
-                
-                elif item_type == "tool_result":
-                    with st.expander("📊 Tool Result"):
-                        tool_result = item.get("tool_result", {})
-                        content = tool_result.get("content", [])
-                        for c in content:
-                            if c.get("type") == "json":
-                                json_data = c.get("json", {})
-                                if "sql" in json_data:
-                                    st.code(json_data["sql"], language="sql")
-                
-                elif item_type == "chart":
-                    chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
-                    st.vega_lite_chart(chart_spec, use_container_width=True)
-                
-                elif item_type == "table":
-                    result_set = item.get("table", {}).get("result_set", {})
-                    data_array = result_set.get("data", [])
-                    row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
-                    column_names = [col.get("name") for col in row_type]
-                    
-                    df_result = pd.DataFrame(data_array, columns=column_names)
-                    st.dataframe(df_result)
-
-# Chat input
-if prompt := st.chat_input("Ask me about your financial data..."):
-    # Add user message to chat history
-    user_message_content = prompt
-    st.session_state.chat_messages.append({"role": "user", "content": user_message_content})
-    
-    # Display user message
-    with st.chat_message("user"):
-        st.markdown(prompt)
-    
-    # Display assistant response
-    with st.chat_message("assistant"):
-        # Create message payload for agent
-        user_message = {
-            "role": "user",
-            "content": [{"type": "text", "text": prompt}]
-        }
-        
-        payload = {
-            "messages": [user_message]
-        }
-        
-        # Show thinking indicator
-        with st.status("Thinking...", expanded=True) as status:
-            try:
-                # Get authentication token
-                token = st.secrets.get("agent", {}).get("SNOWFLAKE_PAT")
-                
-                # Make API call
-                headers = {
-                    "Authorization": f"Bearer {token}",
-                    "Content-Type": "application/json"
-                }
-                
-                status.update(label="Connecting to agent...", state="running")
-                
-                response = requests.post(
-                    API_ENDPOINT,
-                    json=payload,
-                    headers=headers,
-                    timeout=API_TIMEOUT,
-                    verify=False,
-                    stream=True
-                )
-                
-                if response.status_code != 200:
-                    st.error(f"Error: Status {response.status_code}")
-                    st.text(response.text)
-                else:
-                    # Process streaming response
-                    text_buffer = ""
-                    final_message = None
-                    buffer = ""
-                    
-                    # Create placeholders for streaming
-                    status.update(label="Processing response...", state="running")
-                    response_placeholder = st.empty()
-                    
-                    # Stream the response
-                    for line in response.iter_lines(decode_unicode=True):
-                        if not line:
-                            continue
-                        
-                        line = line.strip()
-                        
-                        if line.startswith('event:'):
-                            event_type = line.split('event:', 1)[1].strip()
-                            buffer = event_type
-                            
-                        elif line.startswith('data:'):
-                            data_line = line.split('data:', 1)[1].strip()
-                            
-                            try:
-                                data = json.loads(data_line)
-                                
-                                # Update status
-                                if buffer == 'response.status':
-                                    status.update(label=f"Status: {data.get('message', '')}", state="running")
-                                
-                                # Stream text updates
-                                elif buffer == 'response.text.delta':
-                                    text_buffer += data.get('text', '')
-                                    response_placeholder.markdown(text_buffer)
-                                
-                                # Parse final response
-                                elif buffer == 'response':
-                                    final_message = data
-                                    
-                            except json.JSONDecodeError:
-                                pass
-                    
-                    status.update(label="Complete!", state="complete")
-                    
-                    if final_message:
-                        # Clear the streaming placeholder and show final response
-                        response_placeholder.empty()
-                        
-                        # Extract and display content
-                        content_items = final_message.get("content", [])
-                        response_text = ""
-                        
-                        for item in content_items:
-                            item_type = item.get("type")
-                            
-                            if item_type == "text":
-                                text_content = item.get("text", "")
-                                st.markdown(text_content)
-                                response_text += text_content
-                            
-                            elif item_type == "thinking":
-                                with st.expander("🤔 Thinking"):
-                                    st.write(item.get("thinking", {}).get("text", ""))
-                            
-                            elif item_type == "tool_use":
-                                with st.expander(f"🔧 Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
-                                    st.json(item.get("tool_use"))
-                            
-                            elif item_type == "tool_result":
-                                with st.expander("📊 Tool Result"):
-                                    tool_result = item.get("tool_result", {})
-                                    content = tool_result.get("content", [])
-                                    for c in content:
-                                        if c.get("type") == "json":
-                                            json_data = c.get("json", {})
-                                            if "sql" in json_data:
-                                                st.code(json_data["sql"], language="sql")
-                            
-                            elif item_type == "chart":
-                                chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
-                                st.vega_lite_chart(chart_spec, use_container_width=True)
-                            
-                            elif item_type == "table":
-                                result_set = item.get("table", {}).get("result_set", {})
-                                data_array = result_set.get("data", [])
-                                row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
-                                column_names = [col.get("name") for col in row_type]
-                                
-                                df_result = pd.DataFrame(data_array, columns=column_names)
-                                st.dataframe(df_result)
-                        
-                        # Add assistant message to chat history
-                        st.session_state.chat_messages.append({
-                            "role": "assistant", 
-                            "content": final_message.get("content", [])
-                        })
-                        
-                        # Save to PostgreSQL if enabled
-                        if use_postgres and engine is not None:
-                            try:
-                                SessionFactory = make_session_factory(engine)
-                                with SessionFactory() as db_sess:
-                                    result_json = {"response": response_text} if isinstance(response_text, str) else response_text
-                                    c = save_completion_with_session(db_sess, prompt, result_json)
-                                st.success(f"💾 Saved to PostgreSQL (id={c.id})")
-                            except Exception as e:
-                                st.error(f"Failed to save to PostgreSQL: {e}")
-                    else:
-                        st.warning("No final response found in events")
-                        
-            except Exception as e:
-                st.error(f"Agent request failed: {str(e)}")
-                import traceback
-                st.code(traceback.format_exc())
-
-# Add a button to clear chat history
-if st.button("🗑️ Clear Chat History"):
-    st.session_state.chat_messages = []
-    st.rerun()
+# =============================================================================
+# POSTGRESQL FINANCIAL DATA ANALYSIS
+# =============================================================================
 
 # --- Real Time Financial Data Search
-st.markdown("---")
-st.header("Real Time Financial Data Search")
+st.title("🐘 Real Time Postgres Financial Data")
 
 if use_postgres and engine is not None:
-    st.write("### Search Account in PostgreSQL")
-    acct_search_input = st.text_input("Account name to search (PostgreSQL):", value="")
+    st.write("### Select Account")
     
-    if "account_search_done" not in st.session_state:
-        st.session_state["account_search_done"] = False
-        st.session_state["account_search_query"] = ""
-        st.session_state["account_search_results"] = []
-
-    if st.button("Search Account"):
-        if not acct_search_input.strip():
-            st.warning("Enter an account name to search for.")
-        else:
-            # perform a simple ILIKE search on accounts
-            SessionFactory = make_session_factory(engine)
-            with SessionFactory() as db_sess:
-                try:
-                    rows = db_sess.execute(
-                        text("SELECT account_id, account_name, current_balance FROM accounts WHERE account_name ILIKE :q LIMIT 10"), 
-                        {"q": f"%{acct_search_input}%"}
-                    ).fetchall()
+    # Load all accounts for dropdown
+    SessionFactory = make_session_factory(engine)
+    with SessionFactory() as db_sess:
+        try:
+            account_rows = db_sess.execute(
+                text("SELECT account_id, account_name, current_balance FROM accounts ORDER BY account_name")
+            ).fetchall()
+            
+            if account_rows:
+                # Create dropdown options
+                account_options = ["Select an account..."] + [f"{row[1]} (${row[2]:,.2f})" for row in account_rows]
+                account_names = [""] + [row[1] for row in account_rows]
+                
+                selected_account_display = st.selectbox(
+                    "Choose an account for financial queries:",
+                    account_options,
+                    index=0
+                )
+                
+                # Store selected account name
+                if selected_account_display != "Select an account...":
+                    selected_index = account_options.index(selected_account_display)
+                    selected_account_name = account_names[selected_index]
+                    st.session_state["selected_account_name"] = selected_account_name
                     st.session_state["account_search_done"] = True
-                    st.session_state["account_search_query"] = acct_search_input
-                    # SQLAlchemy Row objects expose a _mapping for dict-like access
-                    st.session_state["account_search_results"] = [dict(r._mapping) for r in rows]
                     
-                    if rows:
-                        st.success(f"Found {len(rows)} matching account(s).")
-                        for r in rows:
-                            st.write(f"- {r[1]} (id={r[0]}) — balance: ${r[2]}")
-                        # if exactly one match, prefill the account field used by queries
-                        if len(rows) == 1:
-                            st.info("One account found — pre-filling account for the next query.")
-                            st.session_state["selected_account_name"] = rows[0][1]
-                    else:
-                        st.info("No matching accounts found in PostgreSQL.")
-                except Exception as e:
-                    st.error(f"Error searching accounts: {e}")
+                    # Show selected account details
+                    selected_row = account_rows[selected_index - 1]  # -1 because we added "Select..." at index 0
+                    st.success(f"✅ Selected: **{selected_row[1]}** (ID: {selected_row[0]}) — Balance: **${selected_row[2]:,.2f}**")
+                else:
+                    if "selected_account_name" in st.session_state:
+                        del st.session_state["selected_account_name"]
+                    st.session_state["account_search_done"] = False
+                    
+            else:
+                st.warning("No accounts found in the database.")
+                
+        except Exception as e:
+            st.error(f"Error loading accounts: {e}")
 
     # Financial Q&A with Cortex-powered Text-to-SQL
+    st.write("### AI-Powered Financial Queries")
     user_question = st.text_input("Ask a question about your finances:", "How much did I spend on groceries last week?")
 
     def generate_sql_with_cortex(question: str, schema_info: str) -> dict:
@@ -496,31 +323,551 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                         st.markdown("**Error Details:**")
                         st.error(query_result["error"])
 
+    # --- PostgreSQL Completion History
+    with st.expander("📚 Saved Query History", expanded=False):
+        try:
+            SessionFactory = make_session_factory(engine)
+            with SessionFactory() as db_sess:
+                rows = fetch_history_with_session(db_sess, limit=10)
+            if rows:
+                for r in rows:
+                    with st.expander(f"#{r.id} — {r.created_at}"):
+                        st.write("**Query:**", r.prompt)
+                        st.write("**Result:**")
+                        try:
+                            st.json(r.result)
+                        except Exception:
+                            st.write(r.result)
+            else:
+                st.write("No history found.")
+        except Exception as e:
+            st.error(f"Failed to load history: {e}")
+
 else:
-    st.info("Enable PostgreSQL connection in the sidebar to access real-time financial data search.")
+    st.info("💡 Enable PostgreSQL connection in the sidebar to access financial data analysis.")
 
-# --- Completion History
-st.markdown("---")
-st.header("Saved Prompt History (PostgreSQL)")
+# =============================================================================
+# SNOWFLAKE CORTEX AGENT
+# =============================================================================
 
-if use_postgres and engine is not None:
-    try:
-        SessionFactory = make_session_factory(engine)
-        with SessionFactory() as db_sess:
-            rows = fetch_history_with_session(db_sess, limit=50)
-        if rows:
-            for r in rows:
-                st.subheader(f"#{r.id} — {r.created_at}")
-                st.write(r.prompt)
-                # show a collapsed JSON view of result
-                with st.expander("Result JSON"):
-                    try:
-                        st.json(r.result)
-                    except Exception:
-                        st.write(r.result)
+st.title(":material/network_intel_node: Snowflake Financial Analytics")
+
+# =============================================================================
+# SPENDING OVERVIEW CHART
+# =============================================================================
+
+st.subheader("📊 Monthly Spending Overview")
+
+try:
+    # Create spending chart from TRANSACTIONS table
+    
+    # Get sample data to understand the structure
+    sample_df = session.sql("SELECT * FROM TRANSACTIONS LIMIT 5").to_pandas()
+    
+    # Detect column types automatically
+    date_columns = [col for col in sample_df.columns if any(keyword in col.upper() for keyword in ['DATE', 'TIME', 'CREATED', 'UPDATED'])]
+    amount_columns = [col for col in sample_df.columns if any(keyword in col.upper() for keyword in ['AMOUNT', 'SPENDING', 'EXPENSE', 'COST', 'PRICE', 'TOTAL'])]
+    category_columns = [col for col in sample_df.columns if any(keyword in col.upper() for keyword in ['CATEGORY', 'TYPE', 'CLASS'])]
+    
+    if date_columns and amount_columns:
+        # Use the first detected date and amount columns
+        date_col = date_columns[0]
+        amount_col = amount_columns[0]
+        
+        # Create the spending chart query
+        if category_columns:
+            # Include categories if available
+            category_col = category_columns[0]
+            chart_query = f"""
+            SELECT 
+                DATE_TRUNC('month', {date_col}) as month,
+                {category_col} as category,
+                SUM(ABS({amount_col})) as total_amount
+            FROM TRANSACTIONS 
+            WHERE {date_col} >= DATEADD('month', -12, CURRENT_DATE())
+            GROUP BY DATE_TRUNC('month', {date_col}), {category_col}
+            ORDER BY month DESC, total_amount DESC
+            """
         else:
-            st.write("No history found.")
-    except Exception as e:
-        st.error(f"Failed to load history: {e}")
-else:
-    st.write("Enable PostgreSQL connection to view saved history.")
+            # Just date and amount
+            chart_query = f"""
+            SELECT 
+                DATE_TRUNC('month', {date_col}) as month,
+                SUM(ABS({amount_col})) as total_amount
+            FROM TRANSACTIONS 
+            WHERE {date_col} >= DATEADD('month', -12, CURRENT_DATE())
+            GROUP BY DATE_TRUNC('month', {date_col})
+            ORDER BY month DESC
+            """
+        
+        # Execute the query
+        chart_df = session.sql(chart_query).to_pandas()
+        
+        if not chart_df.empty:
+            # Create visualization
+            chart_df['MONTH'] = pd.to_datetime(chart_df['MONTH'])
+            
+            if 'CATEGORY' in chart_df.columns:
+                # Create stacked area chart by category
+                import altair as alt
+                
+                chart = alt.Chart(chart_df).mark_area().encode(
+                    x=alt.X('MONTH:T', title='Month'),
+                    y=alt.Y('TOTAL_AMOUNT:Q', title='Total Amount ($)'),
+                    color=alt.Color('CATEGORY:N', title='Category'),
+                    tooltip=['MONTH:T', 'CATEGORY:N', 'TOTAL_AMOUNT:Q']
+                ).properties(
+                    width=700,
+                    height=400,
+                    title="Monthly Spending by Category"
+                ).interactive()
+                
+                st.altair_chart(chart, use_container_width=True)
+                
+                # Also create a line chart of total spending
+                monthly_totals = chart_df.groupby('MONTH')['TOTAL_AMOUNT'].sum().reset_index()
+                
+                line_chart = alt.Chart(monthly_totals).mark_line(
+                    point=True,
+                    strokeWidth=3,
+                    color='#2980b9'
+                ).encode(
+                    x=alt.X('MONTH:T', title='Month'),
+                    y=alt.Y('TOTAL_AMOUNT:Q', title='Total Spending ($)'),
+                    tooltip=['MONTH:T', 'TOTAL_AMOUNT:Q']
+                ).properties(
+                    width=700,
+                    height=300,
+                    title="Total Monthly Spending Trend"
+                )
+                
+                st.altair_chart(line_chart, use_container_width=True)
+                
+            else:
+                # Simple line chart for total spending
+                st.line_chart(chart_df.set_index('MONTH')['TOTAL_AMOUNT'])
+            
+            # Show key metrics
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                latest_month_total = chart_df.groupby('MONTH')['TOTAL_AMOUNT'].sum().iloc[0]
+                st.metric("Latest Month", f"${latest_month_total:,.2f}")
+            
+            with col2:
+                avg_monthly = chart_df.groupby('MONTH')['TOTAL_AMOUNT'].sum().mean()
+                st.metric("Monthly Average", f"${avg_monthly:,.2f}")
+            
+            with col3:
+                total_months = len(chart_df['MONTH'].unique())
+                st.metric("Months of Data", total_months)
+            
+            if 'CATEGORY' in chart_df.columns:
+                # Show top categories
+                st.write("**Top Spending Categories:**")
+                top_categories = chart_df.groupby('CATEGORY')['TOTAL_AMOUNT'].sum().sort_values(ascending=False).head(5)
+                for category, amount in top_categories.items():
+                    st.write(f"- **{category}**: ${amount:,.2f}")
+            
+        else:
+            st.warning("No spending data found in TRANSACTIONS table")
+            
+    else:
+        st.error(f"Could not find suitable date or amount columns in TRANSACTIONS table")
+        st.write(f"Available columns: {list(sample_df.columns)}")
+        
+except Exception as e:
+    st.error(f"Error loading TRANSACTIONS data: {e}")
+    st.write("**Connection Details:**")
+    st.write("- Make sure your Snowflake connection is properly configured")
+    st.write("- Check if the TRANSACTIONS table exists in your current database/schema")
+    st.write("- Verify your credentials in secrets.toml")
+    
+    # Show sample chart as fallback
+    st.info("📊 Showing sample chart due to connection issues")
+    
+    import pandas as pd
+    from datetime import datetime, timedelta
+    
+    sample_dates = [datetime.now() - timedelta(days=30*i) for i in range(6)]
+    sample_spending = [2000, 2200, 1800, 2400, 2100, 2300]
+    
+    sample_df = pd.DataFrame({
+        'Month': sample_dates,
+        'Spending': sample_spending
+    })
+    
+    st.line_chart(sample_df.set_index('Month'))
+
+st.markdown("---")
+
+# Agent configuration
+DATABASE = "BUILD25_POSTGRES_CORTEX"
+SCHEMA = "AGENTS"
+AGENT = "POSTGRES_AGENT"
+
+# Build full URL
+HOST = st.secrets.get("agent", {}).get("SNOWFLAKE_HOST")
+print("Using Snowflake host:", HOST)
+API_ENDPOINT = f"https://{HOST}/api/v2/databases/{DATABASE}/schemas/{SCHEMA}/agents/{AGENT}:run"
+API_TIMEOUT = 60  # timeout in seconds for requests library
+
+st.markdown("---")
+st.header("❄️ Chat with Snowflake Cortex Agent")
+
+# =============================================================================
+# AGENTIC SUBSCRIPTION MANAGEMENT DEMO
+# =============================================================================
+
+# Demo subscription cancellation function
+def cancel_subscription_demo(subscription_id, subscription_name):
+    """Simulate canceling a subscription via API call"""
+    import time
+    import random
+    
+    # Simulate API call delay
+    time.sleep(random.uniform(1, 2))
+    
+    # Update subscription status
+    if subscription_id in st.session_state.demo_subscriptions:
+        st.session_state.demo_subscriptions[subscription_id]["status"] = "cancelled"
+        return True
+    return False
+
+# Add subscription management context to chat
+def add_subscription_context_to_prompt(user_prompt):
+    """Add subscription data context to user prompts about subscriptions"""
+    subscription_keywords = ["subscription", "cancel", "unused", "recurring", "monthly", "netflix", "spotify", "adobe", "gym", "hulu"]
+    
+    if any(keyword in user_prompt.lower() for keyword in subscription_keywords):
+        # Create subscription context
+        active_subs = {k: v for k, v in st.session_state.demo_subscriptions.items() if v["status"] == "active"}
+        
+        context = f"""
+SUBSCRIPTION CONTEXT:
+The user has the following active subscriptions based on their financial data:
+
+"""
+        for sub_id, sub_data in active_subs.items():
+            context += f"- {sub_data['name']}: ${sub_data['cost']}/month (last used: {sub_data['last_used']})\n"
+        
+        context += f"""
+Current date: {pd.Timestamp.now().strftime('%Y-%m-%d')}
+
+AVAILABLE ACTIONS:
+If the user wants to cancel a subscription, you can help them by:
+1. Analyzing usage patterns to identify unused subscriptions
+2. Suggesting specific subscriptions to cancel
+3. If user confirms cancellation, respond with: "I'll cancel [subscription name] for you now." and mention calling the cancellation API
+
+When identifying unused subscriptions, consider:
+- Subscriptions not used in the last 30+ days as potentially unused
+- High-cost subscriptions with infrequent usage
+- Duplicate services (e.g., multiple streaming services)
+
+User's original question: {user_prompt}
+"""
+        return context
+    
+    return user_prompt
+
+# Initialize session state for chat messages
+if "chat_messages" not in st.session_state:
+    st.session_state.chat_messages = []
+
+# Initialize subscription demo data in session state
+if "demo_subscriptions" not in st.session_state:
+    st.session_state.demo_subscriptions = {
+        "netflix": {"name": "Netflix", "cost": 15.99, "last_used": "2024-09-15", "status": "active"},
+        "spotify": {"name": "Spotify Premium", "cost": 9.99, "last_used": "2024-10-07", "status": "active"},
+        "adobe": {"name": "Adobe Creative Cloud", "cost": 52.99, "last_used": "2024-08-12", "status": "active"},
+        "gym": {"name": "Planet Fitness", "cost": 24.99, "last_used": "2024-07-20", "status": "active"},
+        "hulu": {"name": "Hulu + Live TV", "cost": 76.99, "last_used": "2024-10-05", "status": "active"},
+        "microsoft": {"name": "Microsoft 365", "cost": 6.99, "last_used": "2024-10-08", "status": "active"}
+    }
+
+# Demo subscription management panel
+with st.expander("💳 Current Subscriptions (Demo Data)", expanded=False):
+    active_subs = {k: v for k, v in st.session_state.demo_subscriptions.items() if v["status"] == "active"}
+    cancelled_subs = {k: v for k, v in st.session_state.demo_subscriptions.items() if v["status"] == "cancelled"}
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.write("**Active Subscriptions:**")
+        total_monthly = 0
+        for sub_data in active_subs.values():
+            days_since_use = (pd.Timestamp.now() - pd.Timestamp(sub_data["last_used"])).days
+            unused_indicator = " 🔴 (Unused 30+ days)" if days_since_use > 30 else " 🟢"
+            st.write(f"- {sub_data['name']}: ${sub_data['cost']}/month{unused_indicator}")
+            total_monthly += sub_data["cost"]
+        
+        st.metric("Total Monthly Cost", f"${total_monthly:.2f}")
+    
+    with col2:
+        if cancelled_subs:
+            st.write("**Recently Cancelled:**")
+            total_savings = 0
+            for sub_data in cancelled_subs.values():
+                st.write(f"- ~~{sub_data['name']}~~: ${sub_data['cost']}/month")
+                total_savings += sub_data["cost"]
+            st.metric("Monthly Savings", f"${total_savings:.2f}")
+        else:
+            st.info("No subscriptions cancelled yet. Try asking the agent: 'Tell me about subscriptions I don't use'")
+
+st.write("💡 **Try asking:** 'Tell me about subscriptions I don't use' or 'Which subscriptions should I cancel?'")
+
+# Display chat messages
+for message in st.session_state.chat_messages:
+    with st.chat_message(message["role"]):
+        if message["role"] == "user":
+            st.markdown(message["content"])
+        else:
+            # Display assistant message with all content types
+            content_items = message.get("content", [])
+            
+            for item in content_items:
+                item_type = item.get("type")
+                
+                if item_type == "text":
+                    st.markdown(item.get("text", ""))
+                
+                elif item_type == "thinking":
+                    with st.expander("🤔 Thinking"):
+                        st.write(item.get("thinking", {}).get("text", ""))
+                
+                elif item_type == "tool_use":
+                    with st.expander(f"🔧 Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
+                        st.json(item.get("tool_use"))
+                
+                elif item_type == "tool_result":
+                    with st.expander("📊 Tool Result"):
+                        tool_result = item.get("tool_result", {})
+                        content = tool_result.get("content", [])
+                        for c in content:
+                            if c.get("type") == "json":
+                                json_data = c.get("json", {})
+                                if "sql" in json_data:
+                                    st.code(json_data["sql"], language="sql")
+                
+                elif item_type == "chart":
+                    chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
+                    st.vega_lite_chart(chart_spec, use_container_width=True)
+                
+                elif item_type == "table":
+                    result_set = item.get("table", {}).get("result_set", {})
+                    data_array = result_set.get("data", [])
+                    row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
+                    column_names = [col.get("name") for col in row_type]
+                    
+                    df_result = pd.DataFrame(data_array, columns=column_names)
+                    st.dataframe(df_result)
+
+# Chat input
+if prompt := st.chat_input("Ask me about your financial data or subscriptions..."):
+    # Add subscription context if relevant
+    enhanced_prompt = add_subscription_context_to_prompt(prompt)
+    
+    # Add user message to chat history (original prompt for display)
+    user_message_content = prompt
+    st.session_state.chat_messages.append({"role": "user", "content": user_message_content})
+    
+    # Display user message
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    
+    # Display assistant response
+    with st.chat_message("assistant"):
+        # Create message payload for agent (with enhanced prompt)
+        user_message = {
+            "role": "user",
+            "content": [{"type": "text", "text": enhanced_prompt}]
+        }
+        
+        payload = {
+            "messages": [user_message]
+        }
+        
+        # Show thinking indicator
+        with st.status("Thinking...", expanded=True) as status:
+            try:
+                # Get authentication token
+                token = st.secrets.get("agent", {}).get("SNOWFLAKE_PAT")
+                
+                # Make API call
+                headers = {
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/json"
+                }
+                
+                status.update(label="Connecting to agent...", state="running")
+                
+                response = requests.post(
+                    API_ENDPOINT,
+                    json=payload,
+                    headers=headers,
+                    timeout=API_TIMEOUT,
+                    verify=False,
+                    stream=True
+                )
+                
+                if response.status_code != 200:
+                    st.error(f"Error: Status {response.status_code}")
+                    st.text(response.text)
+                else:
+                    # Process streaming response
+                    text_buffer = ""
+                    final_message = None
+                    buffer = ""
+                    
+                    # Create placeholders for streaming
+                    status.update(label="Processing response...", state="running")
+                    response_placeholder = st.empty()
+                    
+                    # Stream the response
+                    for line in response.iter_lines(decode_unicode=True):
+                        if not line:
+                            continue
+                        
+                        line = line.strip()
+                        
+                        if line.startswith('event:'):
+                            event_type = line.split('event:', 1)[1].strip()
+                            buffer = event_type
+                            
+                        elif line.startswith('data:'):
+                            data_line = line.split('data:', 1)[1].strip()
+                            
+                            try:
+                                data = json.loads(data_line)
+                                
+                                # Update status
+                                if buffer == 'response.status':
+                                    status.update(label=f"Status: {data.get('message', '')}", state="running")
+                                
+                                # Stream text updates
+                                elif buffer == 'response.text.delta':
+                                    text_buffer += data.get('text', '')
+                                    response_placeholder.markdown(text_buffer)
+                                
+                                # Parse final response
+                                elif buffer == 'response':
+                                    final_message = data
+                                    
+                            except json.JSONDecodeError:
+                                pass
+                    
+                    status.update(label="Complete!", state="complete")
+                    
+                    if final_message:
+                        # Clear the streaming placeholder and show final response
+                        response_placeholder.empty()
+                        
+                        # Extract and display content
+                        content_items = final_message.get("content", [])
+                        response_text = ""
+                        
+                        for item in content_items:
+                            item_type = item.get("type")
+                            
+                            if item_type == "text":
+                                text_content = item.get("text", "")
+                                st.markdown(text_content)
+                                response_text += text_content
+                            
+                            elif item_type == "thinking":
+                                with st.expander("🤔 Thinking"):
+                                    st.write(item.get("thinking", {}).get("text", ""))
+                            
+                            elif item_type == "tool_use":
+                                with st.expander(f"🔧 Tool Use: {item.get('tool_use', {}).get('name', 'Unknown')}"):
+                                    st.json(item.get("tool_use"))
+                            
+                            elif item_type == "tool_result":
+                                with st.expander("📊 Tool Result"):
+                                    tool_result = item.get("tool_result", {})
+                                    content = tool_result.get("content", [])
+                                    for c in content:
+                                        if c.get("type") == "json":
+                                            json_data = c.get("json", {})
+                                            if "sql" in json_data:
+                                                st.code(json_data["sql"], language="sql")
+                            
+                            elif item_type == "chart":
+                                chart_spec = json.loads(item.get("chart", {}).get("chart_spec", "{}"))
+                                st.vega_lite_chart(chart_spec, use_container_width=True)
+                            
+                            elif item_type == "table":
+                                result_set = item.get("table", {}).get("result_set", {})
+                                data_array = result_set.get("data", [])
+                                row_type = result_set.get("result_set_meta_data", {}).get("row_type", [])
+                                column_names = [col.get("name") for col in row_type]
+                                
+                                df_result = pd.DataFrame(data_array, columns=column_names)
+                                st.dataframe(df_result)
+                        
+                        # Check if agent wants to cancel a subscription
+                        if "i'll cancel" in response_text.lower() or "cancel" in response_text.lower():
+                            for sub_id, sub_data in st.session_state.demo_subscriptions.items():
+                                if sub_data["name"].lower() in response_text.lower() and sub_data["status"] == "active":
+                                    # Show cancellation in progress
+                                    with st.status("🔄 Processing cancellation...", expanded=True) as cancel_status:
+                                        cancel_status.write(f"Calling subscription API for {sub_data['name']}...")
+                                        
+                                        # Simulate API call
+                                        success = cancel_subscription_demo(sub_id, sub_data["name"])
+                                        
+                                        if success:
+                                            cancel_status.update(label="✅ Subscription cancelled successfully!", state="complete")
+                                            st.success(f"🎉 {sub_data['name']} has been cancelled! You'll save ${sub_data['cost']}/month.")
+                                            
+                                            # Show updated subscription status
+                                            with st.expander("📋 Updated Subscription Status"):
+                                                active_subs = {k: v for k, v in st.session_state.demo_subscriptions.items() if v["status"] == "active"}
+                                                cancelled_subs = {k: v for k, v in st.session_state.demo_subscriptions.items() if v["status"] == "cancelled"}
+                                                
+                                                if active_subs:
+                                                    st.write("**Active Subscriptions:**")
+                                                    for sub_data in active_subs.values():
+                                                        st.write(f"- {sub_data['name']}: ${sub_data['cost']}/month")
+                                                
+                                                if cancelled_subs:
+                                                    st.write("**Recently Cancelled:**")
+                                                    for sub_data in cancelled_subs.values():
+                                                        st.write(f"- ~~{sub_data['name']}~~: ${sub_data['cost']}/month (cancelled)")
+                                                
+                                                total_savings = sum(sub['cost'] for sub in cancelled_subs.values())
+                                                st.metric("Monthly Savings", f"${total_savings:.2f}")
+                                        else:
+                                            cancel_status.update(label="❌ Cancellation failed", state="error")
+                                            st.error("Failed to cancel subscription. Please try again.")
+                                    break
+                        
+                        # Add assistant message to chat history
+                        st.session_state.chat_messages.append({
+                            "role": "assistant", 
+                            "content": final_message.get("content", [])
+                        })
+                        
+                        # Save to PostgreSQL if enabled
+                        if use_postgres and engine is not None:
+                            try:
+                                SessionFactory = make_session_factory(engine)
+                                with SessionFactory() as db_sess:
+                                    result_json = {"response": response_text} if isinstance(response_text, str) else response_text
+                                    c = save_completion_with_session(db_sess, prompt, result_json)
+                                st.success(f"💾 Saved to PostgreSQL (id={c.id})")
+                            except Exception as e:
+                                st.error(f"Failed to save to PostgreSQL: {e}")
+                    else:
+                        st.warning("No final response found in events")
+                        
+            except Exception as e:
+                st.error(f"Agent request failed: {str(e)}")
+                import traceback
+                st.code(traceback.format_exc())
+
+# Add a button to clear chat history
+if st.button("🗑️ Clear Chat History"):
+    st.session_state.chat_messages = []
+    st.rerun()
