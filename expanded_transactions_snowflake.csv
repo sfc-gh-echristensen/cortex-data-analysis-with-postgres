@@ -1,0 +1,1096 @@
+transaction_id,date,account_name,amount,category,merchant
+tx-3406,2024-10-11,Credit Card,42.32,Transportation,Lyft
+tx-3908,2024-10-11,Checking,104.5,Healthcare,CVS Pharmacy
+tx-4018,2024-10-11,Credit Card,11.88,Dining,Denny's
+tx-3268,2024-10-12,Credit Card,68.47,Groceries,Fresh Market
+tx-3398,2024-10-12,Checking,44.94,Groceries,Trader Joe's
+tx-3489,2024-10-12,Credit Card,17.47,Transportation,Chevron
+tx-4007,2024-10-12,Checking,267.27,Shopping,Target
+tx-3497,2024-10-13,Credit Card,109.18,Entertainment,Netflix
+tx-3743,2024-10-14,Checking,99.84,Healthcare,CVS Pharmacy
+tx-3237,2024-10-15,Checking,687.02,Electronics,Apple Store
+tx-3439,2024-10-15,Savings,20.41,Transportation,Exxon Mobil
+tx-3938,2024-10-17,Savings,67.1,Dining,Olive Garden
+tx-3103,2024-10-18,Savings,124.45,Shopping,Gap
+tx-3241,2024-10-18,Savings,20.14,Transportation,Exxon Mobil
+tx-3294,2024-10-18,Checking,56.41,Dining,In-N-Out Burger
+tx-3334,2024-10-18,Checking,75.98,Shopping,Nordstrom
+tx-3373,2024-10-18,Credit Card,46.31,Entertainment,AMC Theatres
+tx-3859,2024-10-18,Checking,45.77,Dining,Cheesecake Factory
+tx-4035,2024-10-18,Savings,34.58,Groceries,Safeway
+tx-3408,2024-10-19,Checking,289.09,Shopping,Target
+tx-3697,2024-10-19,Savings,84.64,Dining,Chipotle Mexican Grill
+tx-3060,2024-10-20,Savings,25.12,Dining,Panera Bread
+tx-3528,2024-10-20,Credit Card,200.5,Shopping,eBay
+tx-3878,2024-10-20,Savings,1196.24,Electronics,Nikon Store
+tx-3193,2024-10-21,Savings,993.29,Electronics,Best Buy Electronics
+tx-3207,2024-10-21,Checking,13.11,Dining,Applebee's
+tx-4003,2024-10-21,Checking,1075.26,Electronics,HP Store
+tx-3086,2024-10-22,Savings,172.1,Healthcare,Walgreens
+tx-3175,2024-10-22,Checking,106.72,Groceries,Trader Joe's
+tx-3232,2024-10-22,Checking,17.67,Dining,Denny's
+tx-3284,2024-10-22,Savings,386.2,Electronics,Sony Store
+tx-3552,2024-10-22,Savings,57.51,Dining,Subway
+tx-3637,2024-10-22,Credit Card,19.22,Dining,McDonald's
+tx-3146,2024-10-23,Checking,59.92,Dining,Chipotle Mexican Grill
+tx-3332,2024-10-23,Credit Card,35.86,Dining,Panera Bread
+tx-3424,2024-10-23,Savings,61.99,Entertainment,Netflix
+tx-3679,2024-10-23,Savings,22.93,Transportation,Uber
+tx-3336,2024-10-24,Credit Card,286.77,Shopping,Zara
+tx-3451,2024-10-24,Checking,89.61,Entertainment,TopGolf
+tx-3297,2024-10-25,Savings,17.41,Dining,In-N-Out Burger
+tx-3391,2024-10-25,Credit Card,73.95,Entertainment,GameStop
+tx-3666,2024-10-25,Checking,148.19,Shopping,eBay
+tx-3950,2024-10-25,Credit Card,636.03,Travel,Hilton Hotels
+tx-3953,2024-10-25,Credit Card,60.74,Entertainment,Dave & Buster's
+tx-3933,2024-10-26,Checking,26.09,Dining,Red Lobster
+tx-3945,2024-10-26,Credit Card,208.94,Shopping,Gap
+tx-3090,2024-10-27,Credit Card,359.23,Travel,Hilton Hotels
+tx-3124,2024-10-27,Checking,54.89,Entertainment,Netflix
+tx-3474,2024-10-27,Checking,46.65,Dining,Chipotle Mexican Grill
+tx-3505,2024-10-27,Savings,35.42,Dining,Taco Bell
+tx-3888,2024-10-28,Savings,55.46,Groceries,Fresh Market
+tx-3009,2024-10-29,Credit Card,88.51,Groceries,Costco Wholesale
+tx-3049,2024-10-29,Checking,154.89,Healthcare,Quest Diagnostics
+tx-3622,2024-10-29,Savings,1046.25,Electronics,HP Store
+tx-3628,2024-10-29,Checking,58.36,Transportation,Lyft
+tx-3729,2024-10-30,Credit Card,125.48,Shopping,Target
+tx-3067,2024-10-31,Checking,541.3,Electronics,Dell Technologies
+tx-3644,2024-10-31,Credit Card,248.63,Shopping,Nordstrom
+tx-3672,2024-10-31,Savings,187.45,Shopping,Walmart
+tx-3130,2024-11-01,Checking,175.51,Shopping,Nordstrom
+tx-3673,2024-11-01,Credit Card,232.43,Shopping,eBay
+tx-3976,2024-11-01,Credit Card,131.29,Groceries,Whole Foods Market
+tx-3475,2024-11-02,Checking,204.62,Travel,Best Western
+tx-3494,2024-11-02,Credit Card,53.78,Groceries,Walmart
+tx-3554,2024-11-02,Checking,23.57,Dining,Five Guys
+tx-3188,2024-11-03,Savings,55.04,Dining,Five Guys
+tx-3537,2024-11-03,Checking,44.97,Dining,Panera Bread
+tx-3955,2024-11-03,Checking,83.38,Dining,Chili's
+tx-4015,2024-11-03,Savings,91.84,Groceries,Trader Joe's
+tx-3031,2024-11-04,Credit Card,204.78,Healthcare,Walgreens
+tx-3746,2024-11-04,Checking,54.6,Dining,Subway
+tx-4086,2024-11-04,Savings,166.18,Shopping,H&M
+tx-3172,2024-11-05,Credit Card,16.91,Groceries,Trader Joe's
+tx-3312,2024-11-05,Credit Card,111.49,Entertainment,AMC Theatres
+tx-3455,2024-11-05,Credit Card,17.16,Healthcare,Quest Diagnostics
+tx-3603,2024-11-05,Credit Card,29.19,Dining,Cheesecake Factory
+tx-3960,2024-11-06,Checking,120.74,Shopping,Zara
+tx-3211,2024-11-07,Savings,489.83,Travel,United Airlines
+tx-3223,2024-11-07,Savings,34.09,Dining,McDonald's
+tx-4031,2024-11-07,Checking,67.4,Dining,Chipotle Mexican Grill
+tx-4084,2024-11-08,Credit Card,50.05,Dining,Taco Bell
+tx-3592,2024-11-09,Savings,31.78,Groceries,Publix
+tx-4070,2024-11-10,Savings,129.93,Groceries,Whole Foods Market
+tx-3298,2024-11-11,Checking,192.05,Shopping,H&M
+tx-3311,2024-11-11,Checking,64.22,Healthcare,Quest Diagnostics
+tx-3460,2024-11-12,Checking,25.49,Transportation,Shell Gas Station
+tx-3907,2024-11-12,Credit Card,686.38,Travel,Expedia
+tx-3011,2024-11-13,Checking,589.64,Electronics,HP Store
+tx-3807,2024-11-13,Checking,12.57,Dining,Panera Bread
+tx-3970,2024-11-13,Savings,43.45,Transportation,Shell Gas Station
+tx-3526,2024-11-14,Credit Card,118.02,Groceries,Safeway
+tx-3651,2024-11-14,Checking,191.17,Shopping,Walmart
+tx-3779,2024-11-14,Checking,127.54,Groceries,Aldi
+tx-3971,2024-11-14,Credit Card,26.36,Entertainment,TopGolf
+tx-4066,2024-11-14,Credit Card,174.07,Travel,United Airlines
+tx-3246,2024-11-15,Credit Card,86.17,Shopping,H&M
+tx-3719,2024-11-15,Checking,33.86,Transportation,Lyft
+tx-3939,2024-11-15,Credit Card,185.55,Shopping,Zara
+tx-3942,2024-11-15,Checking,69.49,Transportation,Uber
+tx-4085,2024-11-15,Credit Card,164.96,Shopping,Zara
+tx-3919,2024-11-16,Savings,15.59,Dining,Subway
+tx-3968,2024-11-16,Credit Card,52.91,Transportation,Uber
+tx-3054,2024-11-17,Checking,55.29,Dining,Five Guys
+tx-3118,2024-11-17,Checking,11.8,Dining,Cheesecake Factory
+tx-3354,2024-11-17,Checking,82.83,Dining,Red Lobster
+tx-3134,2024-11-18,Credit Card,31.91,Dining,Subway
+tx-3395,2024-11-18,Checking,442.28,Travel,Hilton Hotels
+tx-3851,2024-11-18,Credit Card,252.28,Shopping,Macy's
+tx-4012,2024-11-18,Credit Card,164.35,Shopping,Target
+tx-4062,2024-11-18,Checking,78.35,Healthcare,Walgreens
+tx-3071,2024-11-20,Credit Card,25.74,Shopping,Amazon.com
+tx-3442,2024-11-20,Checking,50.36,Transportation,Uber
+tx-3473,2024-11-20,Credit Card,994.43,Electronics,Nikon Store
+tx-3577,2024-11-20,Savings,32.98,Dining,Red Lobster
+tx-3181,2024-11-21,Checking,60.01,Transportation,Exxon Mobil
+tx-3584,2024-11-21,Credit Card,75.2,Dining,In-N-Out Burger
+tx-3810,2024-11-21,Checking,31.57,Dining,Cheesecake Factory
+tx-3255,2024-11-22,Checking,245.98,Electronics,Nikon Store
+tx-3272,2024-11-22,Credit Card,73.21,Dining,KFC
+tx-3397,2024-11-22,Checking,147.04,Shopping,H&M
+tx-3068,2024-11-23,Credit Card,141.1,Groceries,Safeway
+tx-3169,2024-11-23,Checking,82.49,Electronics,HP Store
+tx-3913,2024-11-23,Credit Card,78.26,Dining,Taco Bell
+tx-3155,2024-11-24,Checking,144.83,Groceries,Stop & Shop
+tx-3213,2024-11-24,Credit Card,128.87,Electronics,Best Buy Electronics
+tx-3733,2024-11-24,Credit Card,18.2,Dining,Panera Bread
+tx-3904,2024-11-24,Checking,13.68,Dining,KFC
+tx-3921,2024-11-24,Credit Card,57.6,Shopping,Zara
+tx-3590,2024-11-25,Credit Card,71.2,Dining,KFC
+tx-3640,2024-11-25,Checking,65.76,Dining,McDonald's
+tx-4027,2024-11-25,Checking,17.85,Groceries,Whole Foods Market
+tx-3151,2024-11-26,Credit Card,101.42,Groceries,Trader Joe's
+tx-3414,2024-11-26,Checking,33.3,Transportation,Shell Gas Station
+tx-3029,2024-11-27,Checking,75.88,Healthcare,Rite Aid
+tx-3121,2024-11-27,Checking,126.55,Shopping,Macy's
+tx-3730,2024-11-27,Checking,20.34,Groceries,Whole Foods Market
+tx-3952,2024-11-28,Savings,146.75,Groceries,Fresh Market
+tx-3510,2024-11-29,Checking,42.45,Transportation,Lyft
+tx-3540,2024-11-29,Checking,203.37,Shopping,Forever 21
+tx-3002,2024-11-30,Checking,19.6,Groceries,Costco Wholesale
+tx-3138,2024-11-30,Savings,38.13,Transportation,Uber
+tx-3252,2024-11-30,Checking,24.99,Healthcare,Rite Aid
+tx-3343,2024-11-30,Savings,94.67,Entertainment,GameStop
+tx-4068,2024-11-30,Savings,188.59,Healthcare,Rite Aid
+tx-4080,2024-11-30,Credit Card,28.09,Transportation,BP Gas Station
+tx-3325,2024-12-01,Credit Card,26.66,Entertainment,Dave & Buster's
+tx-4004,2024-12-01,Savings,34.76,Dining,KFC
+tx-3440,2024-12-02,Savings,47.98,Entertainment,TopGolf
+tx-3565,2024-12-02,Savings,42.74,Dining,Denny's
+tx-3695,2024-12-02,Checking,39.21,Transportation,Shell Gas Station
+tx-3966,2024-12-02,Credit Card,57.71,Entertainment,Dave & Buster's
+tx-3229,2024-12-03,Credit Card,502.55,Electronics,Canon Store
+tx-3691,2024-12-03,Credit Card,79.89,Dining,Panera Bread
+tx-3147,2024-12-04,Checking,136.95,Groceries,Fresh Market
+tx-3404,2024-12-04,Credit Card,398.38,Travel,United Airlines
+tx-3562,2024-12-04,Credit Card,51.3,Healthcare,Quest Diagnostics
+tx-3755,2024-12-04,Credit Card,117.61,Groceries,Costco Wholesale
+tx-3131,2024-12-05,Checking,57.82,Dining,Applebee's
+tx-3352,2024-12-05,Savings,43.69,Entertainment,TopGolf
+tx-3936,2024-12-07,Savings,47.5,Dining,Olive Garden
+tx-4075,2024-12-07,Credit Card,79.77,Dining,Chili's
+tx-3330,2024-12-08,Savings,19.72,Healthcare,Kaiser Permanente
+tx-3432,2024-12-08,Savings,181.54,Electronics,Canon Store
+tx-3832,2024-12-08,Checking,460.36,Electronics,Nikon Store
+tx-3930,2024-12-08,Savings,16.2,Groceries,Walmart
+tx-4026,2024-12-08,Savings,288.23,Electronics,Sony Store
+tx-3274,2024-12-09,Savings,41.85,Dining,Chipotle Mexican Grill
+tx-3463,2024-12-09,Credit Card,93.16,Entertainment,Redbox
+tx-3981,2024-12-09,Checking,75.28,Transportation,BP Gas Station
+tx-3128,2024-12-10,Savings,51.45,Dining,McDonald's
+tx-3265,2024-12-11,Checking,83.22,Dining,Chili's
+tx-3427,2024-12-11,Credit Card,188.0,Healthcare,Walgreens
+tx-3826,2024-12-11,Credit Card,72.87,Transportation,Exxon Mobil
+tx-3841,2024-12-11,Checking,39.57,Transportation,Lyft
+tx-3026,2024-12-12,Credit Card,40.36,Transportation,Lyft
+tx-3102,2024-12-12,Credit Card,28.71,Dining,Five Guys
+tx-3310,2024-12-12,Checking,54.19,Groceries,Trader Joe's
+tx-4055,2024-12-12,Savings,200.63,Electronics,Dell Technologies
+tx-3534,2024-12-14,Checking,212.71,Healthcare,Rite Aid
+tx-3563,2024-12-14,Checking,55.09,Transportation,Lyft
+tx-3670,2024-12-14,Checking,209.01,Healthcare,Rite Aid
+tx-3240,2024-12-15,Savings,28.54,Transportation,Shell Gas Station
+tx-3634,2024-12-15,Credit Card,51.2,Dining,Chili's
+tx-3855,2024-12-15,Savings,41.58,Transportation,Uber
+tx-3321,2024-12-16,Checking,792.98,Travel,Southwest Airlines
+tx-3791,2024-12-16,Credit Card,42.7,Dining,McDonald's
+tx-3822,2024-12-16,Credit Card,1031.16,Electronics,Microsoft Store
+tx-3918,2024-12-16,Credit Card,28.67,Dining,Applebee's
+tx-3123,2024-12-17,Savings,19.17,Transportation,Shell Gas Station
+tx-3901,2024-12-17,Credit Card,84.0,Dining,Taco Bell
+tx-3434,2024-12-18,Checking,22.86,Shopping,Amazon.com
+tx-3739,2024-12-18,Checking,146.46,Healthcare,Kaiser Permanente
+tx-3744,2024-12-18,Checking,39.69,Transportation,Chevron
+tx-3544,2024-12-19,Checking,25.51,Dining,Cheesecake Factory
+tx-3814,2024-12-19,Credit Card,75.71,Dining,Subway
+tx-4067,2024-12-19,Credit Card,18.92,Transportation,Exxon Mobil
+tx-3065,2024-12-20,Checking,137.55,Groceries,Walmart
+tx-3093,2024-12-20,Savings,122.59,Shopping,Macy's
+tx-3374,2024-12-20,Credit Card,53.78,Dining,Olive Garden
+tx-4038,2024-12-20,Credit Card,27.02,Transportation,Shell Gas Station
+tx-3072,2024-12-21,Savings,440.05,Travel,Hilton Hotels
+tx-3279,2024-12-21,Checking,88.07,Groceries,Trader Joe's
+tx-4030,2024-12-21,Checking,77.59,Healthcare,Quest Diagnostics
+tx-3104,2024-12-22,Savings,48.15,Groceries,Stop & Shop
+tx-3287,2024-12-22,Savings,682.6,Electronics,Sony Store
+tx-3681,2024-12-22,Savings,25.5,Dining,Subway
+tx-3842,2024-12-22,Savings,50.76,Groceries,Safeway
+tx-3951,2024-12-22,Credit Card,129.71,Groceries,Walmart
+tx-3997,2024-12-22,Savings,76.17,Entertainment,AMC Theatres
+tx-3301,2024-12-23,Savings,443.43,Travel,Delta Airlines
+tx-3368,2024-12-23,Checking,1083.38,Electronics,HP Store
+tx-3137,2024-12-24,Checking,445.75,Electronics,Apple Store
+tx-3276,2024-12-24,Savings,617.18,Travel,Best Western
+tx-3322,2024-12-24,Savings,101.74,Entertainment,AMC Theatres
+tx-3982,2024-12-24,Checking,56.4,Groceries,Whole Foods Market
+tx-3244,2024-12-25,Credit Card,176.84,Shopping,Zara
+tx-3902,2024-12-25,Credit Card,137.2,Groceries,Whole Foods Market
+tx-3745,2024-12-26,Checking,42.28,Entertainment,AMC Theatres
+tx-3003,2024-12-27,Credit Card,86.84,Groceries,Fresh Market
+tx-3734,2024-12-27,Credit Card,65.26,Groceries,Safeway
+tx-3937,2024-12-27,Credit Card,633.47,Travel,Booking.com
+tx-3877,2024-12-28,Checking,9.99,Dining,Cheesecake Factory
+tx-3162,2024-12-29,Checking,166.15,Shopping,Zara
+tx-3771,2024-12-29,Credit Card,15.66,Transportation,Chevron
+tx-3865,2024-12-29,Credit Card,354.47,Travel,United Airlines
+tx-3186,2025-01-01,Credit Card,40.82,Groceries,Kroger
+tx-3079,2025-01-02,Savings,59.04,Groceries,Safeway
+tx-3008,2025-01-03,Savings,56.65,Dining,Red Lobster
+tx-3110,2025-01-03,Credit Card,92.18,Entertainment,Netflix
+tx-3177,2025-01-03,Checking,30.59,Dining,Starbucks Coffee
+tx-3422,2025-01-03,Credit Card,24.38,Groceries,Whole Foods Market
+tx-3567,2025-01-03,Savings,36.63,Groceries,Publix
+tx-3706,2025-01-03,Savings,59.42,Transportation,Lyft
+tx-3283,2025-01-04,Savings,63.4,Groceries,Publix
+tx-3462,2025-01-04,Credit Card,23.0,Transportation,Exxon Mobil
+tx-3525,2025-01-04,Checking,52.08,Dining,Chili's
+tx-3509,2025-01-05,Checking,42.57,Dining,KFC
+tx-3057,2025-01-06,Credit Card,57.33,Groceries,Whole Foods Market
+tx-4061,2025-01-06,Credit Card,135.86,Groceries,Trader Joe's
+tx-4088,2025-01-06,Checking,84.9,Groceries,Stop & Shop
+tx-3020,2025-01-07,Savings,146.36,Groceries,Stop & Shop
+tx-3212,2025-01-07,Savings,39.48,Shopping,H&M
+tx-3355,2025-01-07,Savings,29.62,Dining,Denny's
+tx-3436,2025-01-07,Credit Card,53.04,Dining,Chipotle Mexican Grill
+tx-4037,2025-01-07,Credit Card,298.33,Shopping,Target
+tx-3167,2025-01-08,Savings,799.38,Travel,Expedia
+tx-3227,2025-01-08,Savings,182.92,Healthcare,Kaiser Permanente
+tx-3319,2025-01-08,Checking,81.2,Healthcare,CVS Pharmacy
+tx-3443,2025-01-08,Checking,132.38,Groceries,Aldi
+tx-3539,2025-01-09,Credit Card,46.41,Shopping,Walmart
+tx-3801,2025-01-09,Checking,83.03,Entertainment,Redbox
+tx-3366,2025-01-10,Checking,42.21,Transportation,Lyft
+tx-3843,2025-01-10,Savings,53.31,Dining,Chili's
+tx-3075,2025-01-11,Savings,71.36,Dining,Olive Garden
+tx-3098,2025-01-11,Credit Card,39.36,Dining,KFC
+tx-3600,2025-01-11,Checking,114.29,Groceries,Walmart
+tx-3928,2025-01-11,Savings,63.77,Shopping,Zara
+tx-3387,2025-01-12,Checking,62.29,Shopping,Walmart
+tx-3115,2025-01-13,Checking,29.84,Dining,Chili's
+tx-3516,2025-01-13,Credit Card,76.09,Transportation,Shell Gas Station
+tx-3769,2025-01-13,Credit Card,78.02,Dining,Panera Bread
+tx-3598,2025-01-14,Savings,10.25,Dining,Subway
+tx-3360,2025-01-15,Checking,146.34,Healthcare,Walgreens
+tx-3752,2025-01-15,Savings,611.19,Electronics,Dell Technologies
+tx-3803,2025-01-15,Savings,54.62,Dining,Taco Bell
+tx-3949,2025-01-15,Savings,72.27,Transportation,Uber
+tx-3965,2025-01-15,Credit Card,101.63,Groceries,Kroger
+tx-3210,2025-01-16,Credit Card,8.76,Dining,In-N-Out Burger
+tx-3560,2025-01-16,Savings,115.87,Entertainment,GameStop
+tx-3089,2025-01-17,Credit Card,62.28,Groceries,Kroger
+tx-3419,2025-01-17,Credit Card,49.61,Dining,Olive Garden
+tx-3112,2025-01-18,Checking,790.94,Electronics,Microsoft Store
+tx-3520,2025-01-18,Savings,688.14,Travel,Marriott
+tx-3632,2025-01-18,Checking,11.81,Dining,Subway
+tx-3774,2025-01-18,Savings,51.92,Groceries,Fresh Market
+tx-3092,2025-01-19,Savings,798.37,Travel,Hilton Hotels
+tx-3282,2025-01-19,Credit Card,86.81,Groceries,Trader Joe's
+tx-3423,2025-01-19,Credit Card,37.45,Transportation,Chevron
+tx-3133,2025-01-20,Savings,38.63,Dining,Subway
+tx-3163,2025-01-21,Credit Card,26.15,Dining,Chipotle Mexican Grill
+tx-3717,2025-01-21,Savings,91.02,Shopping,Gap
+tx-3809,2025-01-21,Savings,28.39,Transportation,Lyft
+tx-4049,2025-01-21,Checking,158.77,Healthcare,Kaiser Permanente
+tx-3716,2025-01-22,Credit Card,56.11,Dining,Taco Bell
+tx-3208,2025-01-23,Credit Card,86.77,Shopping,Target
+tx-3328,2025-01-23,Credit Card,74.44,Dining,Chili's
+tx-3389,2025-01-23,Credit Card,15.54,Dining,Denny's
+tx-3782,2025-01-23,Savings,17.01,Transportation,Uber
+tx-3447,2025-01-24,Savings,1030.08,Electronics,Microsoft Store
+tx-3778,2025-01-24,Credit Card,30.56,Healthcare,CVS Pharmacy
+tx-3964,2025-01-24,Credit Card,136.7,Groceries,Walmart
+tx-3989,2025-01-24,Checking,17.24,Dining,Cheesecake Factory
+tx-3545,2025-01-25,Savings,96.88,Healthcare,CVS Pharmacy
+tx-3612,2025-01-25,Credit Card,85.62,Groceries,Whole Foods Market
+tx-3836,2025-01-25,Savings,16.62,Dining,Starbucks Coffee
+tx-3975,2025-01-25,Checking,70.27,Dining,KFC
+tx-3718,2025-01-26,Savings,229.77,Shopping,Macy's
+tx-3429,2025-01-27,Checking,49.75,Groceries,Whole Foods Market
+tx-3483,2025-01-27,Checking,31.84,Groceries,Stop & Shop
+tx-3056,2025-01-28,Checking,72.14,Transportation,BP Gas Station
+tx-3277,2025-01-28,Checking,39.03,Dining,McDonald's
+tx-3564,2025-01-28,Savings,40.91,Dining,Denny's
+tx-3685,2025-01-28,Checking,21.78,Dining,Taco Bell
+tx-3817,2025-01-28,Savings,84.56,Dining,Applebee's
+tx-3150,2025-01-29,Savings,120.22,Shopping,H&M
+tx-3264,2025-01-29,Checking,14.43,Dining,Cheesecake Factory
+tx-3291,2025-01-29,Savings,22.77,Groceries,Aldi
+tx-3597,2025-01-29,Checking,125.99,Groceries,Walmart
+tx-3664,2025-01-29,Credit Card,100.51,Shopping,Macy's
+tx-3671,2025-01-29,Credit Card,70.7,Dining,Starbucks Coffee
+tx-3980,2025-01-29,Credit Card,268.65,Electronics,Samsung Store
+tx-4052,2025-01-29,Credit Card,614.71,Electronics,Sony Store
+tx-3579,2025-01-30,Savings,916.88,Electronics,Sony Store
+tx-3658,2025-01-30,Savings,68.05,Transportation,Uber
+tx-3684,2025-01-30,Checking,70.54,Dining,Chipotle Mexican Grill
+tx-4058,2025-01-30,Savings,54.41,Dining,In-N-Out Burger
+tx-3773,2025-01-31,Savings,26.07,Transportation,Lyft
+tx-3495,2025-02-01,Credit Card,113.4,Groceries,Kroger
+tx-3166,2025-02-02,Checking,12.47,Entertainment,AMC Theatres
+tx-3226,2025-02-02,Credit Card,75.18,Groceries,Fresh Market
+tx-3924,2025-02-02,Savings,56.79,Shopping,Amazon.com
+tx-4054,2025-02-02,Checking,67.15,Transportation,Lyft
+tx-3348,2025-02-03,Savings,28.11,Dining,Chili's
+tx-3804,2025-02-03,Savings,169.93,Electronics,Nikon Store
+tx-3665,2025-02-04,Credit Card,28.02,Transportation,BP Gas Station
+tx-3763,2025-02-04,Checking,52.06,Transportation,Exxon Mobil
+tx-4092,2025-02-04,Checking,90.45,Healthcare,Walgreens
+tx-3623,2025-02-05,Checking,65.26,Dining,In-N-Out Burger
+tx-3109,2025-02-06,Credit Card,21.96,Dining,KFC
+tx-3254,2025-02-06,Checking,78.69,Dining,Subway
+tx-3806,2025-02-06,Credit Card,67.76,Transportation,BP Gas Station
+tx-3662,2025-02-07,Savings,67.0,Dining,Panera Bread
+tx-3096,2025-02-08,Savings,30.81,Transportation,Exxon Mobil
+tx-3538,2025-02-08,Credit Card,16.07,Transportation,Chevron
+tx-3650,2025-02-08,Credit Card,180.96,Shopping,H&M
+tx-3737,2025-02-08,Savings,128.22,Groceries,Fresh Market
+tx-3441,2025-02-09,Checking,122.6,Groceries,Kroger
+tx-3309,2025-02-10,Checking,295.13,Shopping,Zara
+tx-3985,2025-02-10,Savings,799.35,Electronics,Dell Technologies
+tx-3158,2025-02-11,Savings,24.76,Groceries,Stop & Shop
+tx-3676,2025-02-11,Savings,73.09,Groceries,Safeway
+tx-3696,2025-02-11,Savings,78.84,Transportation,Shell Gas Station
+tx-4006,2025-02-11,Savings,82.13,Dining,Starbucks Coffee
+tx-3152,2025-02-12,Checking,74.74,Shopping,Nordstrom
+tx-3551,2025-02-12,Credit Card,575.45,Electronics,Lenovo Store
+tx-3566,2025-02-12,Credit Card,135.68,Groceries,Stop & Shop
+tx-3275,2025-02-13,Checking,35.41,Entertainment,Netflix
+tx-3582,2025-02-13,Savings,11.99,Dining,Starbucks Coffee
+tx-3759,2025-02-13,Credit Card,34.29,Groceries,Trader Joe's
+tx-3899,2025-02-13,Savings,657.6,Travel,Kayak
+tx-3647,2025-02-14,Checking,27.92,Transportation,Shell Gas Station
+tx-3996,2025-02-14,Credit Card,74.8,Dining,Taco Bell
+tx-3143,2025-02-15,Credit Card,44.93,Dining,Applebee's
+tx-4025,2025-02-15,Savings,20.04,Dining,Taco Bell
+tx-3383,2025-02-16,Credit Card,107.42,Groceries,Whole Foods Market
+tx-3812,2025-02-16,Savings,43.67,Groceries,Stop & Shop
+tx-3898,2025-02-16,Savings,46.69,Transportation,Uber
+tx-3216,2025-02-17,Credit Card,67.76,Transportation,BP Gas Station
+tx-3386,2025-02-17,Credit Card,75.93,Dining,Red Lobster
+tx-3402,2025-02-17,Credit Card,45.69,Dining,In-N-Out Burger
+tx-3709,2025-02-17,Checking,323.64,Travel,American Airlines
+tx-3796,2025-02-17,Credit Card,74.65,Groceries,Stop & Shop
+tx-3196,2025-02-18,Credit Card,39.61,Groceries,Safeway
+tx-3959,2025-02-18,Savings,780.24,Electronics,Samsung Store
+tx-3324,2025-02-19,Checking,42.5,Transportation,Uber
+tx-3353,2025-02-19,Checking,348.1,Electronics,Apple Store
+tx-3013,2025-02-20,Savings,68.23,Dining,Panera Bread
+tx-3040,2025-02-20,Credit Card,60.18,Dining,Olive Garden
+tx-3452,2025-02-20,Credit Card,1019.18,Electronics,Lenovo Store
+tx-3866,2025-02-20,Checking,70.06,Dining,Chili's
+tx-3361,2025-02-21,Credit Card,390.24,Electronics,Apple Store
+tx-3828,2025-02-21,Savings,68.54,Dining,Starbucks Coffee
+tx-3159,2025-02-22,Savings,16.26,Groceries,Safeway
+tx-3202,2025-02-22,Credit Card,37.48,Transportation,BP Gas Station
+tx-3209,2025-02-22,Savings,68.59,Dining,Applebee's
+tx-3515,2025-02-22,Checking,204.48,Healthcare,CVS Pharmacy
+tx-4022,2025-02-22,Checking,74.63,Dining,Cheesecake Factory
+tx-3021,2025-02-23,Checking,841.42,Electronics,Samsung Store
+tx-3126,2025-02-23,Savings,69.45,Entertainment,Dave & Buster's
+tx-3179,2025-02-23,Checking,24.59,Dining,Taco Bell
+tx-3201,2025-02-23,Savings,1013.85,Electronics,HP Store
+tx-3339,2025-02-23,Savings,278.71,Shopping,Forever 21
+tx-3721,2025-02-23,Savings,99.44,Groceries,Safeway
+tx-3732,2025-02-23,Savings,299.53,Electronics,HP Store
+tx-3740,2025-02-23,Checking,97.41,Entertainment,Dave & Buster's
+tx-3860,2025-02-23,Credit Card,90.25,Shopping,Zara
+tx-3925,2025-02-23,Savings,19.11,Entertainment,Redbox
+tx-3984,2025-02-23,Checking,111.4,Healthcare,Quest Diagnostics
+tx-3170,2025-02-24,Credit Card,74.79,Shopping,Gap
+tx-3576,2025-02-24,Savings,121.49,Shopping,Gap
+tx-3772,2025-02-24,Checking,36.75,Transportation,BP Gas Station
+tx-3813,2025-02-24,Credit Card,198.18,Shopping,Nordstrom
+tx-3831,2025-02-24,Credit Card,46.08,Groceries,Costco Wholesale
+tx-3912,2025-02-24,Checking,87.78,Healthcare,Walgreens
+tx-4071,2025-02-24,Credit Card,790.14,Electronics,Sony Store
+tx-3459,2025-02-25,Savings,53.96,Dining,Chipotle Mexican Grill
+tx-3492,2025-02-25,Savings,81.88,Dining,Chipotle Mexican Grill
+tx-4072,2025-02-25,Credit Card,62.34,Dining,In-N-Out Burger
+tx-4078,2025-02-25,Checking,65.48,Shopping,Macy's
+tx-3037,2025-02-26,Savings,72.84,Shopping,H&M
+tx-3616,2025-02-26,Checking,831.3,Electronics,Canon Store
+tx-4063,2025-02-27,Checking,73.73,Dining,Applebee's
+tx-3393,2025-02-28,Savings,216.8,Healthcare,Rite Aid
+tx-3105,2025-03-01,Checking,111.16,Groceries,Aldi
+tx-4028,2025-03-01,Savings,42.32,Dining,Starbucks Coffee
+tx-3077,2025-03-02,Checking,927.76,Electronics,Canon Store
+tx-3257,2025-03-02,Credit Card,30.97,Dining,Applebee's
+tx-3351,2025-03-02,Savings,51.02,Groceries,Trader Joe's
+tx-3364,2025-03-02,Checking,60.66,Transportation,BP Gas Station
+tx-4091,2025-03-02,Credit Card,48.76,Dining,Denny's
+tx-3168,2025-03-03,Credit Card,33.1,Dining,Denny's
+tx-3381,2025-03-03,Savings,88.09,Entertainment,TopGolf
+tx-3444,2025-03-03,Savings,37.16,Dining,Cheesecake Factory
+tx-3050,2025-03-04,Checking,204.33,Healthcare,Walgreens
+tx-3263,2025-03-04,Credit Card,33.81,Dining,Taco Bell
+tx-3825,2025-03-04,Checking,51.2,Transportation,Lyft
+tx-3879,2025-03-04,Savings,19.45,Groceries,Walmart
+tx-3069,2025-03-05,Savings,27.13,Dining,Red Lobster
+tx-3070,2025-03-05,Credit Card,24.49,Groceries,Costco Wholesale
+tx-3611,2025-03-05,Checking,26.96,Groceries,Aldi
+tx-3798,2025-03-05,Checking,112.91,Groceries,Fresh Market
+tx-3887,2025-03-05,Checking,73.43,Entertainment,GameStop
+tx-4079,2025-03-05,Credit Card,67.76,Shopping,Macy's
+tx-3036,2025-03-06,Savings,435.67,Travel,Best Western
+tx-3061,2025-03-06,Credit Card,204.27,Shopping,Target
+tx-3184,2025-03-07,Savings,89.19,Groceries,Whole Foods Market
+tx-3409,2025-03-07,Savings,310.66,Electronics,Best Buy Electronics
+tx-3015,2025-03-08,Credit Card,182.5,Electronics,HP Store
+tx-3655,2025-03-09,Savings,67.54,Shopping,Gap
+tx-3415,2025-03-10,Checking,104.5,Groceries,Kroger
+tx-3461,2025-03-10,Credit Card,295.9,Shopping,Nordstrom
+tx-3999,2025-03-10,Credit Card,80.73,Shopping,Nordstrom
+tx-3250,2025-03-11,Checking,541.07,Electronics,HP Store
+tx-3303,2025-03-12,Credit Card,299.29,Shopping,Gap
+tx-3225,2025-03-13,Checking,216.09,Shopping,Target
+tx-3635,2025-03-13,Credit Card,26.92,Shopping,Gap
+tx-3315,2025-03-14,Checking,54.03,Groceries,Whole Foods Market
+tx-3629,2025-03-14,Savings,430.9,Travel,United Airlines
+tx-3084,2025-03-15,Credit Card,39.74,Entertainment,Netflix
+tx-3200,2025-03-15,Savings,177.82,Healthcare,Kaiser Permanente
+tx-3410,2025-03-15,Credit Card,72.29,Dining,Subway
+tx-3583,2025-03-15,Credit Card,60.66,Dining,Red Lobster
+tx-4039,2025-03-15,Savings,45.33,Dining,Applebee's
+tx-3047,2025-03-16,Credit Card,558.51,Travel,Booking.com
+tx-3074,2025-03-16,Checking,41.37,Transportation,BP Gas Station
+tx-3469,2025-03-16,Savings,62.55,Dining,Subway
+tx-3903,2025-03-16,Savings,161.12,Shopping,Macy's
+tx-3705,2025-03-18,Savings,139.85,Groceries,Publix
+tx-3834,2025-03-18,Savings,92.81,Entertainment,Redbox
+tx-3674,2025-03-19,Checking,418.92,Electronics,Microsoft Store
+tx-3748,2025-03-19,Credit Card,65.86,Groceries,Safeway
+tx-3837,2025-03-19,Savings,708.18,Travel,Delta Airlines
+tx-3906,2025-03-19,Savings,82.85,Dining,Red Lobster
+tx-3091,2025-03-20,Savings,399.73,Travel,Hilton Hotels
+tx-3359,2025-03-20,Checking,168.28,Shopping,Target
+tx-3601,2025-03-20,Credit Card,72.5,Groceries,Fresh Market
+tx-3881,2025-03-20,Checking,144.2,Healthcare,Walgreens
+tx-4073,2025-03-20,Savings,31.06,Dining,Starbucks Coffee
+tx-3190,2025-03-21,Checking,88.61,Shopping,H&M
+tx-3569,2025-03-21,Checking,14.37,Dining,Cheesecake Factory
+tx-3589,2025-03-21,Credit Card,41.47,Dining,Cheesecake Factory
+tx-3736,2025-03-21,Savings,45.85,Dining,Chili's
+tx-3896,2025-03-21,Credit Card,223.99,Shopping,Nordstrom
+tx-4065,2025-03-21,Savings,33.71,Transportation,Shell Gas Station
+tx-3253,2025-03-22,Checking,22.36,Dining,Taco Bell
+tx-3987,2025-03-22,Credit Card,36.58,Shopping,Walmart
+tx-3005,2025-03-23,Checking,74.77,Transportation,Uber
+tx-3342,2025-03-24,Credit Card,496.45,Travel,Hilton Hotels
+tx-3677,2025-03-24,Credit Card,67.29,Dining,Cheesecake Factory
+tx-3805,2025-03-24,Credit Card,154.51,Healthcare,Quest Diagnostics
+tx-3867,2025-03-24,Credit Card,15.4,Entertainment,Netflix
+tx-3873,2025-03-24,Savings,163.38,Shopping,Gap
+tx-4040,2025-03-24,Savings,291.66,Shopping,Nordstrom
+tx-3171,2025-03-25,Savings,47.97,Dining,Applebee's
+tx-3490,2025-03-25,Credit Card,38.98,Groceries,Publix
+tx-3844,2025-03-25,Savings,17.88,Dining,Five Guys
+tx-3853,2025-03-25,Savings,46.72,Dining,Applebee's
+tx-3977,2025-03-25,Checking,29.21,Transportation,Shell Gas Station
+tx-3288,2025-03-26,Credit Card,65.59,Dining,Chipotle Mexican Grill
+tx-3377,2025-03-26,Savings,78.65,Dining,Red Lobster
+tx-3466,2025-03-26,Savings,250.59,Shopping,Amazon.com
+tx-3498,2025-03-26,Savings,608.61,Electronics,Lenovo Store
+tx-3761,2025-03-26,Credit Card,118.91,Groceries,Trader Joe's
+tx-3088,2025-03-27,Checking,8.46,Dining,Applebee's
+tx-3199,2025-03-27,Savings,107.48,Groceries,Publix
+tx-3337,2025-03-27,Credit Card,42.39,Dining,Red Lobster
+tx-3514,2025-03-27,Checking,207.86,Healthcare,Quest Diagnostics
+tx-3869,2025-03-27,Credit Card,993.22,Electronics,HP Store
+tx-3986,2025-03-27,Checking,54.71,Dining,Cheesecake Factory
+tx-3228,2025-03-28,Credit Card,197.14,Healthcare,Walgreens
+tx-3895,2025-03-28,Checking,15.71,Healthcare,Walgreens
+tx-3180,2025-03-29,Credit Card,26.1,Dining,Chili's
+tx-3613,2025-03-29,Savings,52.89,Entertainment,Redbox
+tx-3780,2025-03-29,Credit Card,78.76,Groceries,Safeway
+tx-3973,2025-03-29,Credit Card,116.02,Groceries,Aldi
+tx-3756,2025-03-30,Checking,33.35,Transportation,Chevron
+tx-3891,2025-03-30,Credit Card,234.82,Electronics,Samsung Store
+tx-3934,2025-03-30,Checking,16.35,Transportation,Uber
+tx-3390,2025-03-31,Credit Card,27.83,Entertainment,Spotify
+tx-3857,2025-03-31,Checking,48.19,Entertainment,GameStop
+tx-3095,2025-04-01,Credit Card,43.71,Entertainment,AMC Theatres
+tx-3349,2025-04-01,Checking,273.89,Shopping,Forever 21
+tx-3220,2025-04-02,Credit Card,56.38,Dining,Chili's
+tx-3382,2025-04-02,Checking,109.57,Healthcare,Quest Diagnostics
+tx-3641,2025-04-02,Credit Card,20.54,Transportation,BP Gas Station
+tx-3757,2025-04-02,Checking,82.49,Dining,Denny's
+tx-3365,2025-04-04,Credit Card,50.62,Transportation,Uber
+tx-4087,2025-04-04,Checking,27.19,Groceries,Whole Foods Market
+tx-3849,2025-04-05,Credit Card,142.14,Groceries,Costco Wholesale
+tx-3165,2025-04-06,Savings,29.23,Entertainment,Redbox
+tx-3464,2025-04-06,Savings,57.28,Dining,Chipotle Mexican Grill
+tx-3479,2025-04-06,Savings,62.12,Entertainment,Dave & Buster's
+tx-3541,2025-04-06,Checking,94.17,Healthcare,Walgreens
+tx-3845,2025-04-06,Credit Card,17.04,Transportation,Exxon Mobil
+tx-3943,2025-04-06,Checking,1055.11,Electronics,Best Buy Electronics
+tx-3259,2025-04-07,Credit Card,108.44,Groceries,Publix
+tx-3470,2025-04-08,Savings,34.15,Groceries,Walmart
+tx-3633,2025-04-08,Checking,22.64,Dining,Chipotle Mexican Grill
+tx-3403,2025-04-09,Credit Card,41.8,Transportation,Shell Gas Station
+tx-3800,2025-04-09,Checking,271.92,Shopping,Amazon.com
+tx-4016,2025-04-09,Credit Card,97.57,Groceries,Walmart
+tx-3114,2025-04-10,Credit Card,225.03,Healthcare,Rite Aid
+tx-3512,2025-04-10,Savings,52.7,Entertainment,GameStop
+tx-3205,2025-04-12,Credit Card,58.3,Entertainment,Spotify
+tx-3430,2025-04-12,Savings,78.75,Transportation,Lyft
+tx-3078,2025-04-13,Credit Card,57.4,Shopping,Gap
+tx-3206,2025-04-13,Savings,141.54,Groceries,Costco Wholesale
+tx-3596,2025-04-13,Savings,479.64,Travel,Kayak
+tx-3802,2025-04-13,Checking,35.94,Transportation,Chevron
+tx-3838,2025-04-13,Credit Card,100.26,Entertainment,GameStop
+tx-3073,2025-04-14,Savings,57.29,Dining,Red Lobster
+tx-3189,2025-04-14,Checking,36.1,Dining,In-N-Out Burger
+tx-3556,2025-04-14,Savings,30.32,Dining,Denny's
+tx-3920,2025-04-14,Credit Card,52.92,Dining,Denny's
+tx-3370,2025-04-15,Checking,29.95,Dining,In-N-Out Burger
+tx-3856,2025-04-16,Checking,54.99,Entertainment,Redbox
+tx-4089,2025-04-16,Savings,757.96,Electronics,HP Store
+tx-3032,2025-04-17,Savings,650.81,Electronics,Canon Store
+tx-3808,2025-04-17,Checking,83.38,Dining,Chili's
+tx-3758,2025-04-18,Credit Card,29.09,Groceries,Safeway
+tx-3850,2025-04-18,Credit Card,96.48,Groceries,Safeway
+tx-3039,2025-04-20,Checking,31.77,Dining,Subway
+tx-3248,2025-04-20,Checking,55.7,Dining,Red Lobster
+tx-3500,2025-04-20,Checking,62.86,Healthcare,Quest Diagnostics
+tx-4001,2025-04-20,Credit Card,494.04,Travel,Best Western
+tx-3156,2025-04-22,Checking,225.27,Shopping,Nordstrom
+tx-3524,2025-04-22,Credit Card,14.8,Dining,Red Lobster
+tx-3033,2025-04-23,Credit Card,212.19,Shopping,Zara
+tx-3380,2025-04-23,Credit Card,60.47,Entertainment,GameStop
+tx-3456,2025-04-23,Credit Card,25.98,Transportation,BP Gas Station
+tx-3485,2025-04-23,Savings,69.48,Transportation,Uber
+tx-3781,2025-04-23,Checking,55.54,Groceries,Trader Joe's
+tx-4059,2025-04-23,Credit Card,94.34,Entertainment,Netflix
+tx-3224,2025-04-24,Savings,33.46,Dining,Red Lobster
+tx-3261,2025-04-25,Credit Card,24.94,Dining,Olive Garden
+tx-3818,2025-04-25,Savings,96.25,Shopping,Amazon.com
+tx-3995,2025-04-25,Credit Card,43.57,Transportation,Exxon Mobil
+tx-4036,2025-04-25,Checking,33.79,Dining,Panera Bread
+tx-4042,2025-04-25,Checking,10.26,Dining,McDonald's
+tx-3076,2025-04-26,Credit Card,118.72,Entertainment,AMC Theatres
+tx-3132,2025-04-26,Savings,15.11,Dining,Denny's
+tx-3935,2025-04-26,Checking,67.82,Dining,Starbucks Coffee
+tx-3861,2025-04-27,Savings,661.62,Electronics,Microsoft Store
+tx-3122,2025-04-28,Checking,86.98,Entertainment,TopGolf
+tx-3256,2025-04-28,Credit Card,109.34,Groceries,Costco Wholesale
+tx-3527,2025-04-28,Savings,130.27,Travel,Marriott
+tx-3656,2025-04-28,Savings,93.66,Shopping,Forever 21
+tx-3894,2025-04-28,Credit Card,39.64,Dining,Chipotle Mexican Grill
+tx-3941,2025-04-28,Credit Card,80.75,Groceries,Whole Foods Market
+tx-3017,2025-04-29,Credit Card,23.4,Transportation,Shell Gas Station
+tx-3575,2025-04-29,Savings,36.44,Dining,Denny's
+tx-3063,2025-04-30,Checking,50.07,Groceries,Whole Foods Market
+tx-3247,2025-04-30,Savings,42.31,Entertainment,Spotify
+tx-3293,2025-04-30,Checking,33.12,Transportation,BP Gas Station
+tx-3178,2025-05-01,Credit Card,26.93,Dining,McDonald's
+tx-3231,2025-05-01,Credit Card,108.13,Groceries,Kroger
+tx-3568,2025-05-01,Savings,40.52,Dining,Subway
+tx-3154,2025-05-02,Savings,78.71,Dining,Five Guys
+tx-3792,2025-05-02,Credit Card,62.1,Transportation,Chevron
+tx-4000,2025-05-02,Savings,86.43,Shopping,Target
+tx-3502,2025-05-03,Savings,127.47,Groceries,Stop & Shop
+tx-3561,2025-05-03,Credit Card,71.6,Dining,Panera Bread
+tx-3004,2025-05-04,Checking,47.56,Dining,Starbucks Coffee
+tx-3299,2025-05-04,Savings,13.91,Dining,Taco Bell
+tx-3333,2025-05-04,Checking,66.66,Transportation,Chevron
+tx-3467,2025-05-04,Credit Card,74.47,Dining,Denny's
+tx-3367,2025-05-05,Savings,9.17,Dining,Olive Garden
+tx-3454,2025-05-05,Savings,53.0,Transportation,Exxon Mobil
+tx-3480,2025-05-05,Credit Card,63.38,Dining,Chili's
+tx-3864,2025-05-05,Savings,206.67,Travel,Kayak
+tx-3885,2025-05-06,Credit Card,80.67,Dining,Starbucks Coffee
+tx-3396,2025-05-07,Checking,243.45,Healthcare,Quest Diagnostics
+tx-3571,2025-05-07,Credit Card,457.49,Electronics,Sony Store
+tx-3578,2025-05-07,Savings,41.66,Groceries,Kroger
+tx-3911,2025-05-07,Credit Card,30.96,Dining,Taco Bell
+tx-3018,2025-05-08,Checking,53.74,Transportation,Shell Gas Station
+tx-3371,2025-05-08,Checking,35.68,Groceries,Safeway
+tx-3477,2025-05-08,Savings,69.98,Transportation,Lyft
+tx-3624,2025-05-08,Credit Card,21.64,Entertainment,GameStop
+tx-3702,2025-05-08,Credit Card,46.15,Dining,Red Lobster
+tx-3768,2025-05-08,Savings,44.98,Healthcare,Kaiser Permanente
+tx-3518,2025-05-09,Checking,100.6,Groceries,Walmart
+tx-3593,2025-05-09,Savings,123.03,Groceries,Trader Joe's
+tx-3258,2025-05-10,Savings,76.76,Transportation,Chevron
+tx-3320,2025-05-10,Savings,268.05,Shopping,Macy's
+tx-3614,2025-05-10,Checking,51.76,Dining,Taco Bell
+tx-3932,2025-05-10,Savings,52.04,Dining,Chipotle Mexican Grill
+tx-4041,2025-05-10,Savings,72.24,Dining,Cheesecake Factory
+tx-3085,2025-05-11,Savings,77.16,Groceries,Whole Foods Market
+tx-3149,2025-05-11,Savings,41.85,Transportation,Shell Gas Station
+tx-3496,2025-05-11,Savings,15.3,Entertainment,Redbox
+tx-3872,2025-05-11,Credit Card,157.72,Shopping,Macy's
+tx-3012,2025-05-12,Checking,284.37,Shopping,Forever 21
+tx-3824,2025-05-12,Checking,66.88,Shopping,Gap
+tx-3957,2025-05-12,Credit Card,53.37,Dining,Olive Garden
+tx-3038,2025-05-13,Credit Card,366.18,Travel,United Airlines
+tx-3606,2025-05-13,Checking,60.06,Dining,McDonald's
+tx-4029,2025-05-13,Checking,48.93,Transportation,Shell Gas Station
+tx-3083,2025-05-14,Credit Card,66.15,Transportation,Exxon Mobil
+tx-3243,2025-05-14,Savings,83.42,Shopping,Nordstrom
+tx-3369,2025-05-14,Credit Card,27.31,Shopping,Macy's
+tx-3428,2025-05-14,Credit Card,94.08,Groceries,Publix
+tx-3445,2025-05-14,Checking,69.39,Dining,Applebee's
+tx-3313,2025-05-15,Credit Card,24.41,Shopping,Target
+tx-3416,2025-05-15,Checking,77.28,Transportation,Lyft
+tx-4060,2025-05-15,Credit Card,244.84,Healthcare,CVS Pharmacy
+tx-3680,2025-05-16,Checking,64.2,Shopping,Zara
+tx-3693,2025-05-16,Credit Card,229.6,Healthcare,Walgreens
+tx-3728,2025-05-16,Credit Card,46.23,Transportation,BP Gas Station
+tx-3750,2025-05-16,Checking,27.24,Groceries,Whole Foods Market
+tx-3993,2025-05-16,Savings,25.88,Dining,Chipotle Mexican Grill
+tx-3326,2025-05-17,Credit Card,111.55,Groceries,Whole Foods Market
+tx-3631,2025-05-17,Checking,15.89,Dining,Chili's
+tx-3870,2025-05-17,Checking,19.72,Dining,Panera Bread
+tx-3874,2025-05-17,Credit Card,28.07,Dining,McDonald's
+tx-3316,2025-05-18,Credit Card,62.12,Dining,Applebee's
+tx-3401,2025-05-18,Credit Card,118.87,Entertainment,Dave & Buster's
+tx-3034,2025-05-19,Checking,671.39,Electronics,Apple Store
+tx-3663,2025-05-19,Credit Card,35.04,Transportation,BP Gas Station
+tx-3846,2025-05-19,Checking,38.34,Dining,KFC
+tx-3376,2025-05-20,Credit Card,83.52,Dining,Five Guys
+tx-3618,2025-05-20,Credit Card,43.14,Dining,Red Lobster
+tx-3668,2025-05-20,Credit Card,1184.37,Electronics,Apple Store
+tx-3914,2025-05-20,Checking,11.35,Dining,Red Lobster
+tx-3125,2025-05-21,Savings,221.32,Shopping,eBay
+tx-3346,2025-05-21,Checking,99.95,Groceries,Kroger
+tx-3111,2025-05-22,Credit Card,47.06,Dining,McDonald's
+tx-3501,2025-05-22,Savings,102.76,Entertainment,Spotify
+tx-3058,2025-05-23,Savings,794.57,Electronics,Lenovo Store
+tx-3198,2025-05-24,Checking,71.49,Dining,Applebee's
+tx-3392,2025-05-24,Savings,12.25,Entertainment,Spotify
+tx-3433,2025-05-24,Credit Card,74.02,Groceries,Stop & Shop
+tx-3686,2025-05-24,Credit Card,71.3,Entertainment,TopGolf
+tx-3399,2025-05-25,Checking,145.38,Groceries,Walmart
+tx-3472,2025-05-25,Checking,682.68,Travel,Southwest Airlines
+tx-4046,2025-05-25,Credit Card,28.44,Shopping,Walmart
+tx-3555,2025-05-26,Savings,71.61,Groceries,Stop & Shop
+tx-3649,2025-05-26,Checking,103.23,Healthcare,CVS Pharmacy
+tx-4047,2025-05-26,Checking,27.32,Groceries,Kroger
+tx-3235,2025-05-27,Savings,198.21,Electronics,HP Store
+tx-3661,2025-05-27,Savings,51.94,Entertainment,Redbox
+tx-3335,2025-05-28,Checking,34.84,Entertainment,Redbox
+tx-3421,2025-05-28,Checking,697.23,Electronics,HP Store
+tx-3535,2025-05-28,Credit Card,74.87,Healthcare,Rite Aid
+tx-3991,2025-05-28,Savings,68.27,Groceries,Costco Wholesale
+tx-3059,2025-05-29,Savings,32.74,Groceries,Trader Joe's
+tx-3379,2025-05-29,Checking,208.14,Shopping,Target
+tx-3413,2025-05-29,Credit Card,297.18,Shopping,Amazon.com
+tx-3420,2025-05-30,Savings,57.82,Transportation,BP Gas Station
+tx-3648,2025-05-30,Credit Card,1090.25,Electronics,Dell Technologies
+tx-3585,2025-05-31,Savings,9.22,Dining,Applebee's
+tx-3969,2025-05-31,Credit Card,33.61,Entertainment,Dave & Buster's
+tx-3882,2025-06-01,Checking,51.72,Groceries,Kroger
+tx-3141,2025-06-02,Credit Card,247.48,Travel,Delta Airlines
+tx-3448,2025-06-03,Checking,16.36,Transportation,Exxon Mobil
+tx-3573,2025-06-03,Credit Card,80.35,Groceries,Aldi
+tx-3675,2025-06-03,Checking,50.89,Shopping,Gap
+tx-3947,2025-06-03,Checking,76.07,Dining,Red Lobster
+tx-4044,2025-06-03,Savings,987.14,Electronics,HP Store
+tx-3107,2025-06-04,Checking,146.65,Shopping,Zara
+tx-3749,2025-06-04,Checking,38.78,Entertainment,Redbox
+tx-3006,2025-06-05,Credit Card,148.23,Groceries,Kroger
+tx-3378,2025-06-05,Credit Card,62.77,Transportation,Uber
+tx-3249,2025-06-06,Checking,95.32,Groceries,Stop & Shop
+tx-3260,2025-06-06,Savings,40.97,Groceries,Fresh Market
+tx-3292,2025-06-06,Savings,18.37,Groceries,Kroger
+tx-3595,2025-06-06,Credit Card,80.53,Groceries,Walmart
+tx-3820,2025-06-06,Savings,1056.65,Electronics,Nikon Store
+tx-3087,2025-06-07,Credit Card,61.58,Shopping,Gap
+tx-3271,2025-06-07,Credit Card,31.01,Dining,McDonald's
+tx-3710,2025-06-07,Credit Card,672.21,Travel,American Airlines
+tx-3742,2025-06-07,Checking,27.6,Transportation,BP Gas Station
+tx-3278,2025-06-08,Savings,49.41,Dining,Cheesecake Factory
+tx-3692,2025-06-08,Credit Card,86.11,Healthcare,CVS Pharmacy
+tx-3775,2025-06-08,Savings,85.7,Groceries,Whole Foods Market
+tx-3001,2025-06-09,Credit Card,120.1,Groceries,Whole Foods Market
+tx-3027,2025-06-09,Credit Card,56.01,Entertainment,Spotify
+tx-3703,2025-06-09,Credit Card,10.63,Dining,Chili's
+tx-4002,2025-06-10,Checking,376.74,Travel,Southwest Airlines
+tx-3372,2025-06-11,Savings,47.94,Groceries,Trader Joe's
+tx-3897,2025-06-11,Credit Card,48.0,Dining,Subway
+tx-3142,2025-06-12,Savings,91.68,Healthcare,Kaiser Permanente
+tx-3238,2025-06-12,Credit Card,76.13,Transportation,Lyft
+tx-3767,2025-06-12,Checking,55.47,Shopping,eBay
+tx-3821,2025-06-12,Credit Card,55.05,Healthcare,Kaiser Permanente
+tx-3690,2025-06-13,Credit Card,72.87,Dining,Taco Bell
+tx-3858,2025-06-13,Credit Card,123.24,Groceries,Safeway
+tx-3418,2025-06-14,Credit Card,51.0,Transportation,Uber
+tx-3922,2025-06-14,Savings,93.57,Groceries,Costco Wholesale
+tx-3052,2025-06-15,Savings,43.0,Dining,Olive Garden
+tx-3270,2025-06-15,Savings,52.79,Dining,Applebee's
+tx-3654,2025-06-15,Credit Card,38.51,Groceries,Kroger
+tx-3754,2025-06-15,Savings,87.3,Groceries,Walmart
+tx-3923,2025-06-15,Checking,686.43,Travel,Southwest Airlines
+tx-3961,2025-06-15,Checking,280.81,Shopping,Macy's
+tx-4077,2025-06-15,Savings,234.98,Shopping,H&M
+tx-3620,2025-06-16,Credit Card,61.76,Transportation,Exxon Mobil
+tx-3135,2025-06-17,Checking,50.91,Dining,Taco Bell
+tx-3144,2025-06-17,Savings,96.26,Shopping,Amazon.com
+tx-3557,2025-06-17,Checking,1008.45,Electronics,Samsung Store
+tx-3572,2025-06-17,Checking,226.99,Shopping,Amazon.com
+tx-3687,2025-06-17,Credit Card,51.11,Dining,Starbucks Coffee
+tx-3747,2025-06-17,Credit Card,74.76,Transportation,Exxon Mobil
+tx-3967,2025-06-17,Savings,25.95,Transportation,Chevron
+tx-3148,2025-06-18,Savings,170.8,Shopping,Target
+tx-3327,2025-06-18,Checking,33.46,Entertainment,AMC Theatres
+tx-3580,2025-06-18,Checking,42.92,Groceries,Stop & Shop
+tx-3636,2025-06-18,Savings,81.1,Dining,Red Lobster
+tx-3741,2025-06-18,Savings,44.27,Transportation,Lyft
+tx-4069,2025-06-18,Checking,208.55,Shopping,Zara
+tx-3453,2025-06-19,Savings,213.41,Shopping,Forever 21
+tx-3476,2025-06-19,Credit Card,57.53,Groceries,Whole Foods Market
+tx-3835,2025-06-20,Savings,204.7,Shopping,eBay
+tx-3173,2025-06-21,Savings,28.95,Entertainment,TopGolf
+tx-3714,2025-06-21,Savings,1109.38,Electronics,Dell Technologies
+tx-3230,2025-06-22,Checking,51.14,Transportation,Chevron
+tx-3426,2025-06-22,Savings,132.86,Groceries,Aldi
+tx-3523,2025-06-22,Credit Card,115.92,Groceries,Trader Joe's
+tx-3185,2025-06-23,Savings,751.77,Electronics,Nikon Store
+tx-3269,2025-06-23,Savings,30.09,Dining,Olive Garden
+tx-3289,2025-06-23,Credit Card,55.21,Dining,Cheesecake Factory
+tx-3511,2025-06-23,Checking,639.64,Electronics,Nikon Store
+tx-3777,2025-06-23,Checking,34.57,Groceries,Publix
+tx-4056,2025-06-23,Checking,84.85,Entertainment,AMC Theatres
+tx-4081,2025-06-23,Credit Card,13.96,Dining,Cheesecake Factory
+tx-4082,2025-06-23,Credit Card,26.25,Dining,Subway
+tx-3617,2025-06-24,Checking,18.36,Dining,McDonald's
+tx-3639,2025-06-24,Credit Card,49.5,Entertainment,GameStop
+tx-3790,2025-06-24,Checking,522.37,Travel,Delta Airlines
+tx-4013,2025-06-24,Credit Card,43.73,Shopping,Target
+tx-3280,2025-06-25,Savings,91.55,Entertainment,AMC Theatres
+tx-3468,2025-06-25,Checking,67.38,Dining,Taco Bell
+tx-3711,2025-06-25,Checking,127.32,Groceries,Trader Joe's
+tx-3215,2025-06-26,Credit Card,604.89,Electronics,HP Store
+tx-3296,2025-06-26,Credit Card,58.88,Transportation,Lyft
+tx-3660,2025-06-26,Checking,72.7,Dining,Panera Bread
+tx-3713,2025-06-26,Savings,142.84,Travel,Marriott
+tx-3875,2025-06-26,Credit Card,61.9,Dining,KFC
+tx-3889,2025-06-26,Savings,36.8,Transportation,Shell Gas Station
+tx-3909,2025-06-26,Savings,58.46,Dining,Chipotle Mexican Grill
+tx-3958,2025-06-26,Savings,25.45,Dining,Chipotle Mexican Grill
+tx-3051,2025-06-27,Credit Card,492.94,Travel,Booking.com
+tx-3503,2025-06-27,Checking,54.25,Transportation,Exxon Mobil
+tx-3688,2025-06-27,Credit Card,296.53,Shopping,H&M
+tx-3753,2025-06-27,Credit Card,43.42,Transportation,Chevron
+tx-4019,2025-06-27,Savings,50.71,Dining,Applebee's
+tx-3055,2025-06-28,Checking,246.86,Healthcare,CVS Pharmacy
+tx-3153,2025-06-28,Checking,169.26,Healthcare,Rite Aid
+tx-3357,2025-06-28,Credit Card,237.46,Shopping,Macy's
+tx-3915,2025-06-28,Credit Card,36.64,Dining,Taco Bell
+tx-4017,2025-06-28,Checking,64.66,Entertainment,AMC Theatres
+tx-3016,2025-06-29,Savings,83.28,Healthcare,Kaiser Permanente
+tx-3214,2025-06-29,Credit Card,30.53,Transportation,BP Gas Station
+tx-3793,2025-06-29,Checking,80.38,Groceries,Trader Joe's
+tx-3491,2025-06-30,Credit Card,86.3,Entertainment,Spotify
+tx-3762,2025-06-30,Credit Card,15.57,Dining,Taco Bell
+tx-3770,2025-06-30,Savings,111.28,Entertainment,Redbox
+tx-3785,2025-06-30,Credit Card,993.11,Electronics,Microsoft Store
+tx-3725,2025-07-01,Savings,293.84,Shopping,Walmart
+tx-3979,2025-07-01,Checking,128.04,Groceries,Walmart
+tx-3340,2025-07-02,Credit Card,76.07,Dining,Applebee's
+tx-3506,2025-07-02,Checking,70.82,Entertainment,TopGolf
+tx-3531,2025-07-02,Checking,18.66,Transportation,Exxon Mobil
+tx-3659,2025-07-02,Checking,18.99,Groceries,Fresh Market
+tx-3876,2025-07-02,Checking,16.09,Transportation,Chevron
+tx-3819,2025-07-03,Credit Card,285.19,Shopping,Target
+tx-3219,2025-07-04,Credit Card,35.35,Groceries,Kroger
+tx-3341,2025-07-05,Savings,172.5,Travel,Marriott
+tx-3363,2025-07-05,Savings,15.15,Groceries,Trader Joe's
+tx-3788,2025-07-05,Savings,65.66,Groceries,Trader Joe's
+tx-3823,2025-07-05,Savings,59.19,Groceries,Costco Wholesale
+tx-3030,2025-07-06,Credit Card,39.18,Dining,Taco Bell
+tx-3046,2025-07-06,Credit Card,68.46,Shopping,Target
+tx-3064,2025-07-07,Checking,47.69,Entertainment,Netflix
+tx-3262,2025-07-07,Savings,1038.66,Electronics,Microsoft Store
+tx-3273,2025-07-07,Credit Card,272.07,Shopping,Amazon.com
+tx-3331,2025-07-07,Credit Card,60.0,Transportation,Lyft
+tx-3411,2025-07-07,Savings,475.64,Electronics,Dell Technologies
+tx-3715,2025-07-07,Credit Card,33.92,Dining,Red Lobster
+tx-3234,2025-07-08,Checking,329.22,Travel,Expedia
+tx-3507,2025-07-08,Credit Card,30.65,Dining,Denny's
+tx-3521,2025-07-08,Checking,34.58,Transportation,Shell Gas Station
+tx-3723,2025-07-08,Checking,823.17,Electronics,Nikon Store
+tx-3900,2025-07-08,Credit Card,119.9,Healthcare,CVS Pharmacy
+tx-3106,2025-07-09,Savings,109.48,Groceries,Costco Wholesale
+tx-3493,2025-07-09,Savings,64.42,Dining,Chipotle Mexican Grill
+tx-3699,2025-07-09,Checking,65.73,Transportation,BP Gas Station
+tx-3974,2025-07-09,Credit Card,54.72,Entertainment,AMC Theatres
+tx-3164,2025-07-10,Credit Card,81.9,Groceries,Fresh Market
+tx-3400,2025-07-10,Credit Card,145.26,Healthcare,Kaiser Permanente
+tx-3698,2025-07-10,Checking,70.23,Groceries,Publix
+tx-3007,2025-07-11,Savings,86.2,Shopping,Amazon.com
+tx-3066,2025-07-11,Checking,247.92,Electronics,Apple Store
+tx-3362,2025-07-11,Savings,210.29,Healthcare,Walgreens
+tx-3384,2025-07-11,Checking,1042.96,Electronics,Sony Store
+tx-3431,2025-07-11,Savings,927.18,Electronics,Microsoft Store
+tx-3435,2025-07-11,Savings,24.02,Groceries,Safeway
+tx-3465,2025-07-11,Checking,79.11,Transportation,Lyft
+tx-3722,2025-07-12,Credit Card,25.58,Groceries,Walmart
+tx-3978,2025-07-12,Checking,37.72,Dining,Denny's
+tx-3499,2025-07-13,Checking,107.19,Groceries,Whole Foods Market
+tx-3926,2025-07-13,Credit Card,180.63,Shopping,Walmart
+tx-3304,2025-07-14,Savings,60.29,Groceries,Walmart
+tx-3522,2025-07-14,Credit Card,70.63,Healthcare,Rite Aid
+tx-3724,2025-07-14,Credit Card,208.18,Shopping,Gap
+tx-3035,2025-07-15,Credit Card,227.8,Shopping,Nordstrom
+tx-3266,2025-07-15,Credit Card,63.83,Dining,Taco Bell
+tx-3300,2025-07-15,Savings,100.14,Shopping,eBay
+tx-3868,2025-07-15,Checking,63.92,Transportation,BP Gas Station
+tx-3043,2025-07-16,Savings,51.17,Dining,Starbucks Coffee
+tx-3176,2025-07-16,Savings,64.19,Entertainment,GameStop
+tx-3245,2025-07-16,Credit Card,221.58,Healthcare,Rite Aid
+tx-3385,2025-07-16,Credit Card,72.13,Transportation,Uber
+tx-3457,2025-07-16,Checking,20.1,Groceries,Stop & Shop
+tx-3513,2025-07-16,Credit Card,416.36,Electronics,Best Buy Electronics
+tx-3766,2025-07-16,Checking,115.01,Healthcare,Rite Aid
+tx-3884,2025-07-16,Savings,617.64,Travel,Marriott
+tx-3187,2025-07-17,Credit Card,305.88,Travel,Hilton Hotels
+tx-3302,2025-07-17,Credit Card,78.13,Dining,Cheesecake Factory
+tx-3504,2025-07-17,Credit Card,11.76,Dining,Taco Bell
+tx-3604,2025-07-17,Credit Card,69.7,Groceries,Stop & Shop
+tx-3682,2025-07-17,Credit Card,49.22,Transportation,Exxon Mobil
+tx-3760,2025-07-17,Checking,688.87,Electronics,Lenovo Store
+tx-3847,2025-07-17,Checking,131.92,Groceries,Walmart
+tx-3892,2025-07-17,Savings,1145.75,Electronics,Sony Store
+tx-3233,2025-07-18,Credit Card,122.3,Groceries,Costco Wholesale
+tx-3338,2025-07-18,Savings,26.33,Groceries,Costco Wholesale
+tx-3458,2025-07-18,Checking,38.02,Dining,Five Guys
+tx-3621,2025-07-18,Credit Card,21.45,Dining,Denny's
+tx-3183,2025-07-19,Checking,44.75,Transportation,Shell Gas Station
+tx-3910,2025-07-19,Checking,12.57,Dining,Chili's
+tx-3082,2025-07-20,Credit Card,33.0,Shopping,Nordstrom
+tx-3203,2025-07-20,Savings,25.54,Dining,Cheesecake Factory
+tx-3218,2025-07-20,Savings,60.1,Dining,Olive Garden
+tx-3615,2025-07-20,Savings,648.0,Electronics,Samsung Store
+tx-3625,2025-07-20,Savings,58.31,Dining,Applebee's
+tx-4008,2025-07-20,Checking,770.58,Travel,Hilton Hotels
+tx-3547,2025-07-21,Checking,74.84,Groceries,Stop & Shop
+tx-3602,2025-07-21,Savings,127.4,Groceries,Stop & Shop
+tx-3174,2025-07-22,Checking,160.31,Shopping,Nordstrom
+tx-3239,2025-07-22,Checking,30.29,Dining,Cheesecake Factory
+tx-3251,2025-07-22,Credit Card,32.25,Dining,Taco Bell
+tx-3446,2025-07-22,Credit Card,251.65,Electronics,Canon Store
+tx-3610,2025-07-22,Credit Card,56.15,Transportation,Chevron
+tx-3630,2025-07-22,Credit Card,44.02,Transportation,BP Gas Station
+tx-3700,2025-07-22,Savings,35.84,Dining,Chipotle Mexican Grill
+tx-3916,2025-07-22,Checking,40.1,Groceries,Stop & Shop
+tx-3045,2025-07-23,Checking,36.25,Entertainment,Dave & Buster's
+tx-3394,2025-07-23,Credit Card,45.56,Shopping,Amazon.com
+tx-3405,2025-07-23,Checking,46.89,Dining,Panera Bread
+tx-3487,2025-07-24,Checking,239.84,Healthcare,Quest Diagnostics
+tx-4014,2025-07-24,Savings,38.8,Entertainment,Redbox
+tx-3221,2025-07-25,Credit Card,46.94,Dining,In-N-Out Burger
+tx-3295,2025-07-25,Checking,51.04,Transportation,Lyft
+tx-3345,2025-07-25,Savings,51.37,Dining,McDonald's
+tx-3375,2025-07-25,Checking,192.14,Shopping,Walmart
+tx-3350,2025-07-26,Credit Card,48.6,Shopping,Forever 21
+tx-3542,2025-07-26,Checking,82.66,Groceries,Safeway
+tx-3549,2025-07-26,Credit Card,65.28,Groceries,Kroger
+tx-3550,2025-07-26,Checking,75.49,Dining,Cheesecake Factory
+tx-3929,2025-07-26,Checking,74.82,Dining,Five Guys
+tx-3594,2025-07-27,Savings,30.4,Groceries,Kroger
+tx-3890,2025-07-27,Credit Card,73.31,Transportation,Uber
+tx-3689,2025-07-28,Checking,24.64,Dining,Five Guys
+tx-3022,2025-07-29,Savings,108.72,Entertainment,TopGolf
+tx-3127,2025-07-29,Checking,48.74,Transportation,BP Gas Station
+tx-3553,2025-07-29,Checking,51.64,Entertainment,GameStop
+tx-3094,2025-07-30,Checking,21.26,Transportation,BP Gas Station
+tx-3197,2025-07-30,Savings,204.19,Healthcare,CVS Pharmacy
+tx-4094,2025-07-30,Credit Card,51.08,Groceries,Walmart
+tx-3161,2025-07-31,Checking,23.41,Shopping,H&M
+tx-3417,2025-07-31,Credit Card,47.12,Groceries,Aldi
+tx-3608,2025-07-31,Checking,14.97,Dining,Chipotle Mexican Grill
+tx-4023,2025-07-31,Checking,54.77,Dining,Chipotle Mexican Grill
+tx-4048,2025-07-31,Savings,150.49,Shopping,Nordstrom
+tx-3044,2025-08-01,Checking,74.93,Dining,Subway
+tx-3963,2025-08-01,Checking,57.7,Dining,Chipotle Mexican Grill
+tx-3581,2025-08-02,Savings,17.11,Dining,Subway
+tx-3023,2025-08-03,Savings,648.25,Travel,United Airlines
+tx-3517,2025-08-03,Savings,46.91,Groceries,Aldi
+tx-3627,2025-08-03,Savings,183.39,Healthcare,Walgreens
+tx-4021,2025-08-03,Checking,74.34,Groceries,Aldi
+tx-3195,2025-08-04,Credit Card,80.74,Dining,McDonald's
+tx-3536,2025-08-04,Credit Card,81.64,Dining,Denny's
+tx-3028,2025-08-05,Credit Card,45.57,Shopping,Amazon.com
+tx-3157,2025-08-05,Checking,32.47,Dining,Cheesecake Factory
+tx-3669,2025-08-05,Savings,413.4,Electronics,Microsoft Store
+tx-3678,2025-08-05,Savings,851.03,Electronics,Canon Store
+tx-3927,2025-08-05,Credit Card,54.4,Dining,Chipotle Mexican Grill
+tx-3140,2025-08-06,Credit Card,309.96,Electronics,Nikon Store
+tx-3731,2025-08-06,Checking,105.18,Groceries,Publix
+tx-3764,2025-08-06,Credit Card,27.97,Dining,Chili's
+tx-3827,2025-08-06,Checking,53.4,Dining,Denny's
+tx-3119,2025-08-07,Credit Card,63.64,Dining,Panera Bread
+tx-3267,2025-08-07,Credit Card,48.98,Dining,Subway
+tx-3701,2025-08-07,Credit Card,137.91,Groceries,Aldi
+tx-3992,2025-08-07,Credit Card,30.17,Dining,Subway
+tx-3236,2025-08-08,Credit Card,600.17,Electronics,Samsung Store
+tx-3286,2025-08-08,Credit Card,184.5,Travel,Best Western
+tx-3956,2025-08-08,Savings,111.67,Groceries,Trader Joe's
+tx-3388,2025-08-09,Checking,149.98,Groceries,Publix
+tx-3862,2025-08-10,Credit Card,80.91,Dining,Red Lobster
+tx-4051,2025-08-10,Savings,96.25,Shopping,H&M
+tx-3407,2025-08-11,Savings,462.11,Travel,Expedia
+tx-3285,2025-08-13,Credit Card,222.6,Healthcare,Quest Diagnostics
+tx-3508,2025-08-13,Savings,48.76,Entertainment,Dave & Buster's
+tx-3574,2025-08-13,Savings,28.98,Transportation,Chevron
+tx-3438,2025-08-14,Savings,20.36,Dining,Subway
+tx-3646,2025-08-14,Checking,17.74,Entertainment,Spotify
+tx-3726,2025-08-14,Savings,116.46,Shopping,Walmart
+tx-3019,2025-08-17,Savings,62.15,Dining,In-N-Out Burger
+tx-3318,2025-08-17,Checking,28.56,Groceries,Publix
+tx-3101,2025-08-18,Checking,52.11,Transportation,Lyft
+tx-3530,2025-08-18,Savings,51.73,Transportation,BP Gas Station
+tx-3657,2025-08-18,Checking,42.71,Shopping,Amazon.com
+tx-3787,2025-08-18,Savings,60.92,Dining,Starbucks Coffee
+tx-3062,2025-08-19,Checking,57.18,Transportation,Lyft
+tx-3795,2025-08-19,Checking,194.13,Shopping,Amazon.com
+tx-3145,2025-08-20,Checking,50.78,Transportation,Exxon Mobil
+tx-3242,2025-08-20,Checking,351.53,Travel,American Airlines
+tx-3519,2025-08-20,Credit Card,28.42,Dining,Chipotle Mexican Grill
+tx-3588,2025-08-20,Savings,59.85,Transportation,BP Gas Station
+tx-3815,2025-08-20,Savings,80.53,Dining,Panera Bread
+tx-3412,2025-08-21,Credit Card,173.52,Shopping,Forever 21
+tx-3645,2025-08-21,Savings,92.53,Groceries,Fresh Market
+tx-3653,2025-08-21,Checking,242.48,Healthcare,Rite Aid
+tx-3994,2025-08-21,Checking,73.22,Dining,KFC
+tx-3014,2025-08-22,Credit Card,17.5,Entertainment,Spotify
+tx-3120,2025-08-22,Credit Card,54.09,Dining,Starbucks Coffee
+tx-3437,2025-08-22,Checking,92.95,Entertainment,AMC Theatres
+tx-3570,2025-08-23,Checking,36.37,Dining,Panera Bread
+tx-3972,2025-08-23,Credit Card,137.06,Shopping,Walmart
+tx-4083,2025-08-23,Checking,63.93,Transportation,Shell Gas Station
+tx-3642,2025-08-24,Credit Card,109.66,Groceries,Kroger
+tx-3720,2025-08-24,Checking,54.73,Groceries,Kroger
+tx-3811,2025-08-24,Checking,15.14,Transportation,Exxon Mobil
+tx-3317,2025-08-25,Credit Card,44.6,Shopping,H&M
+tx-3450,2025-08-25,Savings,56.1,Transportation,Exxon Mobil
+tx-3712,2025-08-25,Checking,146.87,Healthcare,Quest Diagnostics
+tx-4005,2025-08-25,Checking,131.89,Groceries,Whole Foods Market
+tx-3449,2025-08-26,Savings,30.14,Entertainment,Dave & Buster's
+tx-3486,2025-08-26,Checking,42.08,Shopping,Macy's
+tx-3533,2025-08-26,Credit Card,36.8,Groceries,Walmart
+tx-3694,2025-08-26,Credit Card,137.39,Groceries,Safeway
+tx-3871,2025-08-26,Credit Card,47.29,Groceries,Safeway
+tx-3880,2025-08-26,Savings,73.67,Entertainment,TopGolf
+tx-3108,2025-08-27,Checking,145.31,Groceries,Kroger
+tx-3281,2025-08-27,Credit Card,22.6,Transportation,Lyft
+tx-3559,2025-08-27,Checking,43.21,Dining,McDonald's
+tx-3609,2025-08-27,Checking,247.66,Shopping,Macy's
+tx-3667,2025-08-27,Credit Card,116.47,Groceries,Aldi
+tx-3708,2025-08-27,Savings,71.94,Transportation,Chevron
+tx-3080,2025-08-28,Checking,134.5,Shopping,Macy's
+tx-3192,2025-08-28,Checking,89.19,Healthcare,CVS Pharmacy
+tx-3605,2025-08-28,Savings,997.23,Electronics,Canon Store
+tx-3727,2025-08-28,Credit Card,917.68,Electronics,Best Buy Electronics
+tx-4043,2025-08-28,Checking,97.93,Groceries,Aldi
+tx-4053,2025-08-28,Credit Card,138.15,Groceries,Walmart
+tx-3024,2025-08-29,Credit Card,63.12,Groceries,Fresh Market
+tx-3683,2025-08-29,Credit Card,211.56,Healthcare,CVS Pharmacy
+tx-3783,2025-08-30,Checking,247.63,Shopping,Macy's
+tx-3314,2025-08-31,Checking,187.38,Shopping,Gap
+tx-3344,2025-08-31,Savings,76.02,Groceries,Whole Foods Market
+tx-3839,2025-08-31,Savings,20.14,Dining,In-N-Out Burger
+tx-4033,2025-08-31,Checking,64.65,Dining,KFC
+tx-3025,2025-09-01,Savings,46.2,Dining,Starbucks Coffee
+tx-3776,2025-09-01,Checking,110.13,Groceries,Costco Wholesale
+tx-3117,2025-09-02,Checking,45.38,Transportation,Shell Gas Station
+tx-3638,2025-09-02,Credit Card,87.49,Groceries,Whole Foods Market
+tx-3643,2025-09-02,Checking,45.63,Dining,Red Lobster
+tx-3988,2025-09-02,Credit Card,80.72,Healthcare,CVS Pharmacy
+tx-3041,2025-09-03,Credit Card,44.69,Dining,Starbucks Coffee
+tx-3194,2025-09-03,Checking,71.66,Dining,Olive Garden
+tx-3307,2025-09-03,Checking,114.54,Healthcare,Walgreens
+tx-3425,2025-09-03,Credit Card,82.8,Healthcare,Rite Aid
+tx-3751,2025-09-03,Credit Card,49.34,Groceries,Whole Foods Market
+tx-3962,2025-09-03,Credit Card,155.46,Shopping,Target
+tx-3129,2025-09-04,Savings,16.84,Groceries,Walmart
+tx-3358,2025-09-04,Checking,120.83,Shopping,Amazon.com
+tx-3786,2025-09-04,Checking,30.25,Groceries,Aldi
+tx-4064,2025-09-04,Savings,27.27,Dining,Chili's
+tx-3735,2025-09-05,Credit Card,48.56,Shopping,eBay
+tx-3784,2025-09-05,Checking,790.64,Travel,Booking.com
+tx-3917,2025-09-06,Checking,139.01,Groceries,Safeway
+tx-4032,2025-09-06,Savings,74.87,Dining,Chipotle Mexican Grill
+tx-3840,2025-09-07,Credit Card,63.8,Dining,Chili's
+tx-3990,2025-09-07,Savings,517.86,Electronics,Lenovo Store
+tx-3116,2025-09-09,Checking,11.59,Entertainment,Redbox
+tx-3308,2025-09-09,Savings,27.63,Dining,Chili's
+tx-3944,2025-09-09,Savings,77.54,Dining,McDonald's
+tx-3081,2025-09-10,Credit Card,120.13,Shopping,eBay
+tx-3160,2025-09-10,Checking,20.54,Transportation,Uber
+tx-3905,2025-09-10,Credit Card,26.22,Dining,Olive Garden
+tx-3113,2025-09-11,Credit Card,1109.37,Electronics,Apple Store
+tx-3471,2025-09-11,Savings,941.64,Electronics,Nikon Store
+tx-3100,2025-09-12,Credit Card,85.08,Groceries,Trader Joe's
+tx-3139,2025-09-12,Checking,1157.82,Electronics,Microsoft Store
+tx-3305,2025-09-13,Credit Card,8.03,Dining,Cheesecake Factory
+tx-3619,2025-09-13,Checking,59.91,Groceries,Whole Foods Market
+tx-3136,2025-09-14,Credit Card,37.64,Shopping,Nordstrom
+tx-3217,2025-09-14,Checking,21.55,Dining,McDonald's
+tx-3482,2025-09-14,Credit Card,56.63,Dining,In-N-Out Burger
+tx-3883,2025-09-14,Checking,34.52,Transportation,Exxon Mobil
+tx-3946,2025-09-14,Checking,234.43,Healthcare,Quest Diagnostics
+tx-3529,2025-09-15,Checking,166.38,Healthcare,Kaiser Permanente
+tx-3931,2025-09-15,Credit Card,28.65,Dining,Subway
+tx-3587,2025-09-16,Savings,38.95,Transportation,BP Gas Station
+tx-3983,2025-09-16,Savings,80.77,Dining,Applebee's
+tx-4093,2025-09-16,Savings,195.17,Shopping,Forever 21
+tx-3323,2025-09-17,Savings,28.37,Entertainment,Dave & Buster's
+tx-3707,2025-09-17,Savings,63.32,Dining,McDonald's
+tx-4076,2025-09-17,Checking,68.13,Transportation,Exxon Mobil
+tx-3042,2025-09-18,Savings,93.06,Groceries,Fresh Market
+tx-3048,2025-09-18,Savings,19.73,Dining,Cheesecake Factory
+tx-3347,2025-09-18,Checking,63.96,Entertainment,Netflix
+tx-3940,2025-09-18,Savings,28.91,Transportation,Exxon Mobil
+tx-3532,2025-09-19,Savings,282.3,Shopping,Forever 21
+tx-3794,2025-09-19,Credit Card,100.69,Healthcare,Walgreens
+tx-3484,2025-09-20,Checking,138.8,Groceries,Trader Joe's
+tx-3586,2025-09-21,Savings,87.95,Groceries,Walmart
+tx-3797,2025-09-21,Checking,33.61,Dining,Starbucks Coffee
+tx-3848,2025-09-21,Credit Card,56.75,Groceries,Walmart
+tx-3954,2025-09-21,Savings,33.98,Groceries,Fresh Market
+tx-3738,2025-09-22,Savings,108.31,Entertainment,AMC Theatres
+tx-3546,2025-09-23,Credit Card,473.8,Travel,Delta Airlines
+tx-3558,2025-09-23,Checking,54.51,Transportation,BP Gas Station
+tx-3998,2025-09-23,Credit Card,68.2,Dining,Red Lobster
+tx-4010,2025-09-23,Credit Card,91.03,Shopping,Macy's
+tx-4011,2025-09-23,Checking,144.32,Groceries,Fresh Market
+tx-3099,2025-09-24,Savings,38.04,Dining,Five Guys
+tx-3182,2025-09-24,Credit Card,39.32,Transportation,BP Gas Station
+tx-3543,2025-09-24,Credit Card,134.14,Shopping,Zara
+tx-3607,2025-09-24,Checking,170.35,Electronics,Lenovo Store
+tx-3854,2025-09-24,Savings,64.48,Groceries,Fresh Market
+tx-4045,2025-09-24,Checking,71.36,Shopping,Nordstrom
+tx-3053,2025-09-25,Credit Card,30.56,Dining,Five Guys
+tx-3204,2025-09-25,Credit Card,52.72,Shopping,H&M
+tx-3222,2025-09-25,Credit Card,124.58,Travel,Marriott
+tx-3893,2025-09-25,Checking,201.97,Healthcare,Rite Aid
+tx-4020,2025-09-25,Checking,34.75,Healthcare,Kaiser Permanente
+tx-3886,2025-09-26,Savings,30.5,Groceries,Publix
+tx-4074,2025-09-26,Checking,29.44,Groceries,Stop & Shop
+tx-3829,2025-09-27,Credit Card,44.11,Groceries,Safeway
+tx-3548,2025-09-29,Checking,31.13,Transportation,Lyft
+tx-3591,2025-09-29,Credit Card,46.96,Dining,Applebee's
+tx-3833,2025-09-29,Savings,223.36,Shopping,Forever 21
+tx-3290,2025-09-30,Credit Card,131.56,Shopping,Amazon.com
+tx-3356,2025-09-30,Savings,204.59,Healthcare,CVS Pharmacy
+tx-3652,2025-09-30,Checking,137.09,Groceries,Fresh Market
+tx-3789,2025-09-30,Checking,116.62,Groceries,Trader Joe's
+tx-3863,2025-09-30,Credit Card,32.12,Dining,Olive Garden
+tx-3948,2025-09-30,Savings,183.05,Shopping,Walmart
+tx-4034,2025-09-30,Checking,44.3,Transportation,BP Gas Station
+tx-3478,2025-10-01,Credit Card,125.67,Groceries,Aldi
+tx-4050,2025-10-01,Savings,117.83,Entertainment,AMC Theatres
+tx-4009,2025-10-02,Savings,449.7,Travel,United Airlines
+tx-3599,2025-10-03,Savings,135.26,Healthcare,Walgreens
+tx-3488,2025-10-04,Checking,278.57,Travel,Hilton Hotels
+tx-3306,2025-10-05,Checking,39.74,Dining,Olive Garden
+tx-3704,2025-10-05,Checking,82.77,Dining,Olive Garden
+tx-3765,2025-10-05,Credit Card,165.3,Electronics,Microsoft Store
+tx-3816,2025-10-05,Savings,63.17,Groceries,Kroger
+tx-4024,2025-10-05,Credit Card,45.19,Dining,Denny's
+tx-3000,2025-10-06,Savings,100.46,Shopping,Nordstrom
+tx-3010,2025-10-06,Checking,259.08,Shopping,Gap
+tx-3481,2025-10-06,Checking,37.24,Transportation,Shell Gas Station
+tx-3626,2025-10-06,Savings,22.92,Dining,Chili's
+tx-4090,2025-10-06,Checking,99.06,Shopping,Amazon.com
+tx-3097,2025-10-07,Savings,70.88,Transportation,Exxon Mobil
+tx-3191,2025-10-07,Credit Card,38.44,Dining,Taco Bell
+tx-4057,2025-10-07,Checking,207.29,Travel,Best Western
+tx-3830,2025-10-08,Checking,27.67,Groceries,Aldi
+tx-3329,2025-10-09,Credit Card,135.34,Groceries,Aldi
+tx-3799,2025-10-09,Savings,241.37,Healthcare,Walgreens
+tx-3852,2025-10-09,Savings,283.34,Shopping,Zara

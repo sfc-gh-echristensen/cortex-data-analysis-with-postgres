@@ -1,0 +1,101 @@
+transaction_id,date,account_name,amount,category,merchant
+tx-2001,2024-12-01,Checking,45.67,Groceries,Whole Foods Market
+tx-2002,2024-12-01,Checking,12.50,Dining,Starbucks Coffee
+tx-2003,2024-12-01,Checking,85.00,Transportation,Shell Gas Station
+tx-2004,2024-12-02,Checking,350.00,Electronics,Best Buy Electronics
+tx-2005,2024-12-02,Checking,25.75,Dining,McDonald's
+tx-2006,2024-12-02,Credit Card,1250.00,Travel,Delta Airlines
+tx-2007,2024-12-03,Checking,67.89,Shopping,Target
+tx-2008,2024-12-03,Checking,15.99,Entertainment,Netflix
+tx-2009,2024-12-03,Credit Card,89.50,Dining,Olive Garden
+tx-2010,2024-12-04,Checking,4.50,Dining,Dunkin' Donuts
+tx-2011,2024-12-04,Checking,156.78,Groceries,Costco Wholesale
+tx-2012,2024-12-04,Checking,45.00,Transportation,Exxon Mobil
+tx-2013,2024-12-05,Credit Card,235.67,Home Improvement,Home Depot
+tx-2014,2024-12-05,Checking,78.90,Books,Barnes & Noble
+tx-2015,2024-12-05,Credit Card,125.00,Entertainment,AMC Theatres
+tx-2016,2024-12-06,Checking,567.89,Electronics,Apple Store
+tx-2017,2024-12-06,Checking,34.56,Dining,Chipotle Mexican Grill
+tx-2018,2024-12-06,Checking,89.00,Healthcare,CVS Pharmacy
+tx-2019,2024-12-07,Credit Card,299.99,Shopping,Amazon.com
+tx-2020,2024-12-07,Checking,18.75,Dining,Subway
+tx-2021,2024-12-07,Credit Card,145.60,Travel,Hilton Hotels
+tx-2022,2024-12-08,Checking,75.45,Groceries,Walmart
+tx-2023,2024-12-08,Checking,9.99,Entertainment,Spotify
+tx-2024,2024-12-08,Credit Card,189.00,Clothing,Nike Store
+tx-2025,2024-12-09,Credit Card,456.78,Software,Microsoft Store
+tx-2026,2024-12-09,Checking,27.89,Dining,Panera Bread
+tx-2027,2024-12-09,Credit Card,345.67,Clothing,Macy's
+tx-2028,2024-12-10,Checking,5.25,Convenience,7-Eleven
+tx-2029,2024-12-10,Checking,198.50,Pet Supplies,Petco
+tx-2030,2024-12-10,Checking,67.80,Transportation,Uber
+tx-2031,2024-12-11,Checking,89.99,Entertainment,GameStop
+tx-2032,2024-12-11,Checking,23.45,Dining,Taco Bell
+tx-2033,2024-12-11,Credit Card,156.78,Travel,Best Western
+tx-2034,2024-12-12,Checking,45.67,Groceries,Kroger
+tx-2035,2024-12-12,Credit Card,789.00,Electronics,Dell Technologies
+tx-2036,2024-12-12,Checking,34.89,Dining,Pizza Hut
+tx-2037,2024-12-13,Credit Card,123.45,Outdoor,REI Co-op
+tx-2038,2024-12-13,Checking,56.78,Dining,Starbucks Coffee
+tx-2039,2024-12-13,Credit Card,267.89,Clothing,Nordstrom
+tx-2040,2024-12-14,Checking,78.90,Home Improvement,Home Depot
+tx-2041,2024-12-14,Checking,12.99,Dining,McDonald's
+tx-2042,2024-12-14,Credit Card,345.00,Travel,United Airlines
+tx-2043,2024-12-15,Checking,89.50,Groceries,Whole Foods Market
+tx-2044,2024-12-15,Credit Card,156.78,Clothing,Gap
+tx-2045,2024-12-15,Checking,45.67,Transportation,Shell Gas Station
+tx-2046,2024-12-16,Credit Card,234.56,Home Improvement,Lowe's
+tx-2047,2024-12-16,Credit Card,67.89,Dining,Cheesecake Factory
+tx-2048,2024-12-16,Credit Card,789.00,Electronics,Samsung Store
+tx-2049,2024-12-17,Checking,45.67,Groceries,Trader Joe's
+tx-2050,2024-12-17,Credit Card,123.45,Home,Bed Bath & Beyond
+tx-2051,2024-12-17,Credit Card,56.78,Dining,Olive Garden
+tx-2052,2024-12-18,Credit Card,345.67,Electronics,Sony Store
+tx-2053,2024-12-18,Checking,78.90,Dining,Wendy's
+tx-2054,2024-12-18,Credit Card,189.00,Clothing,JCPenney
+tx-2055,2024-12-19,Credit Card,567.89,Electronics,HP Store
+tx-2056,2024-12-19,Checking,34.56,Dining,Burger King
+tx-2057,2024-12-19,Credit Card,245.67,Travel,Marriott
+tx-2058,2024-12-20,Checking,89.50,Groceries,Safeway
+tx-2059,2024-12-20,Credit Card,156.78,Clothing,Victoria's Secret
+tx-2060,2024-12-20,Checking,67.89,Dining,Arby's
+tx-2061,2024-12-21,Checking,234.56,Electronics,Circuit City
+tx-2062,2024-12-21,Credit Card,89.00,Dining,Red Lobster
+tx-2063,2024-12-21,Checking,345.78,Travel,Southwest Airlines
+tx-2064,2024-12-22,Credit Card,123.45,Shopping,eBay
+tx-2065,2024-12-22,Checking,67.89,Groceries,Publix
+tx-2066,2024-12-22,Credit Card,456.78,Electronics,Lenovo Store
+tx-2067,2024-12-23,Checking,89.50,Dining,KFC
+tx-2068,2024-12-23,Credit Card,234.67,Clothing,H&M
+tx-2069,2024-12-23,Checking,78.90,Transportation,Chevron
+tx-2070,2024-12-24,Credit Card,567.89,Travel,Expedia
+tx-2071,2024-12-24,Checking,45.67,Groceries,Aldi
+tx-2072,2024-12-24,Credit Card,189.00,Electronics,Canon Store
+tx-2073,2024-12-25,Checking,123.45,Dining,Denny's
+tx-2074,2024-12-25,Credit Card,345.67,Clothing,Zara
+tx-2075,2024-12-25,Checking,56.78,Entertainment,Redbox
+tx-2076,2024-12-26,Credit Card,789.00,Electronics,LG Electronics
+tx-2077,2024-12-26,Checking,34.89,Dining,Five Guys
+tx-2078,2024-12-26,Credit Card,234.56,Home Improvement,Menards
+tx-2079,2024-12-27,Checking,89.50,Transportation,BP Gas Station
+tx-2080,2024-12-27,Credit Card,456.78,Travel,Booking.com
+tx-2081,2024-12-27,Checking,67.89,Groceries,Fresh Market
+tx-2082,2024-12-28,Credit Card,345.67,Electronics,Nikon Store
+tx-2083,2024-12-28,Checking,123.45,Dining,Applebee's
+tx-2084,2024-12-28,Credit Card,189.00,Clothing,Forever 21
+tx-2085,2024-12-29,Checking,78.90,Pet Supplies,PetSmart
+tx-2086,2024-12-29,Credit Card,567.89,Electronics,Alienware
+tx-2087,2024-12-29,Checking,45.67,Dining,In-N-Out Burger
+tx-2088,2024-12-30,Credit Card,234.56,Travel,Kayak
+tx-2089,2024-12-30,Checking,89.50,Groceries,Stop & Shop
+tx-2090,2024-12-30,Credit Card,345.78,Electronics,Razer Store
+tx-2091,2024-12-31,Checking,123.45,Dining,Chili's
+tx-2092,2024-12-31,Credit Card,456.78,Clothing,American Eagle
+tx-2093,2024-12-31,Checking,67.89,Entertainment,Dave & Buster's
+tx-2094,2024-12-31,Credit Card,789.00,Travel,Priceline
+tx-2095,2024-12-31,Checking,234.56,Groceries,Wegmans
+tx-2096,2024-12-31,Credit Card,345.67,Electronics,Tesla Store
+tx-2097,2024-12-31,Checking,89.50,Dining,Sonic Drive-In
+tx-2098,2024-12-31,Credit Card,567.89,Clothing,Uniqlo
+tx-2099,2024-12-31,Checking,123.45,Entertainment,TopGolf
+tx-2100,2024-12-31,Credit Card,456.78,Electronics,Microsoft Store

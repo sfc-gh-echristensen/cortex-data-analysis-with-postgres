@@ -38,7 +38,7 @@ def ensure_table(engine: Engine):
 # APP HEADER / BANNER
 # =============================================================================
 
-# Create a professional banner header
+# Create a professional banner header with navigation
 st.markdown("""
 <style>
 .banner {
@@ -65,13 +65,45 @@ st.markdown("""
 }
 .feature-badge {
     display: inline-block;
-    background: rgba(255,255,255,0.2);
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    margin: 0.2rem;
-    font-size: 0.9rem;
+    color: #e8f4f8;
+    margin: 0 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+.nav-buttons {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+.nav-button {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: white !important;
+    padding: 0.35rem 0.6rem;
+    border-radius: 15px;
+    margin: 0.1rem 0.2rem;
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: 0.8rem;
     border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.nav-button:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.6);
+    color: white !important;
+    text-decoration: none !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.nav-button:active {
+    transform: translateY(0);
+}
+.nav-button:visited {
+    color: white !important;
 }
 </style>
 
@@ -80,9 +112,18 @@ st.markdown("""
     <p>AI-Powered Financial Analytics & Real-Time Data Insights</p>
     <div style="text-align: center; margin-top: 1rem;">
         <span class="feature-badge">🐘 PostgreSQL</span>
+        <span style="color: rgba(255,255,255,0.4); margin: 0 0.3rem;">•</span>
         <span class="feature-badge">❄️ Snowflake Cortex</span>
+        <span style="color: rgba(255,255,255,0.4); margin: 0 0.3rem;">•</span>
         <span class="feature-badge">🤖 AI-Powered SQL</span>
+        <span style="color: rgba(255,255,255,0.4); margin: 0 0.3rem;">•</span>
         <span class="feature-badge">💬 Chat Interface</span>
+    </div>
+    <div class="nav-buttons">
+        <a href="#budget-dashboard" class="nav-button">💰 Budget</a>
+        <a href="#ai-queries" class="nav-button">🤖 AI Queries</a>
+        <a href="#transaction-manager" class="nav-button">🔧 Transactions</a>
+        <a href="#snowflake-analytics" class="nav-button">❄️ Analytics</a>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -122,12 +163,335 @@ if use_postgres:
             st.sidebar.error(f"PostgreSQL connection failed: {e}")
             use_postgres = False
 
+
 # =============================================================================
-# POSTGRESQL FINANCIAL DATA ANALYSIS
+# BUDGET DASHBOARD
 # =============================================================================
 
+st.markdown('<div id="budget-dashboard"></div>', unsafe_allow_html=True)
+st.header("💰 Budget Dashboard")
+
+if use_postgres and engine is not None:
+    try:
+        # Get current date info
+        from datetime import datetime, timedelta
+        import calendar
+        
+        today = datetime.now()
+        current_month = today.replace(day=1)
+        last_month = (current_month - timedelta(days=1)).replace(day=1)
+        current_week_start = today - timedelta(days=today.weekday())
+        last_week_start = current_week_start - timedelta(days=7)
+        
+        # Fetch spending data
+        with get_db_connection() as conn:
+            # Daily spending (today)
+            today_result = conn.execute(text("""
+                SELECT COALESCE(SUM(ABS(amount)), 0) as daily_spending
+                FROM transactions 
+                WHERE DATE(date) = CURRENT_DATE 
+                AND status = 'approved'
+            """)).fetchone()
+            
+            # Weekly spending (current vs last week)
+            weekly_result = conn.execute(text("""
+                SELECT 
+                    COALESCE(SUM(CASE 
+                        WHEN date >= DATE_TRUNC('week', CURRENT_DATE) 
+                        THEN ABS(amount) ELSE 0 END), 0) as current_week,
+                    COALESCE(SUM(CASE 
+                        WHEN date >= DATE_TRUNC('week', CURRENT_DATE) - INTERVAL '1 week'
+                             AND date < DATE_TRUNC('week', CURRENT_DATE)
+                        THEN ABS(amount) ELSE 0 END), 0) as last_week
+                FROM transactions 
+                WHERE date >= DATE_TRUNC('week', CURRENT_DATE) - INTERVAL '1 week'
+                AND status = 'approved'
+            """)).fetchone()
+            
+            # Monthly spending (current vs last month)
+            monthly_result = conn.execute(text("""
+                SELECT 
+                    COALESCE(SUM(CASE 
+                        WHEN date >= DATE_TRUNC('month', CURRENT_DATE) 
+                        THEN ABS(amount) ELSE 0 END), 0) as current_month,
+                    COALESCE(SUM(CASE 
+                        WHEN date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '1 month'
+                             AND date < DATE_TRUNC('month', CURRENT_DATE)
+                        THEN ABS(amount) ELSE 0 END), 0) as last_month,
+                    COALESCE(AVG(CASE 
+                        WHEN date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '3 month'
+                             AND date < DATE_TRUNC('month', CURRENT_DATE)
+                        THEN ABS(amount) END), 0) as avg_monthly
+                FROM transactions 
+                WHERE date >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '3 month'
+                AND status = 'approved'
+            """)).fetchone()
+            
+            # Category spending (current month)
+            category_result = conn.execute(text("""
+                SELECT 
+                    category,
+                    SUM(ABS(amount)) as spending
+                FROM transactions 
+                WHERE date >= DATE_TRUNC('month', CURRENT_DATE)
+                AND status = 'approved'
+                GROUP BY category
+                ORDER BY spending DESC
+                LIMIT 6
+            """)).fetchall()
+            
+        # Budget targets (you can make these configurable later)
+        DAILY_BUDGET = 75.00
+        WEEKLY_BUDGET = 400.00
+        MONTHLY_BUDGET = 1500.00
+        
+        # Category budgets
+        CATEGORY_BUDGETS = {
+            'Food & Dining': 400,
+            'Shopping': 300,
+            'Entertainment': 200,
+            'Transportation': 150,
+            'Utilities': 250,
+            'Other': 200
+        }
+        
+        # Extract values
+        daily_spending = float(today_result.daily_spending)
+        current_week = float(weekly_result.current_week)
+        last_week = float(weekly_result.last_week)
+        current_month = float(monthly_result.current_month)
+        last_month = float(monthly_result.last_month)
+        
+        # =============================================================================
+        # DAILY BUDGET STATUS
+        # =============================================================================
+        
+        st.subheader("📅 Today's Budget Status")
+        
+        # Calculate daily budget status
+        daily_percent = (daily_spending / DAILY_BUDGET) * 100 if DAILY_BUDGET > 0 else 0
+        daily_remaining = DAILY_BUDGET - daily_spending
+        
+        # Color coding for budget status
+        if daily_percent <= 50:
+            daily_color = "🟢"
+            daily_status = "Great! You're on budget"
+            daily_style = "color: green;"
+        elif daily_percent <= 80:
+            daily_color = "🟡"
+            daily_status = "Good progress, watch spending"
+            daily_style = "color: orange;"
+        elif daily_percent <= 100:
+            daily_color = "🟠"
+            daily_status = "Close to budget limit"
+            daily_style = "color: #ff8c00;"
+        else:
+            daily_color = "🔴"
+            daily_status = "Over budget!"
+            daily_style = "color: red;"
+        
+        # Display daily status
+        col1, col2, col3 = st.columns([2, 1, 1])
+        
+        with col1:
+            st.markdown(f"<h3 style='{daily_style}'>{daily_color} {daily_status}</h3>", unsafe_allow_html=True)
+            st.progress(min(daily_percent / 100, 1.0))
+            st.caption(f"${daily_spending:.2f} of ${DAILY_BUDGET:.2f} daily budget used")
+        
+        with col2:
+            st.metric("Today's Spending", f"${daily_spending:.2f}")
+        
+        with col3:
+            remaining_label = "Remaining" if daily_remaining >= 0 else "Over Budget"
+            remaining_color = "normal" if daily_remaining >= 0 else "inverse"
+            st.metric(remaining_label, f"${abs(daily_remaining):.2f}", 
+                     delta=None, delta_color=remaining_color)
+        
+        # =============================================================================
+        # WEEKLY COMPARISON
+        # =============================================================================
+        
+        st.subheader("📈 Weekly Spending Comparison")
+        
+        # Calculate weekly changes
+        weekly_change = current_week - last_week
+        weekly_percent_change = (weekly_change / last_week * 100) if last_week > 0 else 0
+        
+        # Weekly status
+        if weekly_percent_change <= -10:
+            weekly_status = "📉 Spending down significantly"
+            weekly_color = "green"
+        elif weekly_percent_change <= -5:
+            weekly_status = "📉 Spending decreased"
+            weekly_color = "green"
+        elif weekly_percent_change <= 5:
+            weekly_status = "➡️ Spending similar to last week"
+            weekly_color = "normal"
+        elif weekly_percent_change <= 15:
+            weekly_status = "📈 Spending increased"
+            weekly_color = "orange"
+        else:
+            weekly_status = "📈 Spending up significantly"
+            weekly_color = "red"
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.metric("This Week", f"${current_week:.2f}", 
+                     delta=f"${weekly_change:.2f}" if weekly_change != 0 else None,
+                     delta_color="inverse" if weekly_change > 0 else "normal")
+        
+        with col2:
+            st.metric("Last Week", f"${last_week:.2f}")
+        
+        with col3:
+            weekly_budget_percent = (current_week / WEEKLY_BUDGET) * 100 if WEEKLY_BUDGET > 0 else 0
+            st.metric("Weekly Budget Used", f"{weekly_budget_percent:.1f}%")
+        
+        st.markdown(f"**{weekly_status}**")
+        
+        # =============================================================================
+        # MONTHLY BUDGET TRACKING
+        # =============================================================================
+        
+        st.subheader("📊 Monthly Budget Tracking")
+        
+        # Calculate monthly metrics
+        monthly_percent = (current_month / MONTHLY_BUDGET) * 100 if MONTHLY_BUDGET > 0 else 0
+        days_in_month = calendar.monthrange(today.year, today.month)[1]
+        days_elapsed = today.day
+        expected_spending = (MONTHLY_BUDGET / days_in_month) * days_elapsed
+        spending_vs_expected = current_month - expected_spending
+        
+        # Monthly status
+        if current_month > MONTHLY_BUDGET:
+            monthly_status = "🚨 Over monthly budget!"
+            monthly_alert_color = "red"
+        elif monthly_percent > 90:
+            monthly_status = "⚠️ Close to monthly limit"
+            monthly_alert_color = "orange"
+        elif current_month < expected_spending * 0.8:
+            monthly_status = "✅ Well under budget"
+            monthly_alert_color = "green"
+        else:
+            monthly_status = "👍 On track with budget"
+            monthly_alert_color = "normal"
+        
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.metric("This Month", f"${current_month:.2f}")
+        
+        with col2:
+            last_month_change = current_month - last_month
+            st.metric("Last Month", f"${last_month:.2f}", 
+                     delta=f"${last_month_change:.2f}" if last_month_change != 0 else None,
+                     delta_color="inverse" if last_month_change > 0 else "normal")
+        
+        with col3:
+            st.metric("Expected by Now", f"${expected_spending:.2f}")
+        
+        with col4:
+            st.metric("Budget Progress", f"{monthly_percent:.1f}%")
+        
+        # Monthly progress bar
+        st.progress(min(monthly_percent / 100, 1.0))
+        st.markdown(f"**{monthly_status}**")
+        
+        # Spending pace indicator
+        if spending_vs_expected > 50:
+            st.warning(f"⚡ You're spending ${spending_vs_expected:.2f} above expected pace")
+        elif spending_vs_expected < -50:
+            st.success(f"💰 You're ${abs(spending_vs_expected):.2f} under expected spending")
+        
+        # =============================================================================
+        # CATEGORY BUDGET BREAKDOWN
+        # =============================================================================
+        
+        st.subheader("🏷️ Category Budget Breakdown")
+        
+        if category_result:
+            category_data = [(row.category, float(row.spending)) for row in category_result]
+            
+            for category, spending in category_data:
+                budget = CATEGORY_BUDGETS.get(category, 200)  # Default budget
+                category_percent = (spending / budget) * 100 if budget > 0 else 0
+                
+                # Create columns for category display
+                col1, col2 = st.columns([3, 1])
+                
+                with col1:
+                    # Color code based on budget usage
+                    if category_percent <= 50:
+                        color = "🟢"
+                    elif category_percent <= 75:
+                        color = "🟡"
+                    elif category_percent <= 100:
+                        color = "🟠"
+                    else:
+                        color = "🔴"
+                    
+                    st.write(f"{color} **{category}**")
+                    st.progress(min(category_percent / 100, 1.0))
+                    st.caption(f"${spending:.2f} of ${budget:.2f} budget ({category_percent:.1f}%)")
+                
+                with col2:
+                    remaining = budget - spending
+                    if remaining >= 0:
+                        st.metric("Remaining", f"${remaining:.2f}")
+                    else:
+                        st.metric("Over", f"${abs(remaining):.2f}", delta_color="inverse")
+        else:
+            st.info("No spending data available for this month")
+        
+        # =============================================================================
+        # QUICK INSIGHTS & RECOMMENDATIONS
+        # =============================================================================
+        
+        st.subheader("💡 Budget Insights & Tips")
+        
+        insights = []
+        
+        # Generate personalized insights
+        if daily_spending > DAILY_BUDGET:
+            insights.append("🎯 **Today**: Try to avoid unnecessary purchases for the rest of the day")
+        
+        if weekly_percent_change > 20:
+            insights.append("📊 **This Week**: Your spending is up significantly. Review recent purchases")
+        elif weekly_percent_change < -20:
+            insights.append("📊 **This Week**: Great job reducing spending compared to last week!")
+        
+        if current_month > expected_spending * 1.2:
+            insights.append("📈 **This Month**: You're spending faster than usual. Consider reviewing your budget")
+        elif current_month < expected_spending * 0.7:
+            insights.append("📈 **This Month**: You're spending less than expected. Good budget control!")
+        
+        # Category insights
+        for category, spending in category_data[:3]:  # Top 3 categories
+            budget = CATEGORY_BUDGETS.get(category, 200)
+            if spending > budget * 1.1:
+                insights.append(f"🏷️ **{category}**: Over budget by ${spending - budget:.2f}")
+        
+        if insights:
+            for insight in insights:
+                st.info(insight)
+        else:
+            st.success("🎉 Your spending looks healthy across all categories!")
+            
+    except Exception as e:
+        st.error(f"Error loading budget dashboard: {e}")
+        st.info("Make sure you have transaction data in your PostgreSQL database.")
+else:
+    st.info("💡 Enable PostgreSQL connection in the sidebar to access your budget dashboard.")
+
+# =============================================================================
+# SNOWFLAKE CORTEX AI QUERIES
+# =============================================================================
+
+st.markdown('<div id="ai-queries"></div>', unsafe_allow_html=True)
+st.header("🤖 Snowflake Cortex AI Queries")
+
 # --- Real Time Financial Data Search
-st.title("🐘 Real Time Postgres Financial Data")
 
 if use_postgres and engine is not None:
     st.write("### Select Account")
@@ -343,78 +707,18 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                 st.write("No history found.")
         except Exception as e:
             st.error(f"Failed to load history: {e}")
+else:
+    st.info("💡 Enable PostgreSQL connection in the sidebar to access Snowflake Cortex AI queries.")
 
-    # =============================================================================
-    # PENDING TRANSACTIONS AGENT
-    # =============================================================================
+# =============================================================================
+# TRANSACTION MANAGER
+# =============================================================================
 
-    st.markdown("---")
-    st.header("🤖 Pending Transaction Manager")
+st.markdown('<div id="transaction-manager"></div>', unsafe_allow_html=True)
+st.header("🔧 Transaction Manager")
 
-    # Check database status and connection
-    with st.expander("🔧 Database Status & Debug Info", expanded=False):
-        conn_success, conn_msg = test_connection()
-        if conn_success:
-            st.success(f"✅ {conn_msg}")
-            
-            # Check status column
-            status_exists, status_msg = ensure_status_column_exists()
-            if status_exists:
-                st.success(f"✅ {status_msg}")
-            else:
-                st.warning(f"⚠️ {status_msg}")
-                st.info("Run `python migrate_add_status.py` to add the status column")
-            
-            # Show transaction statistics
-            try:
-                stats = TransactionManager.get_transaction_stats()
-                st.write("**Transaction Statistics:**")
-                for status, data in stats.items():
-                    st.write(f"- **{status.title()}**: {data['count']} transactions (${data['total_amount']:.2f} total)")
-            except Exception as e:
-                st.error(f"Could not load transaction statistics: {e}")
-            
-            # Real-time database query
-            if st.button("🔍 Query Database Directly", key="debug_query"):
-                try:
-                    from db_utils import get_db_connection
-                    with get_db_connection() as conn:
-                        result = conn.execute(text("""
-                            SELECT 
-                                transaction_id,
-                                merchant,
-                                amount,
-                                status,
-                                date,
-                                CASE 
-                                    WHEN LENGTH(notes) > 50 THEN LEFT(notes, 50) || '...'
-                                    ELSE notes
-                                END as notes_preview
-                            FROM transactions 
-                            ORDER BY date DESC, transaction_id DESC
-                            LIMIT 10
-                        """))
-                        
-                        recent_txns = result.fetchall()
-                        st.write("**Last 10 Transactions (Direct from Database):**")
-                        
-                        for txn in recent_txns:
-                            status_emoji = {
-                                'pending': '🟡',
-                                'approved': '🟢', 
-                                'declined': '🔴',
-                                'cancelled': '❌'
-                            }.get(txn.status, '⚪')
-                            
-                            st.write(f"**ID {txn.transaction_id}** {status_emoji} {txn.merchant} - ${txn.amount} ({txn.status})")
-                            if txn.notes_preview:
-                                st.write(f"   _Notes: {txn.notes_preview}_")
-                        
-                except Exception as e:
-                    st.error(f"Direct database query failed: {e}")
-        else:
-            st.error(f"❌ {conn_msg}")
-            st.info("Check your PostgreSQL connection settings in the sidebar")
+if use_postgres and engine is not None:
+
 
     # Initialize session state for cancellation feedback
     if 'cancellation_success' not in st.session_state:
@@ -437,19 +741,10 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
         if auto_refresh:
             st.info("⚡ Auto-refresh enabled - page will refresh automatically")
 
-    # Debug session state (remove this after testing)
-    with st.expander("🐛 Debug Session State", expanded=False):
-        st.write("Session State Values:")
-        st.write(f"- show_feedback: {st.session_state.get('show_feedback', 'Not set')}")
-        st.write(f"- cancellation_success: {st.session_state.get('cancellation_success', 'Not set')}")
-        st.write(f"- cancellation_message: {st.session_state.get('cancellation_message', 'Not set')}")
-    
     # Display any pending success message at the top - PERSISTENT FEEDBACK
     if st.session_state.get('show_feedback', False):
         if st.session_state.get('cancellation_success', False):
             st.success(f"✅ **TRANSACTION CANCELLED**: {st.session_state.get('cancellation_message', 'Unknown transaction')}")
-            st.balloons()
-            st.info(f"🔄 **Database Updated**: Transaction status changed to 'declined' in PostgreSQL")
             
             # Add verification section
             with st.expander("🔍 Verification Details", expanded=True):
@@ -485,37 +780,6 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
                 st.session_state.cancellation_message = None
                 st.rerun()
 
-    # DEBUG: Multiple test buttons to isolate UI issues
-    st.write("---")
-    st.write("🧪 **DEBUG: Button Tests**")
-    
-    # Test 1: Minimal button
-    if st.button("🟢 MINIMAL TEST", key="minimal_test"):
-        st.write("✅ Minimal button clicked!")
-    
-    # Test 2: Button with logging
-    if st.button("🔵 LOGGING TEST", key="logging_test"):
-        st.write("✅ Logging button clicked!")
-        import logging
-        logging.getLogger('db_utils').info("🧪 DEBUG: Button click detected in Streamlit")
-    
-    # Test 3: Database test button
-    if st.button("🔥 DATABASE TEST", key="database_test"):
-        st.write("✅ Database button clicked!")
-        try:
-            # Try to cancel transaction 5 (Gadget Store)
-            st.info("🎯 About to call TransactionManager.cancel_transaction...")
-            success, message = TransactionManager.cancel_transaction(5, "DEBUG: Streamlit UI button test")
-            if success:
-                st.success(f"✅ DATABASE TEST SUCCESS: {message}")
-            else:
-                st.error(f"❌ DATABASE TEST FAILED: {message}")
-        except Exception as e:
-            st.error(f"❌ DATABASE TEST EXCEPTION: {e}")
-            import traceback
-            st.code(traceback.format_exc())
-    
-    st.write("---")
 
     # Display pending transactions
     try:
@@ -532,8 +796,18 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
         df_pending['amount'] = df_pending['amount'].apply(lambda x: f"${x:.2f}")
         df_pending['date'] = pd.to_datetime(df_pending['date']).dt.strftime('%Y-%m-%d')
         
-        # Display the table
-        st.dataframe(df_pending[['transaction_id', 'date', 'amount', 'merchant', 'category']], use_container_width=True)
+        # Display first 2 rows by default
+        if len(df_pending) <= 2:
+            # Show all if 2 or fewer transactions
+            st.dataframe(df_pending[['transaction_id', 'date', 'amount', 'merchant', 'category']], use_container_width=True)
+        else:
+            # Show first 2 rows
+            st.write("**First 2 transactions:**")
+            st.dataframe(df_pending.head(2)[['transaction_id', 'date', 'amount', 'merchant', 'category']], use_container_width=True)
+            
+            # Show remaining transactions in expandable section
+            with st.expander(f"📋 View all {len(df_pending)} transactions", expanded=False):
+                st.dataframe(df_pending[['transaction_id', 'date', 'amount', 'merchant', 'category']], use_container_width=True, height=300)
         
         # Agent interaction section
         st.markdown("### 🔍 AI Transaction Analysis")
@@ -728,38 +1002,20 @@ Common categories: Groceries, Bills & Utilities, Entertainment, Transportation, 
         except Exception as e:
             st.error(f"Could not load recently cancelled transactions: {e}")
     
-    # Add troubleshooting section
-    with st.expander("🔧 Troubleshooting Guide", expanded=False):
-        st.write("**If transaction cancellations don't seem to work:**")
-        st.write("1. **Check the logs**: Look at `db_operations.log` and `transaction_debug.log`")
-        st.write("2. **Refresh the page**: Click the '🔄 Refresh Data' button above")
-        st.write("3. **Check database directly**: Use the '🔍 Query Database Directly' button")
-        st.write("4. **Verify transaction ID**: Make sure you're cancelling the correct transaction")
-        st.write("5. **Check transaction status**: Only 'pending' transactions can be cancelled")
-        
-        st.write("\n**Debug Commands:**")
-        st.code("python3 debug_transactions.py", language="bash")
-        st.code("python3 test_gadget_store.py", language="bash")
-        
-        st.write("\n**Log Files:**")
-        st.write("- `db_operations.log` - Database operation logs")  
-        st.write("- `transaction_debug.log` - Debug session logs")
-        
-        if st.button("📊 Show Transaction Statistics", key="show_stats"):
-            try:
-                stats = TransactionManager.get_transaction_stats()
-                st.json(stats)
-            except Exception as e:
-                st.error(f"Could not load statistics: {e}")
 
 else:
-    st.info("💡 Enable PostgreSQL connection in the sidebar to access financial data analysis.")
+    st.info("💡 Enable PostgreSQL connection in the sidebar to access transaction management features.")
+
+# =============================================================================
+# SNOWFLAKE ANALYTICS
+# =============================================================================
 
 # =============================================================================
 # SNOWFLAKE CORTEX AGENT
 # =============================================================================
 
-st.title(":material/network_intel_node: Snowflake Financial Analytics")
+st.markdown('<div id="snowflake-analytics"></div>', unsafe_allow_html=True)
+st.title("❄️ Snowflake Financial Analytics")
 
 # =============================================================================
 # SPENDING OVERVIEW CHART
@@ -832,25 +1088,6 @@ try:
                 ).interactive()
                 
                 st.altair_chart(chart, use_container_width=True)
-                
-                # Also create a line chart of total spending
-                monthly_totals = chart_df.groupby('MONTH')['TOTAL_AMOUNT'].sum().reset_index()
-                
-                line_chart = alt.Chart(monthly_totals).mark_line(
-                    point=True,
-                    strokeWidth=3,
-                    color='#2980b9'
-                ).encode(
-                    x=alt.X('MONTH:T', title='Month'),
-                    y=alt.Y('TOTAL_AMOUNT:Q', title='Total Spending ($)'),
-                    tooltip=['MONTH:T', 'TOTAL_AMOUNT:Q']
-                ).properties(
-                    width=700,
-                    height=300,
-                    title="Total Monthly Spending Trend"
-                )
-                
-                st.altair_chart(line_chart, use_container_width=True)
                 
             else:
                 # Simple line chart for total spending

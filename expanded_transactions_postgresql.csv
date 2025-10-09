@@ -1,0 +1,301 @@
+date,amount,merchant,category,notes,status,account_id
+2025-08-11 00:00:00,1005.36,HP Store,Electronics,Phone repair,approved,1
+2025-08-11 00:00:00,51.68,Uber,Transportation,Ride to airport,approved,1
+2025-08-11 00:00:00,67.94,Applebee's,Dining,Business lunch,approved,1
+2025-08-11 00:00:00,212.42,CVS Pharmacy,Healthcare,Checkup,approved,1
+2025-08-11 00:00:00,19.43,Chevron,Transportation,Ride to airport,approved,1
+2025-08-11 00:00:00,147.01,Fresh Market,Groceries,Household supplies,approved,1
+2025-08-11 00:00:00,52.58,HP Store,Electronics,Phone repair,approved,1
+2025-08-12 00:00:00,93.89,GameStop,Entertainment,Date night,approved,1
+2025-08-12 00:00:00,51.14,Lyft,Transportation,Fill up tank,approved,1
+2025-08-12 00:00:00,39.81,Starbucks Coffee,Dining,Dinner with family,approved,1
+2025-08-13 00:00:00,164.54,Rite Aid,Healthcare,Prescription refill,approved,1
+2025-08-13 00:00:00,17.91,Red Lobster,Dining,Quick lunch,approved,1
+2025-08-13 00:00:00,1054.83,Nikon Store,Electronics,Gaming gear,approved,1
+2025-08-13 00:00:00,19.98,Chipotle Mexican Grill,Dining,Weekend treat,approved,1
+2025-08-13 00:00:00,54.45,AMC Theatres,Entertainment,Game purchase,approved,1
+2025-08-13 00:00:00,374.07,Apple Store,Electronics,Laptop upgrade,approved,1
+2025-08-13 00:00:00,1126.99,Nikon Store,Electronics,New headphones,approved,1
+2025-08-14 00:00:00,676.67,HP Store,Electronics,Laptop upgrade,approved,1
+2025-08-14 00:00:00,393.08,Delta Airlines,Travel,Vacation booking,approved,1
+2025-08-14 00:00:00,127.63,Costco Wholesale,Groceries,Organic produce,approved,1
+2025-08-14 00:00:00,82.64,Safeway,Groceries,Fresh ingredients,approved,1
+2025-08-14 00:00:00,69.0,Zara,Shopping,Clothing,approved,1
+2025-08-14 00:00:00,101.69,Dave & Buster's,Entertainment,Game purchase,approved,1
+2025-08-14 00:00:00,120.26,Stop & Shop,Groceries,Organic produce,approved,1
+2025-08-14 00:00:00,97.51,Walmart,Groceries,Bulk items,approved,1
+2025-08-15 00:00:00,241.23,Target,Shopping,Online order,approved,1
+2025-08-15 00:00:00,53.4,Shell Gas Station,Transportation,Road trip fuel,approved,1
+2025-08-15 00:00:00,53.46,Denny's,Dining,Dinner with family,approved,1
+2025-08-15 00:00:00,77.59,Redbox,Entertainment,Monthly subscription,approved,1
+2025-08-16 00:00:00,1100.53,Dell Technologies,Electronics,Phone repair,approved,1
+2025-08-16 00:00:00,66.15,GameStop,Entertainment,Game purchase,approved,1
+2025-08-16 00:00:00,100.91,Fresh Market,Groceries,Organic produce,approved,1
+2025-08-17 00:00:00,36.09,KFC,Dining,Dinner with family,approved,1
+2025-08-17 00:00:00,102.8,Whole Foods Market,Groceries,Household supplies,approved,1
+2025-08-17 00:00:00,95.45,Safeway,Groceries,Organic produce,approved,1
+2025-08-18 00:00:00,45.26,KFC,Dining,Quick lunch,approved,1
+2025-08-18 00:00:00,41.01,Walmart,Groceries,Weekly shopping,approved,1
+2025-08-18 00:00:00,65.16,Panera Bread,Dining,Dinner with family,approved,1
+2025-08-18 00:00:00,30.01,Subway,Dining,Morning coffee,approved,1
+2025-08-19 00:00:00,189.1,Marriott,Travel,Weekend getaway,approved,1
+2025-08-19 00:00:00,71.07,Starbucks Coffee,Dining,Morning coffee,approved,1
+2025-08-19 00:00:00,110.51,Redbox,Entertainment,Date night,approved,1
+2025-08-19 00:00:00,20.92,Subway,Dining,Dinner with family,approved,1
+2025-08-20 00:00:00,40.57,Safeway,Groceries,Household supplies,approved,1
+2025-08-20 00:00:00,82.97,Applebee's,Dining,Weekend treat,approved,1
+2025-08-20 00:00:00,430.76,Lenovo Store,Electronics,Gaming gear,approved,1
+2025-08-20 00:00:00,107.12,Stop & Shop,Groceries,Fresh ingredients,approved,1
+2025-08-20 00:00:00,61.83,Shell Gas Station,Transportation,Ride to airport,approved,1
+2025-08-21 00:00:00,35.3,Olive Garden,Dining,Dinner with family,approved,1
+2025-08-21 00:00:00,726.46,Nikon Store,Electronics,Phone repair,approved,1
+2025-08-21 00:00:00,36.83,Netflix,Entertainment,Date night,approved,1
+2025-08-21 00:00:00,30.69,Shell Gas Station,Transportation,Fill up tank,approved,1
+2025-08-21 00:00:00,735.46,Expedia,Travel,Weekend getaway,approved,1
+2025-08-21 00:00:00,148.31,Stop & Shop,Groceries,Bulk items,approved,1
+2025-08-22 00:00:00,52.16,BP Gas Station,Transportation,Fill up tank,approved,1
+2025-08-22 00:00:00,69.96,H&M,Shopping,Clothing,approved,1
+2025-08-22 00:00:00,43.17,eBay,Shopping,Clothing,approved,1
+2025-08-22 00:00:00,18.72,AMC Theatres,Entertainment,Weekend fun,approved,1
+2025-08-23 00:00:00,25.32,Chevron,Transportation,Daily commute,approved,1
+2025-08-23 00:00:00,114.52,Stop & Shop,Groceries,Weekly shopping,approved,1
+2025-08-23 00:00:00,19.6,Safeway,Groceries,Fresh ingredients,approved,1
+2025-08-24 00:00:00,590.0,Nikon Store,Electronics,Laptop upgrade,approved,1
+2025-08-24 00:00:00,24.56,Denny's,Dining,Weekend treat,approved,1
+2025-08-24 00:00:00,10.9,Applebee's,Dining,Business lunch,approved,1
+2025-08-24 00:00:00,14.84,Chili's,Dining,Quick lunch,approved,1
+2025-08-24 00:00:00,25.54,Lyft,Transportation,Road trip fuel,approved,1
+2025-08-24 00:00:00,59.24,Redbox,Entertainment,Movie night,approved,1
+2025-08-25 00:00:00,222.5,Target,Shopping,Gift shopping,approved,1
+2025-08-25 00:00:00,57.81,Uber,Transportation,Ride to airport,approved,1
+2025-08-25 00:00:00,71.63,Dave & Buster's,Entertainment,Weekend fun,approved,1
+2025-08-25 00:00:00,25.69,KFC,Dining,Business lunch,approved,1
+2025-08-25 00:00:00,280.71,Forever 21,Shopping,Online order,approved,1
+2025-08-26 00:00:00,71.28,Five Guys,Dining,Morning coffee,approved,1
+2025-08-26 00:00:00,138.1,Amazon.com,Shopping,Seasonal sale,approved,1
+2025-08-26 00:00:00,16.12,GameStop,Entertainment,Date night,approved,1
+2025-08-26 00:00:00,29.22,Denny's,Dining,Dinner with family,approved,1
+2025-08-27 00:00:00,39.64,Whole Foods Market,Groceries,Organic produce,approved,1
+2025-08-27 00:00:00,74.67,Taco Bell,Dining,Weekend treat,approved,1
+2025-08-27 00:00:00,125.43,H&M,Shopping,Gift shopping,approved,1
+2025-08-27 00:00:00,289.0,Southwest Airlines,Travel,Business trip,approved,1
+2025-08-28 00:00:00,79.89,Stop & Shop,Groceries,Fresh ingredients,approved,1
+2025-08-28 00:00:00,104.63,Trader Joe's,Groceries,Weekly shopping,approved,1
+2025-08-29 00:00:00,33.86,Shell Gas Station,Transportation,Ride to airport,approved,1
+2025-08-29 00:00:00,274.67,Walmart,Shopping,Gift shopping,approved,1
+2025-08-29 00:00:00,27.85,Costco Wholesale,Groceries,Fresh ingredients,approved,1
+2025-08-29 00:00:00,15.7,Shell Gas Station,Transportation,Road trip fuel,approved,1
+2025-08-29 00:00:00,212.47,Rite Aid,Healthcare,Prescription refill,approved,1
+2025-08-29 00:00:00,112.64,Whole Foods Market,Groceries,Household supplies,approved,1
+2025-08-30 00:00:00,20.12,McDonald's,Dining,Dinner with family,approved,1
+2025-08-30 00:00:00,24.79,Cheesecake Factory,Dining,Morning coffee,approved,1
+2025-08-30 00:00:00,21.63,Aldi,Groceries,Fresh ingredients,approved,1
+2025-08-30 00:00:00,398.9,Southwest Airlines,Travel,Weekend getaway,approved,1
+2025-08-30 00:00:00,1017.47,Microsoft Store,Electronics,New headphones,approved,1
+2025-08-30 00:00:00,24.84,Chipotle Mexican Grill,Dining,Quick lunch,approved,1
+2025-08-30 00:00:00,77.13,Aldi,Groceries,Bulk items,approved,1
+2025-08-31 00:00:00,30.81,Red Lobster,Dining,Dinner with family,approved,1
+2025-08-31 00:00:00,181.8,Delta Airlines,Travel,Flight change,approved,1
+2025-08-31 00:00:00,84.73,Publix,Groceries,Fresh ingredients,approved,1
+2025-08-31 00:00:00,137.36,Costco Wholesale,Groceries,Bulk items,approved,1
+2025-09-02 00:00:00,194.05,Marriott,Travel,Weekend getaway,approved,1
+2025-09-02 00:00:00,54.66,Target,Shopping,Clothing,approved,1
+2025-09-02 00:00:00,54.92,Fresh Market,Groceries,Organic produce,approved,1
+2025-09-02 00:00:00,8.26,KFC,Dining,Quick lunch,approved,1
+2025-09-03 00:00:00,26.96,Exxon Mobil,Transportation,Emergency ride,approved,1
+2025-09-03 00:00:00,60.59,H&M,Shopping,Online order,approved,1
+2025-09-03 00:00:00,16.41,Exxon Mobil,Transportation,Emergency ride,approved,1
+2025-09-03 00:00:00,67.11,Chevron,Transportation,Fill up tank,approved,1
+2025-09-03 00:00:00,71.05,Uber,Transportation,Daily commute,approved,1
+2025-09-03 00:00:00,25.62,In-N-Out Burger,Dining,Quick lunch,approved,1
+2025-09-04 00:00:00,40.99,Publix,Groceries,Fresh ingredients,approved,1
+2025-09-04 00:00:00,221.03,Target,Shopping,Home essentials,approved,1
+2025-09-05 00:00:00,32.14,McDonald's,Dining,Dinner with family,approved,1
+2025-09-05 00:00:00,596.74,Marriott,Travel,Hotel stay,approved,1
+2025-09-05 00:00:00,110.49,Macy's,Shopping,Gift shopping,approved,1
+2025-09-05 00:00:00,242.69,Forever 21,Shopping,Clothing,approved,1
+2025-09-05 00:00:00,37.99,Rite Aid,Healthcare,Doctor visit,approved,1
+2025-09-06 00:00:00,163.41,Rite Aid,Healthcare,Health supplements,approved,1
+2025-09-06 00:00:00,691.21,Microsoft Store,Electronics,New headphones,approved,1
+2025-09-06 00:00:00,294.1,Best Western,Travel,Weekend getaway,approved,1
+2025-09-06 00:00:00,502.62,Samsung Store,Electronics,Monitor purchase,approved,1
+2025-09-06 00:00:00,225.27,Nordstrom,Shopping,Online order,approved,1
+2025-09-06 00:00:00,99.54,Kroger,Groceries,Organic produce,approved,1
+2025-09-06 00:00:00,48.59,Stop & Shop,Groceries,Bulk items,approved,1
+2025-09-06 00:00:00,33.7,Starbucks Coffee,Dining,Morning coffee,approved,1
+2025-09-07 00:00:00,25.43,Cheesecake Factory,Dining,Morning coffee,pending,1
+2025-09-07 00:00:00,145.96,Samsung Store,Electronics,Monitor purchase,approved,1
+2025-09-07 00:00:00,20.32,Costco Wholesale,Groceries,Fresh ingredients,approved,1
+2025-09-07 00:00:00,66.2,Five Guys,Dining,Quick lunch,approved,1
+2025-09-07 00:00:00,342.11,Nikon Store,Electronics,Laptop upgrade,approved,1
+2025-09-07 00:00:00,679.37,Canon Store,Electronics,Monitor purchase,approved,1
+2025-09-07 00:00:00,280.26,H&M,Shopping,Clothing,approved,1
+2025-09-08 00:00:00,20.22,McDonald's,Dining,Business lunch,approved,1
+2025-09-08 00:00:00,115.87,Nordstrom,Shopping,Gift shopping,approved,1
+2025-09-08 00:00:00,181.57,Zara,Shopping,Seasonal sale,approved,1
+2025-09-08 00:00:00,214.13,Forever 21,Shopping,Online order,approved,1
+2025-09-08 00:00:00,39.37,Applebee's,Dining,Morning coffee,approved,1
+2025-09-08 00:00:00,189.93,H&M,Shopping,Seasonal sale,approved,1
+2025-09-09 00:00:00,22.9,Uber,Transportation,Daily commute,approved,1
+2025-09-09 00:00:00,33.06,Olive Garden,Dining,Business lunch,approved,1
+2025-09-09 00:00:00,78.37,Fresh Market,Groceries,Bulk items,approved,1
+2025-09-09 00:00:00,21.25,Olive Garden,Dining,Morning coffee,approved,1
+2025-09-09 00:00:00,139.21,Kroger,Groceries,Fresh ingredients,approved,1
+2025-09-09 00:00:00,55.86,Walmart,Groceries,Household supplies,approved,1
+2025-09-10 00:00:00,29.51,McDonald's,Dining,Morning coffee,approved,1
+2025-09-10 00:00:00,76.13,Red Lobster,Dining,Morning coffee,approved,1
+2025-09-10 00:00:00,36.59,Lyft,Transportation,Road trip fuel,approved,1
+2025-09-10 00:00:00,41.98,Chevron,Transportation,Road trip fuel,approved,1
+2025-09-10 00:00:00,176.3,Gap,Shopping,Online order,approved,1
+2025-09-10 00:00:00,444.39,United Airlines,Travel,Flight change,approved,1
+2025-09-10 00:00:00,702.79,HP Store,Electronics,Monitor purchase,approved,1
+2025-09-11 00:00:00,73.87,Uber,Transportation,Road trip fuel,approved,1
+2025-09-11 00:00:00,686.2,Best Western,Travel,Weekend getaway,approved,1
+2025-09-11 00:00:00,34.63,Shell Gas Station,Transportation,Fill up tank,approved,1
+2025-09-11 00:00:00,95.5,Spotify,Entertainment,Weekend fun,approved,1
+2025-09-11 00:00:00,56.37,AMC Theatres,Entertainment,Weekend fun,approved,1
+2025-09-11 00:00:00,18.69,Whole Foods Market,Groceries,Weekly shopping,approved,1
+2025-09-11 00:00:00,26.96,Costco Wholesale,Groceries,Organic produce,approved,1
+2025-09-11 00:00:00,31.65,Subway,Dining,Weekend treat,approved,1
+2025-09-12 00:00:00,17.58,Chipotle Mexican Grill,Dining,Weekend treat,approved,1
+2025-09-12 00:00:00,78.21,Five Guys,Dining,Business lunch,approved,1
+2025-09-13 00:00:00,204.13,Rite Aid,Healthcare,Doctor visit,pending,1
+2025-09-13 00:00:00,19.37,Exxon Mobil,Transportation,Emergency ride,approved,1
+2025-09-13 00:00:00,63.15,Walmart,Shopping,Clothing,approved,1
+2025-09-13 00:00:00,69.24,Dave & Buster's,Entertainment,Date night,approved,1
+2025-09-13 00:00:00,65.64,Chevron,Transportation,Ride to airport,approved,1
+2025-09-13 00:00:00,49.01,Lyft,Transportation,Fill up tank,approved,1
+2025-09-13 00:00:00,139.63,Quest Diagnostics,Healthcare,Medical supplies,approved,1
+2025-09-13 00:00:00,351.68,Booking.com,Travel,Hotel stay,approved,1
+2025-09-13 00:00:00,16.26,Trader Joe's,Groceries,Weekly shopping,approved,1
+2025-09-14 00:00:00,72.75,Costco Wholesale,Groceries,Bulk items,pending,1
+2025-09-14 00:00:00,27.44,Rite Aid,Healthcare,Health supplements,approved,1
+2025-09-14 00:00:00,67.8,Aldi,Groceries,Weekly shopping,approved,1
+2025-09-14 00:00:00,56.85,Shell Gas Station,Transportation,Ride to airport,approved,1
+2025-09-14 00:00:00,38.68,Chevron,Transportation,Emergency ride,approved,1
+2025-09-14 00:00:00,256.35,Dell Technologies,Electronics,Laptop upgrade,approved,1
+2025-09-14 00:00:00,88.06,Zara,Shopping,Home essentials,approved,1
+2025-09-14 00:00:00,68.38,BP Gas Station,Transportation,Daily commute,approved,1
+2025-09-14 00:00:00,289.16,Nikon Store,Electronics,New headphones,approved,1
+2025-09-14 00:00:00,18.33,Exxon Mobil,Transportation,Fill up tank,approved,1
+2025-09-14 00:00:00,692.98,Kayak,Travel,Vacation booking,approved,1
+2025-09-15 00:00:00,16.74,Five Guys,Dining,Weekend treat,approved,1
+2025-09-15 00:00:00,137.57,Aldi,Groceries,Weekly shopping,approved,1
+2025-09-15 00:00:00,51.36,Uber,Transportation,Fill up tank,approved,1
+2025-09-15 00:00:00,30.0,Trader Joe's,Groceries,Household supplies,approved,1
+2025-09-16 00:00:00,595.02,Microsoft Store,Electronics,New headphones,approved,1
+2025-09-16 00:00:00,76.58,Rite Aid,Healthcare,Medical supplies,approved,1
+2025-09-16 00:00:00,71.19,Panera Bread,Dining,Business lunch,approved,1
+2025-09-16 00:00:00,215.06,Walmart,Shopping,Gift shopping,approved,1
+2025-09-17 00:00:00,113.12,GameStop,Entertainment,Weekend fun,approved,1
+2025-09-17 00:00:00,181.56,Rite Aid,Healthcare,Medical supplies,approved,1
+2025-09-18 00:00:00,106.19,Kaiser Permanente,Healthcare,Health supplements,approved,1
+2025-09-18 00:00:00,284.54,Forever 21,Shopping,Online order,approved,1
+2025-09-18 00:00:00,360.12,Kayak,Travel,Vacation booking,approved,1
+2025-09-18 00:00:00,63.96,Walgreens,Healthcare,Checkup,approved,1
+2025-09-19 00:00:00,142.64,Nordstrom,Shopping,Seasonal sale,approved,1
+2025-09-19 00:00:00,126.46,Lenovo Store,Electronics,New headphones,approved,1
+2025-09-19 00:00:00,878.32,Sony Store,Electronics,Monitor purchase,approved,1
+2025-09-19 00:00:00,67.87,BP Gas Station,Transportation,Fill up tank,approved,1
+2025-09-19 00:00:00,45.01,Spotify,Entertainment,Monthly subscription,approved,1
+2025-09-20 00:00:00,37.6,BP Gas Station,Transportation,Fill up tank,approved,1
+2025-09-20 00:00:00,117.2,Dave & Buster's,Entertainment,Monthly subscription,approved,1
+2025-09-20 00:00:00,35.06,BP Gas Station,Transportation,Ride to airport,approved,1
+2025-09-20 00:00:00,258.44,Nordstrom,Shopping,Gift shopping,approved,1
+2025-09-20 00:00:00,47.29,Uber,Transportation,Fill up tank,approved,1
+2025-09-20 00:00:00,11.8,McDonald's,Dining,Weekend treat,approved,1
+2025-09-20 00:00:00,54.72,Gap,Shopping,Clothing,approved,1
+2025-09-20 00:00:00,12.75,Netflix,Entertainment,Game purchase,approved,1
+2025-09-21 00:00:00,17.43,Subway,Dining,Weekend treat,approved,1
+2025-09-21 00:00:00,138.76,Aldi,Groceries,Organic produce,approved,1
+2025-09-21 00:00:00,55.02,Whole Foods Market,Groceries,Bulk items,approved,1
+2025-09-21 00:00:00,42.15,Uber,Transportation,Emergency ride,approved,1
+2025-09-21 00:00:00,356.27,Best Buy Electronics,Electronics,Phone repair,approved,1
+2025-09-21 00:00:00,18.72,Stop & Shop,Groceries,Fresh ingredients,approved,1
+2025-09-21 00:00:00,633.31,Best Buy Electronics,Electronics,Monitor purchase,approved,1
+2025-09-22 00:00:00,11.43,Panera Bread,Dining,Business lunch,approved,1
+2025-09-22 00:00:00,43.93,Exxon Mobil,Transportation,Emergency ride,approved,1
+2025-09-22 00:00:00,175.59,Walmart,Shopping,Clothing,approved,1
+2025-09-22 00:00:00,83.29,KFC,Dining,Business lunch,approved,1
+2025-09-22 00:00:00,49.58,Applebee's,Dining,Business lunch,approved,1
+2025-09-22 00:00:00,64.12,KFC,Dining,Business lunch,approved,1
+2025-09-22 00:00:00,67.25,Lyft,Transportation,Fill up tank,approved,1
+2025-09-22 00:00:00,50.12,McDonald's,Dining,Morning coffee,approved,1
+2025-09-22 00:00:00,32.02,Uber,Transportation,Daily commute,approved,1
+2025-09-22 00:00:00,39.93,Uber,Transportation,Emergency ride,approved,1
+2025-09-22 00:00:00,21.58,Fresh Market,Groceries,Organic produce,approved,1
+2025-09-23 00:00:00,178.25,Rite Aid,Healthcare,Medical supplies,approved,1
+2025-09-23 00:00:00,47.19,Cheesecake Factory,Dining,Quick lunch,approved,1
+2025-09-23 00:00:00,85.32,TopGolf,Entertainment,Monthly subscription,approved,1
+2025-09-24 00:00:00,106.21,GameStop,Entertainment,Movie night,approved,1
+2025-09-24 00:00:00,49.28,Stop & Shop,Groceries,Organic produce,approved,1
+2025-09-24 00:00:00,73.81,In-N-Out Burger,Dining,Dinner with family,approved,1
+2025-09-25 00:00:00,31.54,In-N-Out Burger,Dining,Business lunch,approved,1
+2025-09-25 00:00:00,163.0,Forever 21,Shopping,Gift shopping,approved,1
+2025-09-25 00:00:00,36.13,Walmart,Groceries,Weekly shopping,approved,1
+2025-09-25 00:00:00,18.25,Fresh Market,Groceries,Organic produce,approved,1
+2025-09-25 00:00:00,165.19,H&M,Shopping,Home essentials,approved,1
+2025-09-25 00:00:00,33.07,Trader Joe's,Groceries,Fresh ingredients,approved,1
+2025-09-25 00:00:00,171.76,Amazon.com,Shopping,Home essentials,approved,1
+2025-09-26 00:00:00,66.59,Denny's,Dining,Morning coffee,pending,1
+2025-09-26 00:00:00,23.43,Trader Joe's,Groceries,Bulk items,approved,1
+2025-09-26 00:00:00,58.73,Red Lobster,Dining,Morning coffee,approved,1
+2025-09-26 00:00:00,138.49,Safeway,Groceries,Bulk items,approved,1
+2025-09-26 00:00:00,64.41,Fresh Market,Groceries,Bulk items,approved,1
+2025-09-26 00:00:00,83.37,Starbucks Coffee,Dining,Business lunch,approved,1
+2025-09-26 00:00:00,228.99,Zara,Shopping,Clothing,approved,1
+2025-09-27 00:00:00,27.29,Chevron,Transportation,Ride to airport,approved,1
+2025-09-27 00:00:00,229.88,Zara,Shopping,Clothing,approved,1
+2025-09-27 00:00:00,77.64,Dave & Buster's,Entertainment,Date night,approved,1
+2025-09-27 00:00:00,62.66,BP Gas Station,Transportation,Fill up tank,approved,1
+2025-09-27 00:00:00,149.78,Stop & Shop,Groceries,Household supplies,approved,1
+2025-09-28 00:00:00,200.53,Nordstrom,Shopping,Online order,approved,1
+2025-09-28 00:00:00,80.82,Five Guys,Dining,Weekend treat,approved,1
+2025-09-28 00:00:00,52.47,BP Gas Station,Transportation,Road trip fuel,approved,1
+2025-09-28 00:00:00,106.18,Safeway,Groceries,Fresh ingredients,approved,1
+2025-09-30 00:00:00,17.96,Exxon Mobil,Transportation,Ride to airport,approved,1
+2025-09-30 00:00:00,131.39,Safeway,Groceries,Bulk items,approved,1
+2025-09-30 00:00:00,37.1,Panera Bread,Dining,Business lunch,approved,1
+2025-09-30 00:00:00,49.96,Five Guys,Dining,Business lunch,approved,1
+2025-09-30 00:00:00,1026.51,HP Store,Electronics,New headphones,approved,1
+2025-09-30 00:00:00,255.43,Hilton Hotels,Travel,Hotel stay,approved,1
+2025-09-30 00:00:00,29.89,Denny's,Dining,Dinner with family,approved,1
+2025-09-30 00:00:00,84.62,Stop & Shop,Groceries,Bulk items,approved,1
+2025-10-01 00:00:00,59.84,Olive Garden,Dining,Dinner with family,approved,1
+2025-10-01 00:00:00,33.36,Shell Gas Station,Transportation,Fill up tank,approved,1
+2025-10-01 00:00:00,49.44,Chipotle Mexican Grill,Dining,Dinner with family,approved,1
+2025-10-01 00:00:00,44.84,Olive Garden,Dining,Business lunch,approved,1
+2025-10-02 00:00:00,76.09,Exxon Mobil,Transportation,Daily commute,approved,1
+2025-10-02 00:00:00,215.1,Kaiser Permanente,Healthcare,Medical supplies,approved,1
+2025-10-02 00:00:00,44.47,Exxon Mobil,Transportation,Road trip fuel,approved,1
+2025-10-02 00:00:00,88.12,Kaiser Permanente,Healthcare,Health supplements,approved,1
+2025-10-02 00:00:00,52.03,In-N-Out Burger,Dining,Dinner with family,approved,1
+2025-10-02 00:00:00,214.43,Nordstrom,Shopping,Online order,approved,1
+2025-10-02 00:00:00,17.2,BP Gas Station,Transportation,Daily commute,approved,1
+2025-10-02 00:00:00,460.91,Southwest Airlines,Travel,Hotel stay,approved,1
+2025-10-02 00:00:00,132.93,Best Buy Electronics,Electronics,Monitor purchase,approved,1
+2025-10-03 00:00:00,108.51,Aldi,Groceries,Bulk items,approved,1
+2025-10-03 00:00:00,301.86,Sony Store,Electronics,Gaming gear,approved,1
+2025-10-03 00:00:00,57.97,Lyft,Transportation,Fill up tank,approved,1
+2025-10-04 00:00:00,32.95,Costco Wholesale,Groceries,Bulk items,approved,1
+2025-10-04 00:00:00,71.65,KFC,Dining,Weekend treat,approved,1
+2025-10-04 00:00:00,46.01,Subway,Dining,Quick lunch,approved,1
+2025-10-04 00:00:00,385.06,United Airlines,Travel,Hotel stay,approved,1
+2025-10-04 00:00:00,118.55,CVS Pharmacy,Healthcare,Medical supplies,approved,1
+2025-10-04 00:00:00,136.8,Costco Wholesale,Groceries,Organic produce,approved,1
+2025-10-05 00:00:00,74.66,Amazon.com,Shopping,Seasonal sale,approved,1
+2025-10-05 00:00:00,54.53,Safeway,Groceries,Household supplies,approved,1
+2025-10-05 00:00:00,124.42,Walmart,Groceries,Bulk items,approved,1
+2025-10-06 00:00:00,51.69,KFC,Dining,Morning coffee,approved,1
+2025-10-06 00:00:00,170.91,Zara,Shopping,Gift shopping,approved,1
+2025-10-06 00:00:00,63.04,Fresh Market,Groceries,Fresh ingredients,approved,1
+2025-10-07 00:00:00,76.27,In-N-Out Burger,Dining,Business lunch,approved,1
+2025-10-07 00:00:00,9.05,Denny's,Dining,Business lunch,approved,1
+2025-10-07 00:00:00,108.5,Netflix,Entertainment,Monthly subscription,approved,1
+2025-10-07 00:00:00,246.81,Nordstrom,Shopping,Online order,approved,1
+2025-10-07 00:00:00,304.76,Lenovo Store,Electronics,Laptop upgrade,approved,1
+2025-10-08 00:00:00,81.3,Panera Bread,Dining,Weekend treat,approved,1
+2025-10-08 00:00:00,26.17,KFC,Dining,Morning coffee,approved,1
+2025-10-09 00:00:00,42.34,Taco Bell,Dining,Dinner with family,approved,1
+2025-10-09 00:00:00,9.55,Denny's,Dining,Business lunch,approved,1
+2025-10-09 00:00:00,461.99,Best Buy Electronics,Electronics,Monitor purchase,approved,1
