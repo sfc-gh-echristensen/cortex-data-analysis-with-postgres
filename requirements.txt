@@ -4,3 +4,6 @@ snowflake-snowpark-python
 tabulate
 sqlalchemy
 psycopg2-binary
+openai
+numpy
+pandas

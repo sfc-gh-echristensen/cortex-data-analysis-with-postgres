@@ -1,0 +1,101 @@
+transaction_id,account_name,date,amount,merchant,description,category,status
+9001,Savings,2025-08-15,12.45,Starbucks Downtown,Premium coffee and pastry,Food & Dining,approved
+9002,Checking,2025-09-02,8.95,Starbuks Main St,Morning coffe latte,Food & Dining,approved
+9003,Checking,2025-09-05,6.5,Local Cafe Corner,Artisan espresso drink,Food & Dining,approved
+9004,Checking,2025-10-01,9.25,Bean There Coffee,Cappuccino and muffin,Food & Dining,approved
+9005,Savings,2025-09-29,4.75,Coffee Shop Express,Iced coffee regular,Food & Dining,approved
+9006,Savings,2025-09-11,7.8,Morning Brew Co,Hot beverage and snack,Food & Dining,approved
+9007,Checking,2025-09-06,11.3,Cafe Mocha Place,Specialty coffee blend,Food & Dining,approved
+9008,Checking,2025-07-30,5.95,Daily Grind Cofee,Caffeine fix latte,Food & Dining,approved
+9009,Credit Card,2025-08-04,89.47,Whole Foods Market,Organic grocery shopping,Food & Dining,approved
+9010,Savings,2025-09-21,76.82,Whoel Foods,Weekly grocery run,Food & Dining,approved
+9011,Checking,2025-09-14,45.67,Fresh Market Co,Produce and essentials,Food & Dining,approved
+9012,Credit Card,2025-09-28,112.34,Safeway Supermarket,Food and household items,Food & Dining,approved
+9013,Savings,2025-08-01,67.89,Trader Joes,Specialty food shopping,Food & Dining,approved
+9014,Savings,2025-07-18,34.56,Local Farmers Market,Fresh vegetables and fruit,Food & Dining,approved
+9015,Savings,2025-09-14,156.78,Costco Wholesale,Bulk food purchase,Food & Dining,approved
+9016,Savings,2025-09-27,78.9,Target Groceries,Weekly food supplies,Food & Dining,approved
+9017,Credit Card,2025-10-01,45.6,Uber Technologies,Rideshare to airport,Transportation,approved
+9018,Savings,2025-09-09,23.4,Uberr Tech,Ride to downtown,Transportation,approved
+9019,Credit Card,2025-08-14,18.75,Lyft Inc,Quick ride home,Transportation,approved
+9020,Credit Card,2025-07-26,32.1,Yellow Cab Co,Taxi service fare,Transportation,approved
+9021,Credit Card,2025-07-17,12.5,City Metro Transit,Public transportation,Transportation,approved
+9022,Savings,2025-08-15,28.0,Airport Shuttle,Travel to terminal,Transportation,approved
+9023,Savings,2025-07-19,8.0,Parking Meter,Downtown parking fee,Transportation,approved
+9024,Checking,2025-09-16,67.45,Gas Station Shell,Vehicle fuel purchase,Transportation,approved
+9025,Credit Card,2025-08-11,15.99,Netflix Streaming,Monthly video subscription,Entertainment,approved
+9026,Savings,2025-08-28,15.99,Netflx,Monthly streaming service,Entertainment,approved
+9027,Credit Card,2025-09-22,9.99,Spotify Premium,Music subscription monthly,Entertainment,approved
+9028,Savings,2025-07-27,9.99,Spotfy Premium,Music streaming plan,Entertainment,approved
+9029,Credit Card,2025-08-18,52.99,Adobe Creative Suite,Design software subscription,Utilities,approved
+9030,Savings,2025-10-07,11.99,YouTube Premium,Ad-free video service,Entertainment,approved
+9031,Checking,2025-07-25,8.99,Amazon Prime Video,Streaming service plan,Entertainment,approved
+9032,Credit Card,2025-08-02,12.99,Hulu Plus,Television streaming,Entertainment,approved
+9033,Credit Card,2025-08-18,89.76,Amazon Purchase,Online shopping order,Shopping,approved
+9034,Savings,2025-08-08,45.32,Amazn Purchase,Online order delivery,Shopping,approved
+9035,Checking,2025-10-03,67.89,eBay Marketplace,Auction site purchase,Shopping,approved
+9036,Savings,2025-10-05,234.56,Best Buy Electronics,Tech gadget shopping,Shopping,approved
+9037,Checking,2025-09-04,899.0,Apple Store Online,Device and accessories,Shopping,approved
+9038,Credit Card,2025-09-30,78.45,Target Corporation,Retail store shopping,Shopping,approved
+9039,Checking,2025-07-28,56.78,Walmart Supercenter,General merchandise,Shopping,approved
+9040,Checking,2025-08-31,145.67,Home Depot Store,Hardware and tools,Shopping,approved
+9041,Savings,2025-10-05,22.99,Planet Fitness Gym,Monthly gym membership,Health & Fitness,approved
+9042,Checking,2025-09-22,22.99,Planett Fitness,Gym membership fee,Health & Fitness,approved
+9043,Savings,2025-10-01,39.99,LA Fitness Club,Fitness center access,Health & Fitness,approved
+9044,Checking,2025-08-09,85.0,Yoga Studio Downtown,Wellness class package,Health & Fitness,approved
+9045,Savings,2025-09-06,150.0,CrossFit Box,Training session fee,Health & Fitness,approved
+9046,Credit Card,2025-09-05,89.99,Running Store,Athletic gear purchase,Health & Fitness,approved
+9047,Checking,2025-09-02,67.5,Nutrition Supplements,Health supplement order,Health & Fitness,approved
+9048,Savings,2025-07-13,145.67,Pacific Gas Electric,Monthly utility bill,Utilities,approved
+9049,Savings,2025-08-10,132.45,PG&E Utility,Electricity service,Utilities,approved
+9050,Credit Card,2025-07-29,79.99,Comcast Internet,Broadband service monthly,Utilities,approved
+9051,Checking,2025-08-08,85.5,Verizon Wireless,Mobile phone service,Utilities,approved
+9052,Credit Card,2025-09-13,67.8,Water Department,Municipal water bill,Utilities,approved
+9053,Checking,2025-09-11,45.2,Waste Management,Garbage collection fee,Utilities,approved
+9054,Savings,2025-07-24,92.1,AT&T Mobility,Cell phone plan,Utilities,approved
+9055,Credit Card,2025-10-07,67.89,Italian Bistro Roma,Authentic pasta dinner,Food & Dining,approved
+9056,Checking,2025-09-01,89.45,Sushi Zen Restaurant,Japanese cuisine meal,Food & Dining,approved
+9057,Checking,2025-08-12,12.67,Taco Bell Fast Food,Mexican quick meal,Food & Dining,approved
+9058,Checking,2025-08-04,28.9,Pizza Hut Delivery,Italian food delivery,Food & Dining,approved
+9059,Credit Card,2025-08-11,45.6,Thai Garden Restaurant,Asian cuisine dinner,Food & Dining,approved
+9060,Savings,2025-09-01,9.87,Burger King Fast,Quick burger meal,Food & Dining,approved
+9061,Credit Card,2025-09-19,156.78,Fine Dining Steakhouse,Upscale dinner experience,Food & Dining,approved
+9062,Credit Card,2025-08-10,189.99,Marriott Hotel,Business travel lodging,Travel,approved
+9063,Savings,2025-07-20,167.45,Marriot Hotel,Hotel accommodation,Travel,approved
+9064,Checking,2025-08-29,245.0,Airbnb Rental,Vacation home stay,Travel,approved
+9065,Credit Card,2025-07-31,567.89,Delta Airlines,Flight ticket purchase,Travel,approved
+9066,Checking,2025-07-16,489.5,United Airlines,Air travel booking,Travel,approved
+9067,Credit Card,2025-07-16,178.9,Hotel Booking Site,Accommodation reservation,Travel,approved
+9068,Savings,2025-07-26,234.56,Rental Car Agency,Vehicle rental fee,Travel,approved
+9069,Savings,2025-08-16,12.0,Bank of America,Monthly service charge,Banking,approved
+9070,Credit Card,2025-08-31,3.5,Wells Fargo Bank,ATM withdrawal fee,Banking,approved
+9071,Savings,2025-08-13,15.0,Chase Bank Fee,Account maintenance,Banking,approved
+9072,Checking,2025-07-25,5.0,Credit Union,Member service charge,Banking,approved
+9073,Checking,2025-07-22,200.0,Investment Advisor,Financial planning fee,Banking,approved
+9074,Credit Card,2025-09-01,34.5,AMC Movie Theater,Cinema ticket and snacks,Entertainment,approved
+9075,Credit Card,2025-08-05,16.75,Regal Cinemas,Movie screening ticket,Entertainment,approved
+9076,Savings,2025-07-12,89.0,Concert Hall Venue,Live music performance,Entertainment,approved
+9077,Savings,2025-07-30,125.0,Sports Stadium,Game ticket purchase,Entertainment,approved
+9078,Checking,2025-07-30,25.0,Art Museum,Cultural exhibition visit,Entertainment,approved
+9079,Checking,2025-07-12,123.15,Local Business,entertainment purchase at Local Business,Entertainment,approved
+9080,Savings,2025-07-13,118.74,Restaurant Chain,food & dining purchase at Restaurant Chain,Food & Dining,approved
+9081,Credit Card,2025-09-24,82.39,Pharmacy,banking purchase at Pharmacy,Banking,approved
+9082,Checking,2025-08-19,33.04,Electronics Store,banking purchase at Electronics Store,Banking,approved
+9083,Checking,2025-09-21,157.46,Pharmacy,travel purchase at Pharmacy,Travel,approved
+9084,Savings,2025-07-15,97.04,Online Retailer,health & fitness purchase at Online Retailer,Health & Fitness,approved
+9085,Savings,2025-08-12,49.05,Online Retailer,travel purchase at Online Retailer,Travel,approved
+9086,Checking,2025-07-27,57.62,Online Retailer,shopping purchase at Online Retailer,Shopping,approved
+9087,Credit Card,2025-08-16,165.09,Restaurant Chain,health & fitness purchase at Restaurant Chain,Health & Fitness,approved
+9088,Credit Card,2025-07-14,182.99,Service Provider,food & dining purchase at Service Provider,Food & Dining,approved
+9089,Credit Card,2025-08-29,29.86,Local Business,banking purchase at Local Business,Banking,approved
+9090,Credit Card,2025-09-13,60.67,Electronics Store,entertainment purchase at Electronics Store,Entertainment,approved
+9091,Checking,2025-08-13,40.76,Electronics Store,transportation purchase at Electronics Store,Transportation,approved
+9092,Checking,2025-07-11,57.75,Online Retailer,banking purchase at Online Retailer,Banking,approved
+9093,Checking,2025-08-17,101.47,Gas Station,entertainment purchase at Gas Station,Entertainment,approved
+9094,Checking,2025-07-21,62.92,Electronics Store,health & fitness purchase at Electronics Store,Health & Fitness,approved
+9095,Savings,2025-09-06,179.52,Gas Station,shopping purchase at Gas Station,Shopping,approved
+9096,Savings,2025-08-20,92.69,Restaurant Chain,entertainment purchase at Restaurant Chain,Entertainment,approved
+9097,Credit Card,2025-09-05,154.25,Online Retailer,health & fitness purchase at Online Retailer,Health & Fitness,approved
+9098,Checking,2025-08-24,76.73,Generic Store,food & dining purchase at Generic Store,Food & Dining,approved
+9099,Checking,2025-09-21,70.9,Service Provider,entertainment purchase at Service Provider,Entertainment,approved
+9100,Savings,2025-08-12,120.6,Online Retailer,food & dining purchase at Online Retailer,Food & Dining,approved

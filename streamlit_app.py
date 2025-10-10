@@ -12,6 +12,9 @@ from sqlalchemy.orm import sessionmaker
 from db import init_db, make_engine, make_session_factory, save_completion_with_session, fetch_history_with_session
 from db_utils import TransactionManager, test_connection, ensure_status_column_exists, get_db_connection
 
+# Import search page
+from pages.search import show_search_page
+
 # Suppress SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -121,12 +124,47 @@ st.markdown("""
     </div>
     <div class="nav-buttons">
         <a href="#budget-dashboard" class="nav-button">💰 Budget</a>
+        <a href="?page=search" class="nav-button">🔍 Search Demo</a>
         <a href="#ai-queries" class="nav-button">🤖 AI Queries</a>
         <a href="#transaction-manager" class="nav-button">🔧 Transactions</a>
         <a href="#snowflake-analytics" class="nav-button">❄️ Analytics</a>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+# =============================================================================
+# MULTI-PAGE NAVIGATION
+# =============================================================================
+
+# Check for page parameter in URL
+query_params = st.query_params
+current_page = query_params.get("page", "dashboard")
+
+# Add navigation in sidebar
+st.sidebar.markdown("---")
+st.sidebar.header("📄 Pages")
+
+if st.sidebar.button("🏦 Dashboard", use_container_width=True):
+    st.query_params.page = "dashboard"
+    st.rerun()
+
+if st.sidebar.button("🔍 Search Demo", use_container_width=True):
+    st.query_params.page = "search"
+    st.rerun()
+
+# Show current page indicator
+if current_page == "dashboard":
+    st.sidebar.success("📍 Currently on: Dashboard")
+elif current_page == "search":
+    st.sidebar.success("📍 Currently on: Search Demo")
+
+# Route to the appropriate page
+if current_page == "search":
+    show_search_page()
+    st.stop()
+
+# Continue with dashboard (default page) content below
+st.sidebar.markdown("---")
 
 # Sidebar: Postgres configuration
 st.sidebar.header("PostgreSQL Configuration")
@@ -483,6 +521,8 @@ if use_postgres and engine is not None:
         st.info("Make sure you have transaction data in your PostgreSQL database.")
 else:
     st.info("💡 Enable PostgreSQL connection in the sidebar to access your budget dashboard.")
+
+# Search functionality moved to separate page - access via /search
 
 # =============================================================================
 # SNOWFLAKE CORTEX AI QUERIES

@@ -945,3 +945,499 @@ CANCELLED: Agent test
 CANCELLED: Debug test from script
 CANCELLED: High amount flagged by AI
 2025-10-09 12:07:15,808 - db_utils - INFO - 🎉 Transaction 10 (Major Airlines: $1250.00) successfully cancelled
+2025-10-09 13:32:32,945 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 13:32:33,814 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 13:32:33,923 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 13:32:33,924 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 13:32:33,924 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 13:32:33,924 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 13:32:33,924 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 13:32:51,745 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 13:32:52,642 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 13:32:52,753 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 13:32:52,753 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 13:32:52,753 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 13:32:52,753 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 13:32:52,753 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 13:33:00,378 - db_utils - ERROR - Database connection error: (psycopg2.errors.UndefinedColumn) column "description" does not exist
+LINE 17:                                 description ILIKE '%coffee%'...
+                                         ^
+
+[SQL: 
+                            SELECT 
+                                transaction_id,
+                                merchant,
+                                notes,
+                                amount,
+                                date,
+                                category,
+                                GREATEST(
+                                    similarity(merchant, %(query)s),
+                                    similarity(merchant, %(query)s)
+                                ) as similarity_score
+                            FROM transactions 
+                            WHERE (
+                                similarity(merchant, %(query)s) > 0.1 OR
+                                similarity(merchant, %(query)s) > 0.1 OR
+                                description ILIKE %(ilike_query)s OR 
+                                merchant ILIKE %(ilike_query)s
+                            )
+                            AND status = 'approved'
+                            ORDER BY similarity_score DESC, date DESC
+                            LIMIT 20
+                        ]
+[parameters: {'query': 'coffee', 'ilike_query': '%coffee%'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 13:33:00,776 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 13:33:01,675 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 13:33:01,785 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 13:33:01,786 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 13:33:01,786 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 13:33:01,786 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 13:33:01,786 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 13:35:11,382 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 13:35:12,269 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 13:35:12,380 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 13:35:12,380 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 13:35:12,380 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 13:35:12,380 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 13:35:12,381 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 13:35:25,387 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 13:35:26,286 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 13:35:26,401 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 13:35:26,402 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 13:35:26,402 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 13:35:26,402 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 13:35:26,402 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 13:35:59,698 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 13:36:00,572 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 13:36:00,680 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 13:36:00,680 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 13:36:00,681 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 13:36:00,681 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 13:36:00,681 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 13:51:23,141 - db_utils - ERROR - Database connection error: (psycopg2.errors.ActiveSqlTransaction) CREATE INDEX CONCURRENTLY cannot run inside a transaction block
+
+[SQL: 
+                        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_transactions_embedding_cosine 
+                        ON transactions USING ivfflat (embedding vector_cosine_ops)
+                        WITH (lists = 100)
+                    ]
+(Background on this error at: https://sqlalche.me/e/20/2j85)
+2025-10-09 14:51:29,516 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 9:                         (1 - (embedding <=> :query_embedding...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> :query_embedding::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> :query_embedding::vector)) > %(threshold)s
+                    ORDER BY embedding <=> :query_embedding::vector
+                    LIMIT %(limit)s
+                ]
+[parameters: {'threshold': 0.7, 'limit': 3}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:51:30,711 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 9:                         (1 - (embedding <=> :query_embedding...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> :query_embedding::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> :query_embedding::vector)) > %(threshold)s
+                    ORDER BY embedding <=> :query_embedding::vector
+                    LIMIT %(limit)s
+                ]
+[parameters: {'threshold': 0.7, 'limit': 3}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:51:32,005 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 9:                         (1 - (embedding <=> :query_embedding...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> :query_embedding::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> :query_embedding::vector)) > %(threshold)s
+                    ORDER BY embedding <=> :query_embedding::vector
+                    LIMIT %(limit)s
+                ]
+[parameters: {'threshold': 0.7, 'limit': 3}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:51:33,312 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near ":"
+LINE 9:                         (1 - (embedding <=> :query_embedding...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> :query_embedding::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> :query_embedding::vector)) > %(threshold)s
+                    ORDER BY embedding <=> :query_embedding::vector
+                    LIMIT %(limit)s
+                ]
+[parameters: {'threshold': 0.7, 'limit': 3}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:52:56,429 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near "%"
+LINE 9:                         (1 - (embedding <=> %(query_embeddin...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> %%(query_embedding)s::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> %%(query_embedding)s::vector)) > %%(threshold)s
+                    ORDER BY embedding <=> %%(query_embedding)s::vector
+                    LIMIT %%(limit)s
+                ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:52:58,002 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near "%"
+LINE 9:                         (1 - (embedding <=> %(query_embeddin...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> %%(query_embedding)s::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> %%(query_embedding)s::vector)) > %%(threshold)s
+                    ORDER BY embedding <=> %%(query_embedding)s::vector
+                    LIMIT %%(limit)s
+                ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:52:59,639 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near "%"
+LINE 9:                         (1 - (embedding <=> %(query_embeddin...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> %%(query_embedding)s::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> %%(query_embedding)s::vector)) > %%(threshold)s
+                    ORDER BY embedding <=> %%(query_embedding)s::vector
+                    LIMIT %%(limit)s
+                ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:53:01,260 - db_utils - ERROR - Database connection error: (psycopg2.errors.SyntaxError) syntax error at or near "%"
+LINE 9:                         (1 - (embedding <=> %(query_embeddin...
+                                                    ^
+
+[SQL: 
+                    SELECT 
+                        transaction_id,
+                        merchant,
+                        notes,
+                        amount,
+                        date,
+                        category,
+                        (1 - (embedding <=> %%(query_embedding)s::vector)) as similarity
+                    FROM transactions 
+                    WHERE embedding IS NOT NULL
+                      AND status = 'approved'
+                      AND (1 - (embedding <=> %%(query_embedding)s::vector)) > %%(threshold)s
+                    ORDER BY embedding <=> %%(query_embedding)s::vector
+                    LIMIT %%(limit)s
+                ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-10-09 14:56:45,618 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:56:46,877 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:56:46,990 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:56:46,990 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:56:46,990 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:56:46,990 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:56:46,990 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 14:57:11,034 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:57:11,921 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:57:12,027 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:57:12,027 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:57:12,027 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:57:12,027 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:57:12,027 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 14:57:19,080 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:57:19,981 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:57:20,094 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:57:20,094 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:57:20,094 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:57:20,094 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:57:20,094 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 14:58:44,335 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:58:45,268 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:58:45,382 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:58:45,383 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:58:45,383 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:58:45,383 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:58:45,383 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 14:58:55,084 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:58:55,950 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:58:56,056 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:58:56,058 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:58:56,058 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:58:56,058 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:58:56,058 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 14:59:03,032 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:59:03,920 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:59:04,033 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:59:04,034 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:59:04,034 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:59:04,034 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:59:04,034 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 14:59:48,191 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 14:59:49,242 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 14:59:49,353 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 14:59:49,354 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 14:59:49,354 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 14:59:49,354 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 14:59:49,354 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:00:01,346 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:00:02,298 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:00:02,411 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:00:02,412 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:00:02,412 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:00:02,412 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:00:02,412 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:00:09,536 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:00:10,446 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:00:10,558 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:00:10,559 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:00:10,559 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:00:10,559 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:00:10,559 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:02:15,623 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:02:16,695 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:02:16,820 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:02:16,820 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:02:16,820 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:02:16,820 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:02:16,820 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:02:38,334 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:02:39,292 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:02:39,400 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:02:39,400 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:02:39,401 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:02:39,401 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:02:39,401 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:03:57,216 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:03:58,582 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:03:58,779 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:03:58,779 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:03:58,779 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:03:58,779 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:03:58,779 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:05:01,200 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:05:02,547 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:05:02,697 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:05:02,698 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:05:02,698 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:05:02,698 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:05:02,698 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:05:13,877 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:05:15,196 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:05:15,337 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:05:15,338 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:05:15,338 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:05:15,338 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:05:15,338 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:05:21,538 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:05:22,866 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:05:23,071 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:05:23,071 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:05:23,071 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:05:23,071 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:05:23,071 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:06:05,748 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:06:06,652 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:06:06,765 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:06:06,765 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:06:06,765 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:06:06,765 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:06:06,765 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:06:21,790 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:06:22,819 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:06:22,938 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:06:22,938 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:06:22,938 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:06:22,938 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:06:22,938 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:06:28,310 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:06:29,285 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:06:29,412 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:06:29,413 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:06:29,413 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:06:29,413 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:06:29,413 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:07:37,619 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:07:38,816 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:07:38,974 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:07:38,975 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:07:38,975 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:07:38,975 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:07:38,975 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:07:48,676 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:07:49,700 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:07:49,828 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:07:49,828 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:07:49,828 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:07:49,828 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:07:49,829 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:07:58,082 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:07:59,368 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:07:59,504 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:07:59,504 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:07:59,505 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:07:59,505 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:07:59,505 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:08:13,401 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:08:14,358 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:08:14,510 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:08:14,511 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:08:14,511 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:08:14,511 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:08:14,511 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:13:05,607 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:13:06,668 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:13:06,779 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:13:06,779 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:13:06,779 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:13:06,779 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:13:06,779 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:13:19,412 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:13:20,342 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:13:20,476 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:13:20,476 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:13:20,476 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:13:20,476 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:13:20,476 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 15:13:35,616 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 15:13:36,637 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 15:13:36,747 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 15:13:36,747 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 15:13:36,747 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 15:13:36,747 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 15:13:36,747 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 18:57:24,721 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 18:57:25,638 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 18:57:25,746 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 18:57:25,747 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 18:57:25,747 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 18:57:25,747 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 18:57:25,747 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 18:58:56,368 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 18:58:57,377 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 18:58:57,588 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 18:58:57,588 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 18:58:57,588 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 18:58:57,588 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 18:58:57,588 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 18:59:02,939 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 18:59:03,827 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 18:59:03,935 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 18:59:03,936 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 18:59:03,936 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 18:59:03,936 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 18:59:03,936 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 18:59:12,034 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 18:59:12,934 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 18:59:13,045 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 18:59:13,045 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 18:59:13,045 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 18:59:13,045 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 18:59:13,045 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 19:00:04,628 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 19:00:05,511 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 19:00:05,620 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 19:00:05,620 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 19:00:05,620 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 19:00:05,620 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 19:00:05,620 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 19:00:20,707 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 19:00:21,620 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 19:00:21,731 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 19:00:21,732 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 19:00:21,732 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 19:00:21,732 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 19:00:21,732 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 19:13:50,229 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 19:13:51,155 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 19:13:51,277 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 19:13:51,278 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 19:13:51,278 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 19:13:51,278 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 19:13:51,278 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 19:13:58,795 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 19:13:59,719 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 19:13:59,846 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 19:13:59,847 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 19:13:59,847 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 19:13:59,847 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 19:13:59,847 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 19:14:32,331 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 19:14:33,332 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 19:14:33,449 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 19:14:33,449 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 19:14:33,449 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 19:14:33,450 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 19:14:33,450 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
+2025-10-09 19:17:28,471 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
+2025-10-09 19:17:29,543 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
+2025-10-09 19:17:29,698 - db_utils - INFO - 📊 Found 4 pending transactions
+2025-10-09 19:17:29,698 - db_utils - DEBUG -    - ID 10: Major Airlines $1250.00 (pending)
+2025-10-09 19:17:29,698 - db_utils - DEBUG -    - ID 59: Samsung Store $789.00 (pending)
+2025-10-09 19:17:29,699 - db_utils - DEBUG -    - ID 46: Dell Technologies $789.00 (pending)
+2025-10-09 19:17:29,699 - db_utils - DEBUG -    - ID 17: Delta Airlines $1250.00 (pending)
