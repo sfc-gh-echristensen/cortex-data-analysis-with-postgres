@@ -284,7 +284,11 @@ def show_search_page():
 # 1. Install OpenAI library
 pip install openai
 
-# 2. Set your OpenAI API key
+# 2. Add your OpenAI API key to .streamlit/secrets.toml:
+[openai]
+api_key = "sk-your-key-here"
+
+# Or set as environment variable:
 export OPENAI_API_KEY='your-key-here'
 
 # 3. Run the embeddings setup
@@ -359,11 +363,19 @@ python3 setup_embeddings.py
                         try:
                             import openai
                             
-                            # Check for OpenAI API key
-                            api_key = os.getenv('OPENAI_API_KEY') or os.getenv('OPENAI_KEY')
+                            # Check for OpenAI API key - try secrets first, then environment
+                            api_key = None
+                            if hasattr(st, 'secrets') and 'openai' in st.secrets:
+                                api_key = st.secrets.get('openai', {}).get('api_key')
+                            if not api_key:
+                                api_key = os.getenv('OPENAI_API_KEY') or os.getenv('OPENAI_KEY')
+                            
                             if not api_key:
                                 st.error("❌ OpenAI API key not found")
-                                st.info("Set OPENAI_API_KEY environment variable to use semantic search")
+                                st.info("Add OpenAI API key to `.streamlit/secrets.toml` under `[openai]` section with key `api_key`, or set OPENAI_API_KEY environment variable")
+                                st.code('''# Add to .streamlit/secrets.toml:
+[openai]
+api_key = "sk-your-key-here"''', language='toml')
                                 st.stop()
                             
                             # Generate embedding for search query
