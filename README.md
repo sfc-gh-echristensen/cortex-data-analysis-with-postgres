@@ -133,7 +133,7 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
 ```bash
 # Run the setup script
-python3 setup_transaction_management.py
+python3 scripts/setup_transaction_management.py
 ```
 
 ### 4. Configure Secrets
@@ -184,13 +184,13 @@ Choose one of the following options:
 
 ```bash
 # Option 1: Load sample transaction data
-python3 load_sample_data.py
+python3 scripts/load_sample_data.py
 
 # Option 2: Load expanded dataset
-python3 bulk_insert_expanded_data.py
+python3 data_loaders/bulk_insert_expanded_data.py
 
 # Option 3: Load from SQL backup (see Sample Data section below)
-psql -h your-host -U your-user -d your-database -f sample_data_backup.sql
+psql -h your-host -U your-user -d your-database -f docs/sample_data/postgres_sample_data.sql
 ```
 
 ### 6. Setup Semantic Search (Optional)
@@ -199,7 +199,7 @@ If you want to use the pgvector semantic search feature:
 
 ```bash
 # Generate embeddings for existing transactions
-python3 setup_embeddings.py
+python3 scripts/setup_embeddings.py
 ```
 
 ### 7. Run the Application
@@ -220,18 +220,15 @@ Load sample financial data into your PostgreSQL database:
 
 #### **Option 1: Python Script**
 ```bash
-python3 load_sample_data.py
+python3 scripts/load_sample_data.py
 ```
 
 #### **Option 2: SQL Backup File**
 Download and restore the sample data backup:
 
 ```bash
-# Download the SQL backup file
-# [Link to postgres_sample_data.sql will be added here]
-
 # Restore to your database
-psql -h your-host -U your-user -d your-database -f postgres_sample_data.sql
+psql -h your-host -U your-user -d your-database -f docs/sample_data/postgres_sample_data.sql
 ```
 
 **Included Data:**
@@ -266,7 +263,7 @@ SOURCE @~/snowflake_sample_data.sql;
 
 #### **Alternative: Python Loader**
 ```bash
-python3 snowflake_loader_final.py
+python3 scripts/snowflake_loader_final.py
 ```
 
 ---
@@ -348,6 +345,7 @@ Three search methods to compare:
 
 ```
 cortex-data-analysis-with-postgres/
+│
 ├── streamlit_app.py              # Main application entry point (170 lines)
 ├── postgres_utils.py              # PostgreSQL connection utilities
 ├── budget_dashboard.py            # Budget tracking interface
@@ -358,26 +356,37 @@ cortex-data-analysis-with-postgres/
 ├── db.py                          # Database session management
 ├── models.py                      # SQLAlchemy data models
 ├── models_finance.py              # Financial domain models
-│
-├── pages/
-│   └── search.py                  # Search demo page
+├── requirements.txt               # Python dependencies
+├── README.md                      # This file
+├── .gitignore                     # Git ignore rules
 │
 ├── .streamlit/
 │   ├── secrets_template.toml      # Configuration template
 │   └── secrets.toml               # Your credentials (git-ignored)
 │
-├── setup_embeddings.py            # Generate pgvector embeddings
-├── setup_transaction_management.py # Initialize database tables
-├── load_sample_data.py            # Load sample transactions
-├── bulk_insert_expanded_data.py   # Load expanded dataset
-├── snowflake_loader_final.py      # Load Snowflake sample data
+├── pages/
+│   └── search.py                  # Search demo page
 │
-├── requirements.txt               # Python dependencies
-├── README.md                      # This file
-├── REFACTORING_SUMMARY.md         # Code refactoring documentation
-├── .gitignore                     # Git ignore rules
+├── data_loaders/                  # Data loading utilities
+│   ├── bulk_insert_*.py           # Bulk data import scripts
+│   └── *.csv                      # Sample data files
 │
-└── docs/
+├── scripts/                       # Setup and utility scripts
+│   ├── setup_embeddings.py        # Generate pgvector embeddings
+│   ├── setup_transaction_management.py  # Initialize database
+│   ├── load_sample_data.py        # Load sample transactions
+│   ├── migrate_add_status.py      # Database migrations
+│   └── *.sql                      # SQL utility scripts
+│
+├── tests/                         # Test and debug scripts
+│   ├── test_*.py                  # Test files
+│   └── debug_*.py                 # Debug utilities
+│
+└── docs/                          # Documentation
+    ├── sample_data/               # SQL backup files
+    │   ├── README.md              # Sample data guide
+    │   ├── postgres_sample_data.sql
+    │   └── snowflake_sample_data.sql
     └── screenshots/               # Application screenshots
 ```
 
