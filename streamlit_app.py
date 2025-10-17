@@ -44,6 +44,10 @@ def ensure_table(engine: Engine):
 # Create a professional banner header with navigation
 st.markdown("""
 <style>
+/* Hide the default Streamlit navigation */
+[data-testid="stSidebarNav"] {
+    display: none;
+}
 .banner {
     background: linear-gradient(90deg, #1f4e79 0%, #2980b9 100%);
     padding: 1.5rem 2rem;
@@ -151,12 +155,6 @@ if st.sidebar.button("🏦 Dashboard", use_container_width=True):
 if st.sidebar.button("🔍 Search Demo", use_container_width=True):
     st.query_params.page = "search"
     st.rerun()
-
-# Show current page indicator
-if current_page == "dashboard":
-    st.sidebar.success("📍 Currently on: Dashboard")
-elif current_page == "search":
-    st.sidebar.success("📍 Currently on: Search Demo")
 
 # Route to the appropriate page
 if current_page == "search":
