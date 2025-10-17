@@ -72,3 +72,7 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+add_cancelled_status.sql
+db_operations.log
+REFACTORING_SUMMARY.md
+db_operations.log
