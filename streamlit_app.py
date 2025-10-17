@@ -7,11 +7,11 @@ import streamlit as st
 import urllib3
 
 # Import modular components
-from postgres_utils import setup_postgres_connection
-from budget_dashboard import render_budget_dashboard
-from cortex_queries import render_cortex_queries
-from transaction_manager_ui import render_transaction_manager
-from cortex_agent import render_cortex_agent
+from src.postgres_utils import setup_postgres_connection
+from src.budget_dashboard import render_budget_dashboard
+from src.cortex_queries import render_cortex_queries
+from src.transaction_manager_ui import render_transaction_manager
+from src.cortex_agent import render_cortex_agent
 from pages.search import show_search_page
 
 # Suppress SSL warnings

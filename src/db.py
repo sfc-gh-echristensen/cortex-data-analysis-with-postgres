@@ -2,7 +2,7 @@ import json
 from typing import Iterator, Optional
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from models import Base, Completion
+from src.models import Base, Completion
 
 
 def make_engine(url: str):

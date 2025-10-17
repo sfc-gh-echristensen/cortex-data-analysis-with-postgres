@@ -8,7 +8,7 @@ import pandas as pd
 import json
 import requests
 from sqlalchemy.engine import Engine
-from db import make_session_factory, save_completion_with_session
+from src.db import make_session_factory, save_completion_with_session
 
 
 # Agent configuration

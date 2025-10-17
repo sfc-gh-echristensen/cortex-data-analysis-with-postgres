@@ -8,7 +8,7 @@ import streamlit as st
 import pandas as pd
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
-from db_utils import TransactionManager, get_db_connection
+from src.db_utils import TransactionManager, get_db_connection
 
 
 def render_transaction_manager(engine: Engine, use_postgres: bool):

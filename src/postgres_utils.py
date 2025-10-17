@@ -7,7 +7,7 @@ import os
 import streamlit as st
 from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
-from db import init_db
+from src.db import init_db
 
 
 def make_postgres_engine(user: str, password: str, host: str, port: int, dbname: str, sslmode: str | None = None) -> Engine:

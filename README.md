@@ -346,19 +346,22 @@ Three search methods to compare:
 ```
 cortex-data-analysis-with-postgres/
 │
-├── streamlit_app.py              # Main application entry point (170 lines)
-├── postgres_utils.py              # PostgreSQL connection utilities
-├── budget_dashboard.py            # Budget tracking interface
-├── cortex_queries.py              # Cortex AI query functionality
-├── transaction_manager_ui.py      # Transaction management UI
-├── cortex_agent.py                # Snowflake agent chat interface
-├── db_utils.py                    # Database utility functions
-├── db.py                          # Database session management
-├── models.py                      # SQLAlchemy data models
-├── models_finance.py              # Financial domain models
+├── streamlit_app.py               # Main application entry point (170 lines)
 ├── requirements.txt               # Python dependencies
 ├── README.md                      # This file
 ├── .gitignore                     # Git ignore rules
+│
+├── src/                           # Application modules
+│   ├── __init__.py                # Package initialization
+│   ├── postgres_utils.py          # PostgreSQL connection utilities
+│   ├── budget_dashboard.py        # Budget tracking interface
+│   ├── cortex_queries.py          # Cortex AI query functionality
+│   ├── transaction_manager_ui.py  # Transaction management UI
+│   ├── cortex_agent.py            # Snowflake agent chat interface
+│   ├── db_utils.py                # Database utility functions
+│   ├── db.py                      # Database session management
+│   ├── models.py                  # SQLAlchemy data models
+│   └── models_finance.py          # Financial domain models
 │
 ├── .streamlit/
 │   ├── secrets_template.toml      # Configuration template

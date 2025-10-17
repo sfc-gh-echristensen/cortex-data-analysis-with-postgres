@@ -7,7 +7,7 @@ Demonstrates ILIKE, pg_trgm, and pgvector search capabilities
 import streamlit as st
 import pandas as pd
 import os
-from db_utils import get_db_connection, get_postgres_config
+from src.db_utils import get_db_connection, get_postgres_config
 from sqlalchemy import text
 
 def show_search_page():

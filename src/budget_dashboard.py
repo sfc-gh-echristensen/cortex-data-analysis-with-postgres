@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 import calendar
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
-from db_utils import get_db_connection
+from src.db_utils import get_db_connection
 
 
 # Budget configuration constants

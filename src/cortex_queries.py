@@ -10,7 +10,7 @@ import re
 from sqlalchemy import text
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker
-from db import make_session_factory, save_completion_with_session, fetch_history_with_session
+from src.db import make_session_factory, save_completion_with_session, fetch_history_with_session
 
 
 def render_cortex_queries(engine: Engine, use_postgres: bool, session):
