@@ -1,6 +1,0 @@
-2025-10-17 11:10:30,314 - db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
-2025-10-17 11:10:31,692 - db_utils - DEBUG - ✅ Database connection established for pending transactions query
-2025-10-17 11:10:32,200 - db_utils - INFO - 📊 Found 0 pending transactions
-2025-10-17 11:28:07,576 - src.db_utils - INFO - 📋 GET_PENDING_TRANSACTIONS: Starting to fetch pending transactions...
-2025-10-17 11:28:09,259 - src.db_utils - DEBUG - ✅ Database connection established for pending transactions query
-2025-10-17 11:28:09,740 - src.db_utils - INFO - 📊 Found 0 pending transactions

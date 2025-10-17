@@ -4,10 +4,6 @@ A full-stack demo app for financial analytics demonstrating the integration of *
 
 ---
 
-## 🌟 Features
-
-This demo application showcases powerful integrations between modern data technologies:
-
 ### 📊 **PostgreSQL Integration**
 - **Real-time Budget Dashboard** - Track daily, weekly, and monthly spending with interactive visualizations
 - **Transaction Management** - Approve, decline, or cancel pending transactions with full audit trail
